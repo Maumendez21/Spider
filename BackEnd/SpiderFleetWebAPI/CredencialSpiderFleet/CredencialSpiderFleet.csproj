@@ -1,0 +1,366 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{107B4643-6A19-47C6-9800-0A79D60750D1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CredencialSpiderFleet</RootNamespace>
+    <AssemblyName>CredencialSpiderFleet</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44341</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.2.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.4.2.0\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.2.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.2.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.2.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson, Version=2.12.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.12.4\lib\net452\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.7\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Address\Address.cs" />
+    <Compile Include="Models\Address\AddressConsult.cs" />
+    <Compile Include="Models\AddtionalVehicleData\AddtionalVehicleData.cs" />
+    <Compile Include="Models\AddtionalVehicleData\AddtionalVehicleDataRegistry.cs" />
+    <Compile Include="Models\Alarm\Alarm.cs" />
+    <Compile Include="Models\ApiGoogle\Address_componentsItem.cs" />
+    <Compile Include="Models\ApiGoogle\Bounds.cs" />
+    <Compile Include="Models\ApiGoogle\Geometry.cs" />
+    <Compile Include="Models\ApiGoogle\GoogleGeoCodeResponse.cs" />
+    <Compile Include="Models\ApiGoogle\Location.cs" />
+    <Compile Include="Models\ApiGoogle\Northeast.cs" />
+    <Compile Include="Models\ApiGoogle\Plus_code.cs" />
+    <Compile Include="Models\ApiGoogle\ResultsItem.cs" />
+    <Compile Include="Models\ApiGoogle\Southwest.cs" />
+    <Compile Include="Models\ApiGoogle\Viewport.cs" />
+    <Compile Include="Models\Bot\LastPosition.cs" />
+    <Compile Include="Models\CardGraphics\CardGraphics.cs" />
+    <Compile Include="Models\Catalogs\CommunicationMethods\CommunicationMethodsRegistry.cs" />
+    <Compile Include="Models\Catalogs\Mechanics\Mechanics.cs" />
+    <Compile Include="Models\Catalogs\Model\Model.cs" />
+    <Compile Include="Models\Catalogs\Roles\Roles.cs" />
+    <Compile Include="Models\Catalogs\SamplingTime\SamplingTimeRegistry.cs" />
+    <Compile Include="Models\Catalogs\Status\Status.cs" />
+    <Compile Include="Models\Catalogs\SuscriptionsType\SuscriptionType.cs" />
+    <Compile Include="Models\Catalogs\TradeMark\TradeMark.cs" />
+    <Compile Include="Models\Catalogs\TypeService\TypeService.cs" />
+    <Compile Include="Models\Catalogs\TypeVehicle\TypeVehicle.cs" />
+    <Compile Include="Models\Catalogs\Version\Version.cs" />
+    <Compile Include="Models\Cleaning\Cleaning.cs" />
+    <Compile Include="Models\Company\AdministrationCompany.cs" />
+    <Compile Include="Models\Company\AdministrationCompanyRegistry.cs" />
+    <Compile Include="Models\Company\AssignmentObds.cs" />
+    <Compile Include="Models\Company\Company.cs" />
+    <Compile Include="Models\Company\CompanyList.cs" />
+    <Compile Include="Models\Configuration\Configuration.cs" />
+    <Compile Include="Models\Configuration\ConfigurationRegistry.cs" />
+    <Compile Include="Models\Configuration\Enumeracion.cs" />
+    <Compile Include="Models\Configuration\VariableConfiguration.cs" />
+    <Compile Include="Models\Connection\SqlHelper.cs" />
+    <Compile Include="Models\Credentials\AuthenticationRequest.cs" />
+    <Compile Include="Models\Credentials\RefreshToken.cs" />
+    <Compile Include="Models\Credentials\Token.cs" />
+    <Compile Include="Models\Credentials\TokenCredentials.cs" />
+    <Compile Include="Models\DAO\Credentials\CredentialsDAO.cs" />
+    <Compile Include="Models\DashBoard\DashBoardActivityDay.cs" />
+    <Compile Include="Models\DashBoard\Graficas.cs" />
+    <Compile Include="Models\DashBoard\GraficasDLT.cs" />
+    <Compile Include="Models\DashBoard\PerformanceVehicle.cs" />
+    <Compile Include="Models\DashBoard\Ranking.cs" />
+    <Compile Include="Models\Details\Details.cs" />
+    <Compile Include="Models\Details\DetailsRegistry.cs" />
+    <Compile Include="Models\Diary\Diary.cs" />
+    <Compile Include="Models\Diary\DiaryRegistry.cs" />
+    <Compile Include="Models\Diary\DiaryResgitrys.cs" />
+    <Compile Include="Models\EngineStop\EngineStop.cs" />
+    <Compile Include="Models\HeatMap\Coordinates.cs" />
+    <Compile Include="Models\Image\Image.cs" />
+    <Compile Include="Models\Inspection\Header.cs" />
+    <Compile Include="Models\Inspection\Headerandtemplate.cs" />
+    <Compile Include="Models\Inspection\HeaderandTemplateContenedor.cs" />
+    <Compile Include="Models\Inspection\InspectionList.cs" />
+    <Compile Include="Models\Inspection\InspectionPrincipal.cs" />
+    <Compile Include="Models\Inspection\InspectionPrincipalList.cs" />
+    <Compile Include="Models\Inspection\InspectionResultheaderless.cs" />
+    <Compile Include="Models\Inspection\InspectionResultList.cs" />
+    <Compile Include="Models\Inspection\InspectionResults.cs" />
+    <Compile Include="Models\Inspection\ListResultHeaderInspection.cs" />
+    <Compile Include="Models\Inspection\Templatesplantilla.cs" />
+    <Compile Include="Models\Inventory\CatalogStatusDevices\CatalogStatusDevices.cs" />
+    <Compile Include="Models\Inventory\TypeDevice\TypeDevices.cs" />
+    <Compile Include="Models\Itineraries\GraficaTiempoVelocidad.cs" />
+    <Compile Include="Models\Itineraries\Icons.cs" />
+    <Compile Include="Models\Itineraries\Itineraries.cs" />
+    <Compile Include="Models\Itineraries\ItinerariesKey.cs" />
+    <Compile Include="Models\Itineraries\LastAlarms.cs" />
+    <Compile Include="Models\Itineraries\NotificationsPriority.cs" />
+    <Compile Include="Models\Itineraries\Points.cs" />
+    <Compile Include="Models\Itineraries\Time.cs" />
+    <Compile Include="Models\Itineraries\WaitTime.cs" />
+    <Compile Include="Models\LandingPage\LandingPage.cs" />
+    <Compile Include="Models\Logical\DeviceData.cs" />
+    <Compile Include="Models\Logical\GeoCoordinate.cs" />
+    <Compile Include="Models\Logical\RawData.cs" />
+    <Compile Include="Models\Logo\Logo.cs" />
+    <Compile Include="Models\Log\LogAccess.cs" />
+    <Compile Include="Models\Main\Combo\Empresa.cs" />
+    <Compile Include="Models\Main\Combo\SubEmpresa.cs" />
+    <Compile Include="Models\Main\Filtros\FilterItineraries.cs" />
+    <Compile Include="Models\Main\GeoFenceDevice\GeoFenceDevice.cs" />
+    <Compile Include="Models\Main\GeoFenceDevice\GeoFenceDeviceId.cs" />
+    <Compile Include="Models\Main\GeoFenceDevice\GeoFenceDeviceList.cs" />
+    <Compile Include="Models\Main\GeoFenceHistory\PointsTimeOut.cs" />
+    <Compile Include="Models\Main\HeatPoints\HeatPoints.cs" />
+    <Compile Include="Models\Main\Itineracios\Aceleracion.cs" />
+    <Compile Include="Models\Main\Itineracios\Alarma.cs" />
+    <Compile Include="Models\Main\Itineracios\Desaceleracion.cs" />
+    <Compile Include="Models\Main\Itineracios\ItinerariosAlarmas.cs" />
+    <Compile Include="Models\Main\Itineracios\Maximos.cs" />
+    <Compile Include="Models\Main\Itineracios\RPM.cs" />
+    <Compile Include="Models\Main\Itineracios\Velocidad.cs" />
+    <Compile Include="Models\Main\LastPositionDevice\CoordinatesGeoFence.cs" />
+    <Compile Include="Models\Main\LastPositionDevice\CurrentPositionDevice.cs" />
+    <Compile Include="Models\Main\LastPositionDevice\LastPositionDevices.cs" />
+    <Compile Include="Models\Main\Reports\ReportByCompany.cs" />
+    <Compile Include="Models\Main\Reports\ReportConduct.cs" />
+    <Compile Include="Models\Main\Reports\ReportHeaderTrip.cs" />
+    <Compile Include="Models\Main\Reports\ReportItineraries.cs" />
+    <Compile Include="Models\Main\Reports\Reports.cs" />
+    <Compile Include="Models\Main\Reports\ReportsFiltros.cs" />
+    <Compile Include="Models\Main\Reports\ReportTrip.cs" />
+    <Compile Include="Models\Main\TraceTrip\GeneralInformation.cs" />
+    <Compile Include="Models\Main\TraceTrip\Point.cs" />
+    <Compile Include="Models\Main\TraceTrip\Makers.cs" />
+    <Compile Include="Models\Main\Map\GeneralTrips.cs" />
+    <Compile Include="Models\Main\TraceTrip\TraceTrip.cs" />
+    <Compile Include="Models\Main\TraceTrip\TripsInformation.cs" />
+    <Compile Include="Models\Main\VehicleList\VehicleList.cs" />
+    <Compile Include="Models\Mobility\InfoResponsibles\InfoListResponsibles.cs" />
+    <Compile Include="Models\Mobility\InfoResponsibles\InfoResponsibles.cs" />
+    <Compile Include="Models\Mobility\PointInterestAnalysis\PointInterestAnalysisRegistry.cs" />
+    <Compile Include="Models\Models\Mongo\GeoFence\CoordenatesData.cs" />
+    <Compile Include="Models\Models\Mongo\GeoFence\InterestPoint.cs" />
+    <Compile Include="Models\Models\Mongo\GeoFence\Polygon.cs" />
+    <Compile Include="Models\Models\Mongo\GeoFence\Polygons.cs" />
+    <Compile Include="Models\Obd\BulkLoad.cs" />
+    <Compile Include="Models\Obd\Obd.cs" />
+    <Compile Include="Models\Obd\ObdAdmin.cs" />
+    <Compile Include="Models\Obd\ObdAssignmentUpdate.cs" />
+    <Compile Include="Models\Obd\ObdCompany.cs" />
+    <Compile Include="Models\Obd\ObdHierarchy.cs" />
+    <Compile Include="Models\Obd\ObdRegistry.cs" />
+    <Compile Include="Models\Obd\ObdUpdate.cs" />
+    <Compile Include="Models\Obd\SubCompanyAssignmentObds.cs" />
+    <Compile Include="Models\Operator\Operator.cs" />
+    <Compile Include="Models\Operator\OperatorRegistry.cs" />
+    <Compile Include="Models\Password\Passwords.cs" />
+    <Compile Include="Models\Permission\ListPermission.cs" />
+    <Compile Include="Models\Permission\Modules.cs" />
+    <Compile Include="Models\Permission\Permission.cs" />
+    <Compile Include="Models\Mobility\PointInterestAnalysis\PointInterestAnalysis.cs" />
+    <Compile Include="Models\PointInterest\PointInterestCreate.cs" />
+    <Compile Include="Models\PointInterest\PointInterestDevice.cs" />
+    <Compile Include="Models\PointInterest\PointInterestDeviceId.cs" />
+    <Compile Include="Models\PointInterest\PointInterestRegistry.cs" />
+    <Compile Include="Models\ReportAdmin\LastEvent.cs" />
+    <Compile Include="Models\ReportAdmin\ReportDeviceLastData.cs" />
+    <Compile Include="Models\ReportAdmin\ReportGPS.cs" />
+    <Compile Include="Models\ReportAdmin\ReportItinerario.cs" />
+    <Compile Include="Models\ReportAdmin\ReportItinerarioSpecial.cs" />
+    <Compile Include="Models\ReportAdmin\ReportLastStatusAlarms.cs" />
+    <Compile Include="Models\ReportAdmin\ReportLastStatusDevice.cs" />
+    <Compile Include="Models\ReportAdmin\Vehicles.cs" />
+    <Compile Include="Models\Responsible\Responsible.cs" />
+    <Compile Include="Models\Responsible\ResponsibleRegistry.cs" />
+    <Compile Include="Models\Responsible\ResponsibleUpdate.cs" />
+    <Compile Include="Models\Responsible\ResponsibleVehicle.cs" />
+    <Compile Include="Models\RevGeoCode\Root.cs" />
+    <Compile Include="Models\RouteAnalysis\RouteAnalysis.cs" />
+    <Compile Include="Models\RouteDiary\RouteData.cs" />
+    <Compile Include="Models\RouteDiary\RouteDiary.cs" />
+    <Compile Include="Models\RouteDiary\RouteDiaryRegistry.cs" />
+    <Compile Include="Models\RouteDiary\RouteDiaryResgitrys.cs" />
+    <Compile Include="Models\RouteXML\Kml.cs" />
+    <Compile Include="Models\Route\DataRoutes.cs" />
+    <Compile Include="Models\Route\RouteDevice.cs" />
+    <Compile Include="Models\Route\Routes.cs" />
+    <Compile Include="Models\Sims\Credit\Card.cs" />
+    <Compile Include="Models\Sims\ReportSims.cs" />
+    <Compile Include="Models\Sims\Sims.cs" />
+    <Compile Include="Models\Sims\SimsMaintenance.cs" />
+    <Compile Include="Models\Sims\XMLSim\Account.cs" />
+    <Compile Include="Models\Sims\XMLSim\Card.cs" />
+    <Compile Include="Models\Sims\Credit\Client.cs" />
+    <Compile Include="Models\Sims\Credit\Credits.cs" />
+    <Compile Include="Models\Sims\Credit\ListCredits.cs" />
+    <Compile Include="Models\Sims\XMLSim\Records.cs" />
+    <Compile Include="Models\Sims\Credit\Sbalance.cs" />
+    <Compile Include="Models\SnappedPoints\Location.cs" />
+    <Compile Include="Models\SnappedPoints\SnappedPoint.cs" />
+    <Compile Include="Models\SnappedPoints\SnappedPoints.cs" />
+    <Compile Include="Models\Sub\SubComapny\SubCompanyAssignmentUsers.cs" />
+    <Compile Include="Models\Sub\SubComapny\SubCompanyData.cs" />
+    <Compile Include="Models\Sub\SubComapny\SubCompany.cs" />
+    <Compile Include="Models\Sub\SubComapny\SubCompanyListByUser.cs" />
+    <Compile Include="Models\Sub\SubComapny\SubCompanyUpdate.cs" />
+    <Compile Include="Models\Sub\SubUser\SubUser.cs" />
+    <Compile Include="Models\Sub\SubUser\SubUserRegistry.cs" />
+    <Compile Include="Models\TravelReport\TravelReport.cs" />
+    <Compile Include="Models\Useful\UseFul.cs" />
+    <Compile Include="Models\User\SflUser.cs" />
+    <Compile Include="Models\User\User.cs" />
+    <Compile Include="Models\User\UserLogin.cs" />
+    <Compile Include="Models\User\UserRegistry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53045</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44341/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-right mt-4">
+
+                <button class="btn btn-orange btn-sm mr-3" [routerLink]="['/configuration/puntos-interes/asignacion']">
+                    <i class="fas fa-plus"></i>
+                    {{"NUEVA_ASIGNACION" | translate}}
+                </button>
+
+                <button type="button" class="btn btn-orange btn-sm mr-3" [routerLink]="[ '/configuration/nuevo-punto-interes' ]">
+                    <i class="fas fa-plus"></i> {{"AGREGAR" | translate}}
+                </button>
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalImportPuntoInteres" >
+                   {{"IMPORTAR" | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mt-4 mb-4">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="col-9">{{"NOMBRE" | translate}}</th>
+                        <th class="col-1">Modificar</th>
+                        <th class="col-1">Desvincular</th>
+                        <th class="col-1">Eliminar</th>
+                    </tr>
+                </thead>
+            </table>
+
+
+
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item" *ngFor="let item of pageOfItems; let i = index;">
+                    <div class="accordion-header" id="headingOne2">
+                        <div class="row">
+                            <div class="col-9">
+                                <h1 class="">
+                                    <button class="btn btn-link text-left text" type="button" attr.data-target="#collapse_{{i}}" data-toggle="collapse" aria-expanded="true">
+                                        {{item.Name}}
+                                    </button>
+                                </h1>
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-orange btn-sm" [routerLink]="[ '/configuration/actualizar-punto-interes', item.Id ]">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-danger btn-sm" (click)="desvincularRuta(item.ListDevice, item.Name)">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </button>
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-danger btn-sm" (click)="eliminarPuntoInteres(item.Id, i)">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapse_{{i}}" class="collapse" aria-labelledby="headingOne2" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <h6>{{"DISPOSITIVOS" | translate}}</h6>
+                            <hr>
+                            <ul *ngIf="item.ListDevice != null">
+                                <li *ngFor="let devices of item.ListDevice">{{devices.Name}}</li>
+                            </ul>
+                            <p *ngIf="item.ListDevice === null">{{"NO_HAY_DISPOSITIVOS_PUNTO" | translate}}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <app-jw-pagination-custom [items]="puntos" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+
+        </div>
+    </div>
+</div>
+
+<app-excel-punto-interes (refresh)="refresh($event)" ></app-excel-punto-interes>

@@ -1,0 +1,34 @@
+
+<app-loading [hidden]="!loading" ></app-loading>
+<div [hidden]="loading"  class="">
+    <div class="d-flex">
+        <button style="margin-right: 7px;" class="btn btn-info" [routerLink]="'/mobility/new-route'">Nueva Ruta</button>
+        <button data-bs-toggle="modal" data-bs-target="#KML-modal" class="btn btn-danger">Importar KML</button>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+                <thead>
+                    <tr>
+                        <th>Ruta</th>
+                        <th>Descripción</th>
+                        <th>Ver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let ruta of pageOfItems; let i = index;">
+                        <td>{{ ruta.Name }}</td>
+                        <td>{{ ruta.Description }}</td>
+                        <td>
+                            <button [routerLink]="[ '/mobility/route', ruta.Id ]" class="btn btn-info btn-sm">
+                                <i class="mdi mdi-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-jw-pagination-custom [items]="rutas" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+        </div>
+    </div>
+</div>
+<app-modal-import-kml (refresh)="refresh($event)" ></app-modal-import-kml>

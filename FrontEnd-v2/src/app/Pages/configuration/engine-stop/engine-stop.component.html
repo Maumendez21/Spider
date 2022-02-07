@@ -1,0 +1,43 @@
+
+<div class="form-floating mb-2">
+
+    <input (keyup)="buscarName()" class="form-control mb-2" placeholder="s" [(ngModel)]="name"  type="text">
+    <label for="">Buscar por nombre</label>
+</div>
+
+
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Estatus</th>
+            <th>Paro</th>
+            <th>Activar</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let device of devices" >
+            <td>
+              {{device.Name}}
+            </td>
+            <td>
+              <span *ngIf="device.Status == 1" class="badge bg-secondary">En solicitud de paro</span>
+              <span *ngIf="device.Status == 0" class="badge bg-success">Motor activo</span>
+              <span *ngIf="device.Status == 2" class="badge bg-danger">Paro</span>
+              <span *ngIf="device.Status == 3" class="badge bg-secondary">En solicitud de activación</span>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm " [disabled]="deshabilitadoParo(device.Status)" (click)="paroMotor(device.Device, device.Status, 0)">
+                <i class="mdi mdi-stop-circle-outline"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-success btn-sm " [disabled]="deshabilitado(device.Status)" (click)="paroMotor(device.Device, device.Status, 1)">
+                <i class="mdi mdi-stop-circle-outline"></i>
+              </button>
+            </td>
+          </tr>
+    </tbody>
+</table>

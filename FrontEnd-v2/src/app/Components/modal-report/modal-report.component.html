@@ -1,0 +1,98 @@
+<!-- <button id="btn-report" type="button" class="zI btn btn-secondary" data-bs-toggle="modal" data-bs-target="#report-modal">Top Modal</button>
+<div  id="report-modal" class=" report-modal modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Generar Reporte</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <a *ngIf="grupo !== ''" [href]="generarReporte()" target="_self" download="document.pdf" data-bs-dismiss="modal"  type="button" class="btn btn-info ">Generar Reporte</a>
+                <button *ngIf="grupo == ''" class="btn btn-info"  disabled>Generar reporte</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+<button id="btn-report" style="display: none;" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">Enable backdrop (default)</button>
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Generar reporte</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="selectGrupo" [(ngModel)]="grupo" (change)="updateSubempresa()">
+                        <option value="">Seleccionar Grupo</option>
+                        <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+                    </select>
+                    <label for="selectUnidad">Grupo</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="selectUnidad" [(ngModel)]="unidad">
+                        <option value="">Seleccionar Unidad</option>
+                        <option *ngFor="let item of devices | filterAnalitic:grupo" [value]="item.Device">{{ item.Name }}</option>
+                    </select>
+                    <label for="selectUnidad">Unidad</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-2">
+                    <input type="date" name="fechaInicio" class="form-control" id="fechaInicioInput" [(ngModel)]="fechaInicio">
+                    <label for="fechaInicioInput">Fecha Inicio</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating mb-2">
+                    <input type="time" class="form-control" id="horaInicioInput" [(ngModel)]="horaInicio">
+                    <label for="horaInicioInput">Hora Inicio</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-floating mb-2">
+                    <input type="date" class="form-control" id="fechaFinalInput" name="fechaFin" [(ngModel)]="fechaFin">
+                    <label for="fechaFinalInput">Fecha Final</label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating mb-2">
+                    <input type="time" class="form-control" id="horaFinalInput" [(ngModel)]="horaFin">
+                    <label for="horaFinalInput">Hora Final</label>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-floating mb-2">
+            <select class="form-select" id="itinerarios" [(ngModel)]="itinerarios">
+                <option value="1">Itinerarios</option>
+                <option value="2">Detalle Itinerarios</option>
+            </select>
+            <label for="itinerarios">Itinerarios</label>
+        </div>
+
+
+
+        <button type="button" style="margin-right: 7px;" class="btn btn-light" data-bs-dismiss="offcanvas" aria-label="Close">Close</button>
+        <a *ngIf="grupo !== ''" [href]="generarReporte()" target="_self" download="document.pdf" data-bs-dismiss="offcanvas" aria-label="Close"  type="button" class="btn btn-info ">Generar Reporte</a>
+        <button *ngIf="grupo == ''" class="btn btn-info"  disabled>Generar reporte</button>
+    </div>
+</div>

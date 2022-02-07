@@ -1,0 +1,61 @@
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>{{ 'NUEVA_RUTA' | translate }}</h1>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a class="btn btn-outline-dark" [routerLink]="[ '/configuration/rutas' ]">{{ 'CANCELAR' | translate }}</a>
+                    <button class="btn btn-primary ml-2" (click)="registrarRuta()">{{ 'REGISTRAR' | translate }}</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRuta">{{ 'NOMBRE_RUTA' | translate }}</label>
+                <input type="text" class="form-control" id="inputRuta" [placeholder]="'NOMBRE_RUTA' | translate" [(ngModel)]="nameRoute">
+            </div>
+            <div class="form-group">
+                <label for="descripcionRuta">{{ 'DESCRIPCION_RUTA' | translate }}</label>
+                <textarea class="form-control" id="descripcionRuta" rows="4" [placeholder]="'DESCRIPCION_RUTA' | translate" [(ngModel)]="descriptionRoute"></textarea>
+            </div>
+            <h4 [hidden]="true">{{ 'RUTAS' | translate }}</h4>
+            <table [hidden]="true" class="table">
+                <tr>
+                    <th>#</th>
+                    <th>{{ 'DESTINO' | translate }}</th>
+                    <th>{{ 'LATITUD' | translate }}</th>
+                    <th>{{ 'LONGITUD' | translate }}</th>
+                    <th>{{ 'NOTAS' | translate }}</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let route of routes; let i = index">
+                    <td>{{ i+1 }}</td>
+                    <td>
+                        <input type="text" class="form-control" [placeholder]="'NOMBRE_UBICACION' | translate" [(ngModel)]="route.Name">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [placeholder]="'LATITUD' | translate" [value]="route.Latitude" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [placeholder]="'LONGITUD' | translate" [value]="route.Longitude" readonly>
+                    </td>
+                    <td>
+                        <textarea class="form-control" [placeholder]="'ESCRIBE_UNA_NOTA' | translate" rows="1" [(ngModel)]="route.Notes">{{ route.notes }}</textarea>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarRuta(i)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6 mt-4 mb-4">
+            <agm-map
+                [latitude]="center.lat"
+                [longitude]="center.lng"
+                (mapReady)="onMapReady($event)">
+            </agm-map>
+        </div>
+    </div>
+</div>

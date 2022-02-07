@@ -1,0 +1,76 @@
+<div class="modal fade" id="modalUpdateVehiculoInfo" tabindex="-1" aria-labelledby="modalUpdateVehiculoInfo" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"ACTUALIZAR_INFORMACION_VEHICULO" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label>{{"IDDISPOSITIVO" | translate}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="device" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputName">{{"NOMBRE" | translate}}</label>
+                            <input type="text" class="form-control" id="inputName" [(ngModel)]="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPlacas">{{"PLACAS" | translate}}</label>
+                            <input type="text" class="form-control" id="inputPlacas" [(ngModel)]="placas">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputVIN">{{"VIN" | translate}}</label>
+                            <input type="text" class="form-control" id="inputVIN" [(ngModel)]="VIN">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPoliza">{{"POLIZA" | translate}}</label>
+                            <input type="text" class="form-control" id="inputPoliza" [(ngModel)]="poliza">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputMarca">{{"MARCA" | translate}}</label>
+                            <select id="inputMarca" class="form-control" [(ngModel)]="marca">
+                                <option value="0" >{{"SELECCIONAR_MARCA" | translate}}</option>
+                                <option *ngFor="let item of markList" [value]="item.IdMark">{{ item.Description }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputModelo">{{"MODELO" | translate}}</label>
+                            <select id="inputModelo" class="form-control" [(ngModel)]="modelo">
+                                <option value="0" >{{"SELECCIONAR_MODELO" | translate}}</option>
+                                <option *ngFor="let item of modelList" [value]="item.IdModel">{{ item.Description }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputVersion">{{"VERSION" | translate}}</label>
+                            <select id="inputVersion" class="form-control" [(ngModel)]="version">
+                                <option value="0" >{{"SELECCIONAR_VERSION" | translate}}</option>
+                                <option *ngFor="let item of versionList" [value]="item.IdVersion">{{ item.Description }}</option>
+                            </select>
+                            <a href="#" data-toggle="modal" data-target="#modalAgregarVersion" data-dismiss="modal">Si no esta la versión deseada agregala aquí</a>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputTipo">{{"TIPO_VEHICULO" | translate}}</label>
+                            <select id="inputTipo" class="form-control" [(ngModel)]="tipo">
+                                
+                                <option *ngFor="let item of tipoList" [value]="item.IdTypeVehicle">{{ item.Description }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" (click)="actualizarInfoVehiculo()" data-dismiss="modal">{{"ACTUALIZAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-agregar-version></app-agregar-version>

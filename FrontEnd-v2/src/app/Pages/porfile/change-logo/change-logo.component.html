@@ -1,0 +1,8 @@
+<div class="mb-3">
+    <label for="example-fileinput" class="form-label">Seleccionar archivo</label>
+    <input type="file" (change)="changeDocument($event)" id="example-fileinput" class="form-control">
+</div>
+<div class="form-floating">
+    <button class="btn btn-info" style="margin-right: 7px;" [disabled]="logo" (click)="uploadFile()">Cargar</button>
+    <button class="btn btn-info" [disabled]="!logo" (click)="updateFile()">Actualizar</button>
+</div>

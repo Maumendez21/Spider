@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mt-4 mb-4">
+            <h2>{{"CAMBIAR_LOGOTIPO" | translate}}</h2>
+            <div class="form-group">
+                <label for="">{{"SELECCIONAR_ARCHIVO" | translate}}</label>
+                <input type="file" (change)="changeDocument($event)" class="form-control-file" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-orange mr-2" [disabled]="logo" (click)="uploadFile()">{{"CARGAR" | translate}}</button>
+                <button class="btn btn-orange" [disabled]="!logo" (click)="updateFile()">{{"ACTUALIZAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

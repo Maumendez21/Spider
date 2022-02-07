@@ -1,0 +1,44 @@
+<ul class="list-group mt-4">
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON600')" [routerLink]="['/configuration/grupos']" routerLinkActive="active">
+        {{"GRUPOS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON606')" [routerLink]="['/configuration/agenda']" routerLinkActive="active">
+        {{"AGENDA" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON601')" [routerLink]="['/configuration/devices']" routerLinkActive="active">
+        {{"DISPOSITIVOS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON602')" [routerLink]="['/configuration/responsables']" routerLinkActive="active">
+        {{"RESPONSABLES" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON603')" [routerLink]="['/configuration/usuarios']" routerLinkActive="active">
+        {{"USUARIOS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON604')" [routerLink]="['/configuration/vehiculoInfo']" routerLinkActive="active">
+        {{"INFORMACION_VEHICULO" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON604')" [routerLink]="['/configuration/dispositivoInfo']" routerLinkActive="active">
+        {{"INFORMACION_DISPOSITIVO" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON607')" [routerLink]="['/configuration/parametros-generales']" routerLinkActive="active">
+        {{"PARAMETROS_GENERALES" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON605')" [routerLink]="['/configuration/geocercas']" routerLinkActive="active">
+        {{"GEOCERCAS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON609')" [routerLink]="['/configuration/rutas']" routerLinkActive="active">
+        {{"RUTAS" | translate}} <strong>{{"BETA" | translate}}</strong>
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON611')" [routerLink]="['/configuration/puntos-interes']" routerLinkActive="active">
+        {{"PUNTOS_INTERES" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON608')"  [routerLink]="['/configuration/logotipo-change']" routerLinkActive="active">
+        {{"CAMBIAR_LOGOTIPO" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON610')" [routerLink]="['/configuration/password-change']" routerLinkActive="active">
+        {{"CAMBIAR_CONTRASEÑA" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('CON612')" [routerLink]="['/configuration/paro-motor']" routerLinkActive="active">
+        {{"PARO_DE_MOTOR" | translate}}
+    </a>
+</ul>

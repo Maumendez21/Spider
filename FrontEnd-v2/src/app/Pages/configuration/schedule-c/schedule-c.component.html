@@ -1,0 +1,18 @@
+<button id="clickOptionsModal" style="display: none;" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#options-modal">Multiple Modal</button>
+<button id="clickActualizarEventoModal" style="display: none;" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#update-responsable">Multiple Modal</button>
+<button id="clickActualizarEventoRutaModal" style="display: none;" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#update-route">Multiple Modal</button>
+
+
+<full-calendar #calendar [options]="calendarOptions"></full-calendar>
+
+
+
+<app-schedule-options></app-schedule-options>
+<app-new-event-responsable [fechaAgenda]="fechaAgenda" [agendaReload]="getRangeDates"></app-new-event-responsable>
+<app-new-event-route  [fechaAgenda]="fechaAgenda" [agendaReload]="getRangeDates" ></app-new-event-route>
+
+<app-update-event-responsable [evento]="eventUpdate" [agendaReload]="getRangeDates"></app-update-event-responsable>
+<app-update-event-route [evento]="eventUpdate" [agendaReload]="getRangeDates"></app-update-event-route>
+
+
+

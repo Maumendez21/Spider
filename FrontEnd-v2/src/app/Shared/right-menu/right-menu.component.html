@@ -1,0 +1,42 @@
+<div class="end-bar">
+
+  <div class="rightbar-title">
+    <!-- <a href="javascript:void(0);" class="">
+
+    </a> -->
+    <i class="dripicons-cross end-bar-toggle float-end cursor"></i>
+    <h5 class="m-0">{{title}}</h5>
+  </div>
+
+
+  <div class="rightbar-content h-100" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
+
+    <div class="p-3">
+
+
+      <app-filtro-fechas-travels *ngIf="!tipe"></app-filtro-fechas-travels>
+
+
+      <app-travels *ngIf="!tipe" [lastTravels]="lastTravels" ></app-travels>
+
+
+      <div *ngIf="tipe" class="row">
+        <div class="col-md-12">
+          <app-filter-status></app-filter-status>
+        </div>
+
+
+        <div class="col-md-12">
+          <app-options-map></app-options-map>
+        </div>
+
+
+      </div>
+    </div> <!-- end padding-->
+
+</div></div></div></div><div class="simplebar-placeholder" style="width: 263px; height: 775px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 700px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div></div>
+
+
+</div>
+
+

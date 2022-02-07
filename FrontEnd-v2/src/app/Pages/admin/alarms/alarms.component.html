@@ -1,0 +1,17 @@
+<app-filters-form [section]="'2'" (data)="alarmas = $event"></app-filters-form>
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Alarma</th>
+            <th>Descripción</th>
+            <th>Repeticiones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let alarma of alarmas">
+            <td>{{alarma.TypeAlarm}}</td>
+            <td>{{alarma.Description}}</td>
+            <td>{{alarma.Repet}}</td>
+        </tr>
+    </tbody>
+</table>

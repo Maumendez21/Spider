@@ -1,0 +1,42 @@
+agm-map {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+}
+
+
+.btnTravels{
+  position: absolute;
+  z-index: 99;
+  right: 0;
+  top: 200px;
+  margin-right: 10px;
+}
+
+.trafic{
+  position: absolute;
+  margin: 10px;
+  z-index: 99;
+  bottom: 15px;
+  /* left: 40%; */
+  padding: 8px;
+  border-radius: .3rem;
+  max-height: 200px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+  color: #212121;
+  right: 60px;
+
+}
+
+.spanG{
+  /* border-right: 1px solid black; */
+  margin-right: 10px;
+}
+
+.spanChild{
+  margin-right: 10px;
+  margin-left: 10px;
+  font-style: italic;
+}
+

@@ -1,0 +1,26 @@
+<div class="modal fade" id="modalAsignarPermisos" tabindex="-1" aria-labelledby="filtroEstatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filtroEstatusModalLabel">{{"PERMISOS" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group form-check m-2"  *ngFor="let item of permisos">
+                        <input type="checkbox" class="form-check-input" (change)="generarArreglo(item.Id, item.estatus)" [value]="item.Id" [(ngModel)]="item.estatus" [hidden]="item.Id === 'CON' || item.Id === 'ADM'">
+                        <label class="form-check-label">{{item.Descripcion}}</label>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"CERRAR" | translate}}</button>
+                <button type="button" class="btn btn-orange" (click)="asignarPermisos()" data-dismiss="modal">{{"ASIGNAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

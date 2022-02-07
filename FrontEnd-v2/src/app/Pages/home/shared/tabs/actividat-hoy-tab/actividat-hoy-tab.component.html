@@ -1,0 +1,50 @@
+<div class="row mt-3">
+  <div class="col-md-3 text-center">
+      <h5>Responsable: </h5>
+      <p>{{ infoDevice.DriverData | notext }}</p>
+  </div>
+  <div class="col-md-3 text-center">
+      <h5>Estatus</h5>
+      <p>{{ getEstatusName(infoDevice.estatus) }}</p>
+      <img class="" style="width: 29px; height: 32
+      px;" src="{{logotipo}}">
+  </div>
+  <div class="col-md-3 text-center">
+    <h5>Tipo de dispositivo</h5>
+      <!-- <p>Moto</p> -->
+    <p>{{ getTipoDispositivo(infoDevice.TypeDevice) }}</p>
+  </div>
+  <div class="col-md-3 text-center">
+    <h5>Conducta de manejo</h5>
+    <p>98%</p>
+    <i class="mdi mdi-emoticon-happy" style="color: #0acf97; font-size: 25px;" ></i>
+      <!-- <p>Moto</p> -->
+  </div>
+
+</div>
+<div class="row mt-3">
+  <div class="col-md-4 text-center">
+      <!-- <h5>Distacia Recorrida</h5>
+      <p>{{ infoDevice.ODO }}</p> -->
+      <button type="button" class="btn btn-outline-success" data-bs-target="#multiple-KM" data-bs-toggle="modal" data-bs-dismiss="modal">Kilometros Recorridos</button>
+  </div>
+  <div class="col-md-4 text-center">
+      <!-- <h5>Tiempo de Actividad</h5>
+      <p>{{ infoDevice.Time }}</p> -->
+      <button type="button" class="btn btn-outline-info" data-bs-target="#multiple-Time" data-bs-toggle="modal" data-bs-dismiss="modal">Tiempo de Actividad</button>
+  </div>
+
+
+  <div class="col-md-4 text-center">
+      <!-- <h5 *ngIf="tipo !== 6 && tipo !== 4">Combustible Consumido</h5>
+      <p *ngIf="tipo !== 4 && tipo !== 6">{{ infoDevice.Fuel }}</p>
+
+      <div *ngIf="infoDevice.Batery !== ''">
+          <h5>{{ infoDevice.Label  }}</h5>
+          <p>{{ infoDevice.Batery  }}</p>
+      </div> -->
+
+      <button *ngIf="tipo !== 6 && tipo !== 4" type="button" class="btn btn-outline-primary" data-bs-target="#multiple-Fuel" data-bs-toggle="modal" data-bs-dismiss="modal">Combustible Consumido</button>
+      
+  </div>
+</div>

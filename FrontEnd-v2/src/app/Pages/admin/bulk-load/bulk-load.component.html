@@ -1,0 +1,32 @@
+<div class="form-floating mb-3">
+    <input (keyup)="getListCompanias()" class="form-control" id="floatingInput" placeholder="nombre" />
+    <label for="floatingInput">Buscar por nombre</label>
+</div>
+<table id="basic-datatable" class="table dt-responsive table-sm nowrap w-100">
+    <thead>
+        <tr>
+            <th>Compañia</th>
+            <th>Cargar Archivo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of pageOfItems">
+            <td>{{ item.name | notext }}</td>
+            <td>
+                <!-- <div class="form-group">
+                    <label for="">{{"SELECCIONAR_ARCHIVO" | notext}}</label>
+                    <input type="file" (change)="changeDocument($event)" class="form-control-file" />
+                </div> -->
+
+                <div class="mb-3">
+                    <label for="example-fileinput" class="form-label">Elegir Archivo</label>
+                    <input type="file" (change)="changeDocument($event)"  id="example-fileinput" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-info form-control" (click)="uploadFile(item.id)">{{"CARGAR" | notext}}</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-jw-pagination-custom [items]="companias" (changePage)="onChangePage($event)"></app-jw-pagination-custom>

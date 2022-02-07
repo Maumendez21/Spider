@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between">
+  <label class="form-check-label" for="">Clusters</label>
+  <ui-switch size="small" (change)="changeViewCluster($event)" [(ngModel)]="statusCluster"></ui-switch>
+</div>
+<div class="d-flex justify-content-between">
+  <label class="form-check-label" for="">Colores en el Mapa</label>
+  <ui-switch size="small" (change)="changeMapColor($event)" [(ngModel)]="statusMapColor"></ui-switch>
+</div>
+<div class="d-flex justify-content-between">
+  <label class="form-check-label" for="">Mapa Satelital</label>
+  <ui-switch size="small" (change)="changeSatelit($event)" [(ngModel)]="statusSatelite"></ui-switch>
+</div>

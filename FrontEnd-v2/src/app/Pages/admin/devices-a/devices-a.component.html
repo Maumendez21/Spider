@@ -1,0 +1,197 @@
+<button class="btn btn-info btn-sm mb-2"  data-bs-toggle="modal" data-bs-target="#new-modal" >Nuevo Dispositivo</button>
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Compañia</th>
+            <th>Asignación</th>
+            <th>Actualizar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of devices; let id = index">
+            <td>{{ item.device | notext }}</td>
+            <td>{{ item.company | notext }}</td>
+            <td> <button class="btn btn-info btn-sm " (click)="callModalAsignar(item.device, item.name, item.hierarchy, id)" data-bs-toggle="modal" data-bs-target="#asignacion-modal">
+                    <i class="dripicons-pencil"></i>
+                </button>
+            </td>
+            <td> <button class="btn btn-info btn-sm" (click)="callModalUpdate(item.device, id)" data-bs-toggle="modal" data-bs-target="#update-modal">
+                <i class="dripicons-pencil"></i>
+            </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- <app-jw-pagination-custom [items]="obds" (changePage)="onChangePage($event)"></app-jw-pagination-custom> -->
+<!-- <app-action-assignment [reloadTable]="getListDevicesAdmin" [idSend]="id" [name]="name" [node]="node"></app-action-assignment> -->
+
+
+<div id="asignacion-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Asignar Subempresa</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="device" class="form-control" id="device" placeholder="Dispositivo" readonly/>
+                            <label for="floatingInput">Dispositivo</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="name" placeholder="Nombre" class="form-control" id="floatingInput" />
+                            <label for="floatingInput">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="subempresa">
+                                <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                            </select>
+                            <label for="floatingInput">SubEmpresa</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="asignarSubempresa()">Asignar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div id="update-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Actualizar Dispositivo</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" [(ngModel)]="updateIdDevice">
+                            <label>{{"ID_DISPOSITIVO"}}</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" [(ngModel)]="updateLabel">
+                            <label>{{"LABEL"}}</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="updateType">
+                                <option *ngFor="let typeDevice of typeDevices" [value]="typeDevice.idTypeDevice">{{ typeDevice.Name }}</option>
+                            </select>
+                            <label>{{"TIPO"}}</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="updateCompany">
+                                <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                            </select>
+                            <label>{{"COMPAÑIA"}}</label>
+                        </div>
+
+
+                        <div class="form-check mb-2">
+                            <input [(ngModel)]="updateMotor" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Motor
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input [(ngModel)]="updatePanico" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Panico
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="actualizarDispositivo()">Actualizar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div id="new-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Nuevo Dispositivo</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" [(ngModel)]="idDevice">
+                            <label>{{"ID_DISPOSITIVO"}}</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" [(ngModel)]="label">
+                            <label>{{"LABEL"}}</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <!-- <ng-select class="form-select" [(ngModel)]="sim">
+                                <ng-option *ngFor="let sim of sims" [value]="sim.IdSim">{{sim.Sim}}</ng-option>
+                            </ng-select>
+                            <label>{{"SIM"}}</label> -->
+
+                            <select class="form-select" [(ngModel)]="sim">
+                                <option *ngFor="let sim of sims" [value]="sim.IdSim">{{sim.Sim}}</option>
+                            </select>
+                            <label>Sim</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="type">
+                                <option *ngFor="let typeDevice of typeDevices" [value]="typeDevice.idTypeDevice">{{ typeDevice.Name }}</option>
+                            </select>
+                            <label>{{"TIPO"}}</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="company">
+                                <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                            </select>
+                            <label>{{"COMPAÑIA"}}</label>
+                        </div>
+
+
+                        <div class="form-check mb-2">
+                            <input [(ngModel)]="motor" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Motor
+                            </label>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input [(ngModel)]="panico" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Panico
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="actualizarDispositivo()">Actualizar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

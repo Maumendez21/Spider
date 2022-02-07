@@ -1,0 +1,180 @@
+<button [routerLink]="'/maitanance/inspection'" class="btn btn-info">Volver</button>
+
+<div class="row mt-2">
+
+    <div class="col-md-3">
+      
+
+        <div class="form-floating">
+            <select class="form-select" [(ngModel)]="mechanic" >
+            <option value="">Selecciona un mecánico</option>
+            <option *ngFor="let value of mechanics" [value]="value.IdMechanics">
+                {{ value.FullName }}
+            </option>
+            </select>
+            <label>Mecánico *</label>
+
+        </div>
+    </div>
+
+    <div class="col-md-3">   
+        <div class="form-floating">
+            <select class="form-select" [(ngModel)]="tipeInspect" >
+                <option value=0 selected>Selecciona el tipo</option>
+                <option value=1>Programada</option>
+                <option value=2>Extraodinaria</option>
+            </select>
+            <label>Tipo de Inspección*</label>
+        </div>
+    </div>
+
+    <div  class="col-md-3" >
+      <div class="form-floating">
+        <select class="form-select" [(ngModel)]="compani" (change)="getDevices(compani)">
+            <option value="">Buscar grupo</option>
+            <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+        </select>
+        <label for="">Grupo</label>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      
+
+        <div class="form-floating">
+  
+          <select class="form-select"  (change)="getResponsible(vehiculo)"  [(ngModel)]="vehiculo" >
+          <option value="">Buscar vehiculo</option>
+          <option *ngFor="let spider of spiderMarkers" [value]="spider.Device">
+              {{ spider.Name }}
+          </option>
+          </select>
+          <label for="">Vehiculo*</label>
+        </div>
+  
+  
+  
+      </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-4">
+      <div class="form-floating">
+        <input type="number"  [(ngModel)]="kilometraje"  class="form-control" >
+        <label for="">Kilometraje *</label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-floating">
+        <input type="text" disabled [(ngModel)]="responsable"  class="form-control">
+        <label for="">Responsable</label>
+      </div>
+    </div>
+</div>
+
+<!-- Tabla para realizar la inspección -->
+
+<div class="row mt-3">
+    <div class="col-12">   
+        <div class="card ">
+            <div class="card-body">
+                <table *ngFor="let plantilla of plantilla; let iP = index " id="complex-header-datatable" class="table table-sm table-bordered ">
+                  <thead>
+                    <tr>
+                      <th colspan="1"  scope="col"></th>
+                      <th colspan="2"  scope="col">Existe</th>
+                      <th colspan="3"   scope="col">Estado</th>
+                      <th colspan="1"  scope="col"></th>
+                    </tr>
+          
+                    <tr>
+                      <th rowspan="3" scope="col" class="w250">Template</th>
+                      <th  rowspan="3" class="w20">Si</th>
+                      <th  rowspan="3" class="w20">No</th>
+                      <th  rowspan="3" class="w20">Bueno</th>
+                      <th  rowspan="3" class="w20">Regular</th>
+                      <th  rowspan="3" class="w20">Malo</th>
+                      <th rowspan="3" scope="col">Observaciones</th>
+                    </tr>
+          
+                  </thead>
+          
+                  <tbody>
+                    <tr><th>{{plantilla.Encabezado}}</th></tr>
+          
+                    <tr *ngFor="let template of plantilla.Templates; let iT = index">
+          
+          
+                      <td>{{template.template}}</td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                              (change)="generateData(template.idTemplate, 'yes', $event.isTrusted, iP, iT )"
+                              ng-checked = "check($event.isTrusted)"
+                              class="form-check-input"
+                              type="radio"
+                              name="existeChecksGroup{{template.idTemplate}}"
+                              id="existeCheck{{template.idTemplate}}"
+                              [value]="template.yes" >
+                        </div>
+                      </td>
+          
+                      <td>
+                        <div class="form-check">
+                          <input
+                              class="form-check-input"
+                              type="radio"
+                              name="existeChecksGroup{{template.idTemplate}}"
+                              (change)="generateData(template.idTemplate,'no', $event.isTrusted, iP, iT  )"
+                              id="existeCheck{{template.idTemplate}}"
+                              [value]="template.no">
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                              class="form-check-input"
+                              type="radio"
+                              name="estacoCheckGroup{{template.idTemplate}}"
+                              id="estadoCheck{{template.idTemplate}}"
+                              [value]="template.Good"
+                              (change)="generateData(template.idTemplate,'Good', $event.isTrusted,  iP, iT  )">
+          
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                              class="form-check-input"
+                              type="radio"
+                              name="estacoCheckGroup{{template.idTemplate}}"
+                              id="estadoCheck{{template.idTemplate}}"
+                              [value]="template.Regular"
+                              (change)="generateData(template.idTemplate,'Regular',$event.isTrusted, iP, iT  )">
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-check">
+                          <input
+                              class="form-check-input"
+                              type="radio"
+                              name="estacoCheckGroup{{template.idTemplate}}"
+                              id="estadoCheck{{template.idTemplate}}"
+                              [value]=" template.Bad"
+                              (change)="generateData(template.idTemplate,'Bad',$event.isTrusted, iP, iT  )">
+                        </div>
+                      </td>
+                      <td>
+                        <input type="text" (keyup)="notes(iP, iT, template.Notes)"  class="form-control" [(ngModel)]="template.Notes" >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            <button (click)="inspect()" class="btn btn-primary btn-sm">Realizar inspección</button>
+        </div> <!-- end card-body-->
+    </div>
+
+
+    </div>
+</div>

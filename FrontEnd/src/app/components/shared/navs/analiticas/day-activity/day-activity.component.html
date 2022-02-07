@@ -1,0 +1,82 @@
+<app-analitica></app-analitica>
+<div class="container-fluid">
+
+  <app-loading [hidden]="!cargando" ></app-loading>
+  <!-- *ngIf="!cargando" -->
+  <div [hidden]="true" class="row container-fluid animated fadeIn ">
+    <div class="col-md-11">
+    </div>
+    <div class="col-md-1">
+      <button class="btn btn-danger mb-3 mt-3" (click)="generatePDF()" > PDF</button>
+    </div>
+  </div>
+
+  <div id="pdf">
+    <div [hidden]="cargando"   class="row container-fluid animated fadeIn fast mt-3">
+      <div class="col-md-6 "  >
+        <app-card-dashboard  [titulo]="'UNIDADES_ACTIVAS' | translate" [info]="unidades" [class]="'cardUnidades'" [icono]="'fas fa-car'"></app-card-dashboard>
+      </div>
+      <div class="col-md-6">
+
+        <app-card-dashboard [titulo]="'NOTIFICACIONES' | translate" [info]="notifications" [class]="'cardKm'" [icono]="'fas fa-bell'"></app-card-dashboard>
+
+      </div>
+    </div>
+
+    <h4 *ngIf="!cargando" class="text-center animated fadeIn fast">Vehiculos Activos</h4>
+    <div *ngIf="!cargando" class="row animated fadeIn fast">
+      <div class="row">
+        <div class="col-md-12 text-rigth">
+          <label class=" ml-3" >Buscar por vehiculo: </label>
+          <input (keyup)="buscarDevice()" [(ngModel)]="deviceSearch" class=" ml-3 form-control mb-2" type="text" >
+        </div>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-striped" >
+          <thead>
+            <tr  >
+              <th>Vehiculo</th>
+              <th>Viajes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let device of pageOfItems; let i = index;">
+              <td>{{device.VehicleName}}</td>
+              <td>
+                <div class="btn-group ">
+                  <button type="button" class="btn btn-secondary btn-sm"> {{device.ListItineraries | countArray }}</button>
+                  <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item bg-select"
+                      *ngFor="let viaje of device.ListItineraries; let i = index;"
+                      [routerLink]="[showDetailTravel(viaje.Device, viaje.StartDate, viaje.EndDate)]"
+                      target="_blank">
+                      <i class="fas fa-route"></i>
+                      {{viaje.TravelDate}} {{viaje.EndHour}}
+                    </a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+
+        <app-jw-pagination-custom [items]="data" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+
+      </div>
+    </div>
+    <hr *ngIf="!cargando" class="mt-5 animated fadeIn fast">
+    <h4  *ngIf="!cargando" class="text-center animated fadeIn fast">Notificaciones</h4>
+    <div [hidden]="cargando" class="row mb-5">
+      <div class="col-md-12 ">
+          <app-notifications-shared [notifications]="notificationes" [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" ></app-notifications-shared>
+      </div>
+    </div>
+  </div>
+
+</div>
+

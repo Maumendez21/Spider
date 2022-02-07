@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-floating mb-3">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Inicio" [(ngModel)]="fechaInicio"/>
+      <label for="floatingInput">Fecha Inicio</label>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <div class="form-floating mb-3">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Fin" [(ngModel)]="fechaFin"/>
+      <label for="floatingInput">Fecha Fin</label>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-4">
+    <div class="d-flex">
+      <button class="btn btn-info" style="margin-right: 7px;" (click)="filtrar()"> Buscar</button>
+      <div *ngIf="notifications.length > 0" class="text-right">
+        <a class="btn btn-success" [href]="generarReporte()" >Excel</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table dt-responsive nowrap w-100">
+      <thead>
+          <tr>
+              <th>{{"FECHA"       }}</th>
+              <th>{{"DISPOSITIVO" }}</th>
+              <th>{{"NOMBRE"      }}</th>
+              <th>{{"ALARMA"      }}</th>
+              <th>{{"DESCRIPCION" }}</th>
+              <th>{{"ACCIONES"    }}</th>
+          </tr>
+      </thead>
+      <!-- [ngClass]="{'table-success': item.View != 0, 'table-danger': item.View == 0 }" -->
+      <tbody>
+          <tr *ngFor="let item of pageOfItems; let i = index;"  >
+              <td>{{ item.DateGenerated | date: 'EEEE, d MMMM y H:mm' }}</td>
+              <td>{{ item.Device }}</td>
+              <td>{{ item.Name }}</td>
+              <td>{{ item.Alarm }}</td>
+              <td>{{ item.Description }}</td>
+              <td class="text-center">
+                  <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#analiticNotify" (click)="showMap(item.Id, item.Latitud, item.Longitude, i)">
+                      <i class="mdi mdi-eye-outline"></i>
+                  </button>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+    <app-jw-pagination-custom [items]="notifications" (changePage)="onChangePage($event)" ></app-jw-pagination-custom>
+  </div>
+</div>
+
+<div id="analiticNotify" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-top">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="topModalLabel">Notificación</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <div class="modal-body">
+        <agm-map
+        [latitude]="latitud"
+        [longitude]="longitud"
+        [zoom]="zoom"
+        [fitBounds]="fitBounds"
+        (mapReady)="onMapReady($event)">
+
+        <agm-marker
+            [latitude]="latitud"
+            [longitude]="longitud"
+            [agmFitBounds]="agmFitBounds"
+            [iconUrl]="{ url: './assets/images/map/coche_rojo.png', scaledSize: { width: 26, height: 38, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}">
+        </agm-marker>
+
+    </agm-map>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

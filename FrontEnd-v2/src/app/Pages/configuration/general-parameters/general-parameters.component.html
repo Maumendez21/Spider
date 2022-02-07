@@ -1,0 +1,25 @@
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Valor</th>
+            <th>Descripción</th>
+            <th>Editar</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let parametro of parametros">
+            <td>{{parametro.Value}}</td>
+            <td>{{parametro.Description}}</td>
+            <td>
+                <button class="btn btn-info btn-sm"  data-bs-toggle="modal" data-bs-target="#parameters-modal" (click)="getId(parametro.Id, parametro.Value, parametro.Description)">
+                    <i class="mdi mdi-pencil"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-update-parameters [idSend]="id" [valor]="valor" [desc]="desc" [reloadTable]="getParametrosList"></app-update-parameters>
+

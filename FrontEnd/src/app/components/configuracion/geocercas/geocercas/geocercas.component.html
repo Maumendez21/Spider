@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+
+
+        <div class="col-md-9 mb-4 mt-3">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-right">
+                        <button class="btn btn-orange btn-sm mr-3 mb-3" [routerLink]="['/configuration/nueva-asignacion']">
+                            <i class="fas fa-plus"></i>
+                            {{"NUEVA_ASIGNACION" | translate}}
+                        </button>
+                        <button class="btn btn-orange btn-sm mb-3" [routerLink]="['/configuration/nueva-geocerca']">
+                            <i class="fas fa-plus"></i>
+                            {{"NUEVA_GEOCERCA" | translate}}
+                        </button>
+                    </div>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="col-10">{{ "NOMBRE" | translate }}</th>
+                                <th class="col-1">{{ "ACTUALIZAR" | translate }}</th>
+                                <th class="col-1">{{ "DESVINCULAR" | translate }}</th>
+                                <th class="col-1">{{ "ELIMINAR" | translate }}</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item" *ngFor="let geocerca of geocercas; let i = index;">
+                            <div class="accordion-header" id="headingOne2">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h1 class="">
+                                            <button class="btn btn-link text-left text" type="button" attr.data-target="#collapse_{{i}}" data-toggle="collapse" aria-expanded="true">
+                                                {{geocerca.Name}}
+                                            </button>
+                                        </h1>
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-orange btn-sm" (click)="actualizarGeocerca(geocerca.Id)">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-danger btn-sm" (click)="desvincularGeocerca(geocerca['ListDevice'], geocerca.Name)">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-1">
+                                        <button class="btn btn-danger btn-sm" (click)="eliminarGeocerca(geocerca.Id)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="collapse_{{i}}" class="collapse" aria-labelledby="headingOne2" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <h6>{{"DISPOSITIVOS" | translate}}</h6>
+                                    <hr>
+                                    <ul *ngIf="geocerca.ListDevice != null">
+                                        <li *ngFor="let devices of geocerca.ListDevice">{{devices.Name}}</li>
+                                    </ul>
+                                    <p *ngIf="geocerca.ListDevice === null">{{"NO_HAY_DISPOSITIVOS" | translate}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

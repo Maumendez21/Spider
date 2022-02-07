@@ -1,0 +1,39 @@
+.navbar-custom{
+  right: 30px!important;
+  left: 140px!important;
+  top: 30px!important;
+  border-radius: 1rem;
+  z-index: 99!important;
+}
+
+.rounded-circle {
+  border-radius: 0%!important;
+}
+
+.toolBtn1 {
+  color: #4caf50;
+}
+
+.toolBtn2 {
+  color: #9e9e9e;
+}
+
+.toolBtn3 {
+  color: #ffeb3b;
+}
+
+.toolBtn4 {
+  color: #ff9800;
+}
+
+.toolBtn5 {
+  color: #2196f3;
+}
+
+.noti-icon-badge{
+  height: 15px!important;
+  width: 15px!important;
+  font-size: 10px!important;
+  color: white!important;
+  top: 26px!important;
+}

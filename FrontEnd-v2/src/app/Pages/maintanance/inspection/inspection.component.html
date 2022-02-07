@@ -1,0 +1,35 @@
+<button 
+[routerLink]="['/maitanance/new-inspection']"
+class="btn btn-primary mb-2"
+>Nueva inspección</button>
+
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th scope="col">Vehiculo</th>
+            <th scope="col">Mecanico</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Folio</th>
+            <th scope="col">Actualizar</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let inspeccion of pageOfItems" >
+            <td>{{inspeccion.namevehicle}}</td>
+            <td>{{inspeccion.Mecanico}}</td>
+            <td>{{inspeccion.date | date: 'EEEE, d MMMM y' }}</td>
+            <td>{{inspeccion.folio}}</td>
+            <td>
+              <!-- (click)="showMap(alarma.Latitude, alarma.Longitude, alarma.Alarm)" -->
+              <button
+                      class="btn btn-info btn-sm"
+                      [routerLink]="['/maitanance/inspection', inspeccion.folio]">
+                <i class="mdi mdi-eye"></i>
+             </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-jw-pagination-custom  [items]="inspecciones" (changePage)="onChangePage($event)"></app-jw-pagination-custom>

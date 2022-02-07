@@ -1,0 +1,52 @@
+<!-- Top modal -->
+<button type="button" class="btn btn-secondary form-control mb-3" data-bs-toggle="modal" data-bs-target="#top-modal">Filtros</button>
+<div id="top-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Filtros</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row mb-2">
+                <div class="col-md-12">
+
+                  <div class="form-floating">
+                    <select [(ngModel)]="estatus" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option value="">Todos</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                        <option value="3">Sin comunicación</option>
+                        <option value="4">Pánico geocerca</option>
+                        <option value="5">Sin movimiento</option>
+                    </select>
+                    <label for="floatingSelect">Filtro por status</label>
+                </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+
+                  <div class="form-floating">
+                    <select [(ngModel)]="type" class="form-select" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option value="">Todos</option>
+                        <option value="1">Automovil</option>
+                        <option value="4">Celda</option>
+                        <option value="5">Motocicleta</option>
+                        <option value="6">TAG</option>
+                    </select>
+                    <label for="floatingSelectGrid">Filtro por tipo de dispositivo</label>
+                </div>
+
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" (click)="filtrarEstatus()" class="btn btn-primary">Filtrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

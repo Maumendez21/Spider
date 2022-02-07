@@ -1,0 +1,11 @@
+<div class="row mb-1">
+  <div class="col-md-6">
+    <label for="example-date" class="form-label">Inicio</label>
+    <input [(ngModel)]="fechaInicio" class="form-control" id="example-date" type="date" name="inicio">
+  </div>
+  <div class="col-md-6">
+    <label for="example-date" class="form-label">Fin</label>
+    <input [(ngModel)]="fechaFin" class="form-control" id="example-date" type="date" name="fin">
+  </div>
+</div>
+<button class="btn btn-secondary btn-sm mb-3" (click)="searchAllTrips()">Filtrar</button>

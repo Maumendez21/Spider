@@ -1,0 +1,163 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-right mt-4">
+                <button type="button" class="btn btn-orange btn-sm" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fas fa-plus"></i> Agregar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <app-administracion-menu-lg></app-administracion-menu-lg>
+        </div>
+        <div class="col-md-9">
+            <div class="table-responsive">
+                <table class="table table-striped mt-4">
+                    <thead>
+                        <tr>
+                            <th>{{"ID"       | translate}}</th>
+                            <th>{{"NOMBRE"   | translate}}</th>
+                            <th>{{"APELLIDO" | translate}}</th>
+                            <th>{{"CORREO"   | translate}}</th>
+                            <th>{{"ROL"      | translate}}</th>
+                            <th>{{"ESTATUS"  | translate}}</th>
+                            <th>{{"GRUPO"    | translate}}</th>
+                            <th>{{"EDITAR"   | translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of pageOfItems">
+                            <td>{{ user.UserName          | notext }}</td>
+                            <td>{{ user.Name              | notext }}</td>
+                            <td>{{ user.LastName          | notext }}</td>
+                            <td>{{ user.Email             | notext }}</td>
+                            <td>{{ user.DescripcionRole   | notext }}</td>
+                            <td>{{ user.DescriptionStatus | notext }}</td>
+                            <td>{{ user.SubEmpresa        | notext }}</td>
+                            <td>
+                                <button class="btn btn-orange btn-sm" data-toggle="modal" data-target="#updateModal" (click)="updateUser(user.UserName)">
+                                    <i class="fas fa-pen"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <app-jw-pagination-custom [items]="users" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"AGREGAR_USUARIO" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="onSubmit()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputName">{{"NOMBRE" | translate}}</label>
+                                <input type="text" class="form-control" id="exampleInputName" [(ngModel)]="userModel.Name" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputLastName">{{"APELLIDO" | translate}}</label>
+                                <input type="text" class="form-control" id="exampleInputLastName" [(ngModel)]="userModel.LastName" name="lastName">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail">{{"CORREO" | translate}}</label>
+                                <input type="text" class="form-control" id="exampleInputEmail" [(ngModel)]="userModel.Email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="compañia">{{"COMPAÑIA" | translate}}</label>
+                                <input type="text" class="form-control" id="compañia" [(ngModel)]="userModel.CompanyName" name="compañia">
+                            </div>
+                            <div class="form-group">
+                                <label for="razonSocial">{{"RAZON_SOCIAL" | translate}}</label>
+                                <input type="text" class="form-control" id="razonSocial" [(ngModel)]="userModel.TaxName" name="razonSocial">
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputUsername">{{"USERNAME" | translate}}</label>
+                                <input type="text" class="form-control" id="exampleInputUsername" [(ngModel)]="userModel.UserName" name="userName">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword">{{"PASSWORD" | translate}}</label>
+                                <input type="password" class="form-control" id="exampleInputPassword" [(ngModel)]="userModel.Password" name="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPhone">{{"TELEFONO" | translate}}</label>
+                                <input type="number" class="form-control" id="exampleInputPhone" [(ngModel)]="userModel.Telephone" name="telephone">
+                            </div>
+                            <div class="form-group">
+                                <label for="rfc">{{"RFC" | translate}}</label>
+                                <input type="text" class="form-control" id="rfc" [(ngModel)]="userModel.TaxId" name="rfc">
+                            </div>
+                            <div class="form-group">
+                                <label for="tipo">{{"TIPO" | translate}}</label>
+                                <select [(ngModel)]="userModel.Type" class="form-control">
+                                    <option value="0">Spider</option>
+                                    <option value="1">Kernel</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" id="tipo" [(ngModel)]="userModel.Type" name="tipo"> -->
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModalAddUser" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-orange">{{"GUARDAR" | translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"ACTUALIZAR_USUARIO" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form (ngSubmit)="onSubmitUpdate()">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputUpdateName">{{"NOMBRE" | translate}}</label>
+                        <input type="text" class="form-control" id="exampleInputUpdateName" [(ngModel)]="userUpdateModel.Name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUpdateLastName">{{"APELLIDO" | translate}}</label>
+                        <input type="text" class="form-control" id="exampleInputUpdateLastName" [(ngModel)]="userUpdateModel.LastName" name="lastName">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUpdateEmail">{{"CORREO" | translate}}</label>
+                        <input type="text" class="form-control" id="exampleInputUpdateEmail" [(ngModel)]="userUpdateModel.Email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputUpdatePhone">{{"TELEFONO" | translate}}</label>
+                        <input type="number" class="form-control" id="exampleInputUpdatePhone" [(ngModel)]="userUpdateModel.Telephone" name="telephone">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModalUpdateUser" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-orange">{{"GUARDAR" | translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

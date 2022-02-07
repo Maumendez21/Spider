@@ -1,0 +1,59 @@
+
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>
+      <th>{{"FECHA"      }}</th>
+      <th>{{"DISPOSITIVO"}}</th>
+      <th>{{"NOMBRE"     }}</th>
+      <th>{{"ALARMA"     }}</th>
+      <th>{{"DESCRIPCION"}}</th>
+      <th>{{"ACCIONES"   }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let item of notifications; let i = index;" [ngClass]="{'table-success': item.View != 0, 'table-danger': item.View == 0 }" >
+      <td>{{ item.DateGenerated | date: 'EEEE, d MMMM y H:mm' }}</td>
+      <td>{{ item.Device }}</td>
+      <td>{{ item.Name }}</td>
+      <td>{{ item.Alarm }}</td>
+      <td>{{ item.Description }}</td>
+      <td class="text-center">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notify" (click)="showMap(item.Id, item.Latitud, item.Longitude, i)">
+          <i class="mdi mdi-eye-outline"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div id="notify" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-top">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="topModalLabel">Notificación</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <div class="modal-body">
+        <agm-map
+        [latitude]="latitud"
+        [longitude]="longitud"
+        [zoom]="zoom"
+        [fitBounds]="fitBounds"
+        (mapReady)="onMapReady($event)">
+
+        <agm-marker
+          [latitude]="latitud"
+          [longitude]="longitud"
+          [agmFitBounds]="agmFitBounds"
+          [iconUrl]="{ url: './assets/images/map/coche_rojo.png', scaledSize: { width: 26, height: 38, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}">
+        </agm-marker>
+
+      </agm-map>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

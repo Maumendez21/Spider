@@ -1,0 +1,46 @@
+<app-filters-form [section]="'1'" (data)="get($event)"></app-filters-form>
+
+<div [hidden]="!responsables" class="text-right">
+    <a   class="btn btn-success btn-sm mt-2" [href]="generarReporte()" >Excel</a>
+</div>
+
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Responsable</th>
+            <th>Notas</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Viajes</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let responsable of responsables; let i = index;">
+            <td>{{responsable.Name}}</td>
+            <td>{{responsable.Notes}}</td>
+            <td>{{responsable.Start}}</td>
+            <td>{{responsable.End}}</td>
+            <td>
+                <button 
+                    type="button"
+                    class="btn btn-light dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"> {{responsable.ListItineraries.length}}
+                </button>
+
+                <div class="dropdown-menu">
+                    <a
+                        *ngFor="let viaje of responsable.ListItineraries; let i = index;"
+                        [routerLink]="[showDetailTravel(viaje.Device, viaje.StartDate, viaje.EndDate)]"
+                        class="cursor dropdown-item"
+                        target="_blank"
+                      > {{viaje.TravelDate}} {{viaje.EndHour}}
+                    </a>
+
+                </div>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

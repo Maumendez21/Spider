@@ -1,0 +1,73 @@
+<div id="device-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Modal Heading</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" [(ngModel)]="device" readonly>
+                            <label>{{"ID_DISPOSITIVO"}}</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="typeId">
+                                <option *ngFor="let typeDevice of typesDevice" [value]="typeDevice.idTypeDevice">{{ typeDevice.Name }}</option>
+                            </select>
+                            <label for="inputName">Tipo</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="redId">
+                                <option *ngFor="let red of reds" [value]="red.Id">{{ red.Description }}</option>
+                            </select>
+                            <label for="inputVIN">Red</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select class="form-select" [(ngModel)]="timeId">
+                                <option *ngFor="let time of times" [value]="time.Id">{{ time.Description }}</option>
+                            </select>
+                            <label for="inputPoliza">Comunicación</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="inputModel" [(ngModel)]="model">
+                            <label for="inputPlacas">Modelo</label>
+                          </div>
+      
+                          <div class="form-check">
+                            <input [(ngModel)]="bateryIf" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Bateria
+                            </label>
+                          </div>
+                          <div class="form-check mb-2">
+                            <input [(ngModel)]="motorizedIf" class="form-check-input" type="checkbox">
+                            <label class="form-check-label" for="flexCheckDefault">
+                              Motorizado
+                            </label>
+                          </div>
+      
+      
+                          <div class="form-floating mb-2">
+                              <input type="text" class="form-control" [(ngModel)]="bateryDuration" [disabled]="!bateryIf">
+                              <label for="inputMarca">Duración de bateria</label>
+                          </div>
+                          <div class="form-floating mb-2">
+                              <input type="number" class="form-control" [(ngModel)]="performance" [disabled]="!motorizedIf">
+                              <label for="inputMarca">Rendimiento</label>
+                          </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="actualizarInfoDispositivo()">Guardar Cambios</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

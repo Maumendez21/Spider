@@ -1,0 +1,37 @@
+<div class="form-floating mb-3">
+    <input [(ngModel)]="searchDevice" (keyup)="getDispositivos(searchDevice)" class="form-control" id="floatingInput" placeholder="nombre" />
+    <label for="floatingInput">Buscar por dispositivo</label>
+</div>
+
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Tiempo</th>
+            <th>Modelo</th>
+            <th>Rendimiento</th>
+            <th>Editar</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let device of pageOfItems">
+            <td>{{device.Name | notext}}</td>
+            <td>{{device.DescriptionType | notext}}</td>
+            <td>{{device.DescriptionSamplingTime | notext }}</td>
+            <td>{{device.Model | notext }}</td>
+            <td>{{device.Performance | notext }}</td>
+            <td>
+                <button (click)="getIdDevice(device.Device)" class="btn btn-info btn-sm " data-bs-toggle="modal" data-bs-target="#device-info">
+                    <i class="dripicons-pencil"></i>
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<app-jw-pagination-custom [items]="devices" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+
+<app-update-info-device [idSend]="id" [reloadTable]="getDispositivos"></app-update-info-device>

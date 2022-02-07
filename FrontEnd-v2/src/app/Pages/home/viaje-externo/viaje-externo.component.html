@@ -1,0 +1,166 @@
+<div class="wrapper">
+  <div class="content-page">
+    <div class="content">
+      <!-- <app-breadcrumb></app-breadcrumb> -->
+      <!-- <app-details-travel
+        [nombre]="nombre"
+        [responsible]="responsible"
+        [fuel]="fuel"
+        [time]="time"
+        [distance]="distance"
+        [aceleration]="aceleration"
+        [braking]="braking"
+        [speed]="speed"
+        [startDate]="startDate"
+        [endDate]="endDate"
+        [startingPoint]="startingPoint"
+        [finalPoint]="finalPoint"
+      ></app-details-travel> -->
+
+      <div class="row mt-2">
+        <div class="col-md-8">
+          <agm-map
+            [fitBounds]="fitBounds"
+            [latitude]="lat"
+            [longitude]="lng"
+            [zoom]="zoom"
+            [styles]="style"
+            (mapReady)="onMapReady($event)">
+            <div *ngIf="routes">
+              <div *ngFor="let route of routes">
+                <agm-marker
+                  
+                  *ngFor="let coord of route.waypointsIcons"
+                  [agmFitBounds]="agmFitBounds"
+                  [latitude]="coord.position.lat"
+                  [longitude]="coord.position.lng"
+                  
+                  [visible]="visible(coord.tipe)"
+                  [iconUrl]="coord.icon">
+                  
+                </agm-marker>
+              </div>
+              <agm-marker
+                *ngFor="let item of listWaitTime; let i = index"
+                [agmFitBounds]="agmFitBounds"
+                [latitude]="item.lat"
+                [longitude]="item.lng"
+                [visible]="iconGeneral"
+                [iconUrl]="iconWaitTime[item.events]"
+                (markerClick)="showInfoWindow(infoWindow2)">
+                <agm-info-window #infoWindow2>
+                  <p> <strong>{{ "FECHA" }}:</strong> {{ item.Date }}</p>
+                  <p> <strong>{{ "TIEMPO" }}:</strong> {{ item.time }}</p>
+                </agm-info-window>
+              </agm-marker>
+
+              <agm-marker
+                #gm
+                *ngFor="let item of listTime; let i = index"
+                [agmFitBounds]="agmFitBounds"
+                [latitude]="item.lat"
+                [longitude]="item.lng"
+                [iconUrl]="iconTime"
+                (markerClick)="showInfoWindow(infoWindow)">
+                <agm-info-window #infoWindow>
+                  <p> <strong>{{ "FECHA" }}:</strong> {{ item.Date }}</p>
+                  <p> <strong>{{ "VELOCIDAD" }}:</strong> {{ item.speed }} Km/h</p>
+                </agm-info-window>
+              </agm-marker>
+            </div>
+          </agm-map>
+
+          <app-velocity-graphic
+          [grafic]="dataSet"
+          [lineChartLabels]="labels">
+        </app-velocity-graphic>
+        </div>
+
+        <div class="col-md-1">
+          <button *ngIf="play" class="btn btn-success btn-sm form-control mb-2" (click)="playMarker()">
+            <i class="dripicons-media-play"></i>
+          </button>
+          <button *ngIf="!play" class="btn btn-info btn-sm form-control" (click)="pauseMarker()">
+            <i class="dripicons-media-pause"></i>
+          </button>
+          <button class="btn btn-danger btn-sm form-control" (click)="stopMarker()">
+            <i class="dripicons-media-stop"></i>
+          </button>
+
+          <h5 class="mt-3">Ver Iconos</h5>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleMethod($event, 'inicio')" type="checkbox" class="form-check-input" id="customCheck1"  [checked]="true">
+                <label class="form-check-label" for="customCheck1"><img style="width: 20px;" src="../../../../assets/images/map/start2.png" ></label>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleMethod($event, 'fin')" type="checkbox" class="form-check-input" id="customCheck2"  [checked]="true">
+                <label class="form-check-label" for="customCheck2"><img style="width: 20px;" src="../../../../assets/images/map/finish.png" ></label>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleMethod($event, 'power')" type="checkbox" class="form-check-input" id="customCheck3"  [checked]="true">
+                <label class="form-check-label" for="customCheck3"><img style="width: 20px;" src="../../../../assets/images/map/iconApagado.png" ></label>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleGeneral()" type="checkbox" class="form-check-input" id="customCheck8"  [checked]="true">
+                <label class="form-check-label" for="customCheck8"><img style="width: 20px;" src="../../../../assets/images/map/inactividad.png" ></label>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleMethod($event, 'frenos')" type="checkbox" class="form-check-input" id="customCheck4" [checked]="true">
+                <label class="form-check-label" for="customCheck4"><img style="width: 20px;" src="../../../../assets/images/map/frenos.png" ></label>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleMethod($event, 'aceleracion')" type="checkbox" class="form-check-input" id="customCheck5"  [checked]="true">
+                <label class="form-check-label" for="customCheck5"><img style="width: 20px;" src="../../../../assets/images/map/aceleracion.png" ></label>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleMethod($event, 'rpm')" type="checkbox" class="form-check-input" id="customCheck6"  [checked]="true">
+                <label class="form-check-label" for="customCheck6"><img style="width: 20px;" src="../../../../assets/images/map/rpm.png" ></label>
+            </div>
+          </div>
+          <div class="mt-1">
+            <div class="form-check">
+                <input (change)="iconVisibleMethod($event, 'velocidad')" type="checkbox" class="form-check-input" id="customCheck7"  [checked]="true">
+                <label class="form-check-label" for="customCheck7"><img style="width: 20px;" src="../../../../assets/images/map/velocidad.png" ></label>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="col-md-3">
+          <app-details-travel
+          [nombre]="nombre"
+          [responsible]="responsible"
+          [fuel]="fuel"
+          [time]="time"
+          [distance]="distance"
+          [aceleration]="aceleration"
+          [braking]="braking"
+          [speed]="speed"
+          [startDate]="startDate"
+          [endDate]="endDate"
+          [startingPoint]="startingPoint"
+          [finalPoint]="finalPoint"
+        ></app-details-travel>
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>

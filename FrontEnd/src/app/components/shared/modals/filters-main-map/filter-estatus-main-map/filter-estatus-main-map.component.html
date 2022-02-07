@@ -1,0 +1,43 @@
+<div class="modal fade" id="filtroEstatusModal" tabindex="-1" aria-labelledby="filtroEstatusModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filtroEstatusModalLabel">{{"FILTROS" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <label for="">Filtro por estatus</label>
+                        <select class="form-control" [(ngModel)]="estatus">
+                            <option value="">{{"TODOS" | translate}}</option>
+                            <option value="1">{{"ACTIVO" | translate}}</option>
+                            <option value="2">{{"INACTIVO" | translate}}</option>
+                            <option value="3">{{"SIN_COMUNICACION" | translate}}</option>
+                            <option value="4">{{"PANICO_GEOCERCA" | translate}}</option>
+                            <option value="5">{{"SIN_MOVIMIENTO" | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                      <label for="">Filtro por tipo de dispositivo</label>
+                        <select class="form-control" [(ngModel)]="type">
+                            <option value="">{{"TODOS" | translate}}</option>
+                            <option value="1">{{"AUTOMOVIL" | translate}}</option>
+                            <option value="4">{{"CELDA" | translate}}</option>
+                            <option value="5">{{"MOTOCICLETA" | translate}}</option>
+                            <option value="6">{{"TAG" | translate}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"CERRAR" | translate}}</button>
+                <button type="button" class="btn btn-orange" data-dismiss="modal" (click)="filtrarEstatus()">{{"FILTRAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

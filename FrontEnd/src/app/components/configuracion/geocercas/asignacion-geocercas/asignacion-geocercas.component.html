@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-orange btn-sm mt-3" [routerLink]="['/configuration/geocercas']">
+                <i class="fas fa-chevron-left"></i> {{"VOLVER" | translate}}
+            </a>
+            <h1>{{"NUEVA_ASIGNACION" | translate}}</h1>
+            <div class="text-right">
+                <button class="btn btn-orange btn-sm mb-3" (click)="crearAsignacion()">
+                    <i class="fas fa-plus"></i> 
+                    {{"CREAR_ASIGNACION" | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>{{"GEOCERCAS" | translate}}</h3>
+            <div class="list" *ngFor="let item of geocercas; let i = index;">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="selectGeocerca" [attr.id]="'exampleRadios' + i" [value]="item.Id">
+                    <label class="form-check-label" [attr.for]="'exampleRadios' + i">
+                      {{ item.Name }}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3>{{"DISPOSITIVOS" | translate}}</h3>
+            <div class="list" *ngFor="let itemDevice of dispositivos; let in = index;">
+                <div class="form-group form-check">
+                    <input type="checkbox" [(ngModel)]="dispositivos[in].checked" class="form-check-input" [attr.id]="'exampleCheck'+in" [value]="itemDevice.dispositivo">
+                    <label class="form-check-label" [attr.for]="'exampleCheck'+in">{{ itemDevice.nombre }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

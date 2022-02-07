@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3" *ngFor="let itemDevice of dispositivosGeocerca; let in = index;">
+                <div class="form-group form-check">
+                    <input type="checkbox" [(ngModel)]="dispositivosGeocerca[in].checked" class="form-check-input" [attr.id]="'exampleCheck'+in" [value]="itemDevice.Id">
+                    <label class="form-check-label" [attr.for]="'exampleCheck'+in">{{ itemDevice.Name }}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex mt-2">
+    <button class="btn btn-success" style="margin-right: 7px;"  (click)="desvincular()" >Desvincular</button>
+    <button class="btn btn-info" [routerLink]="'/geofences/list'" >Volver</button>
+</div>

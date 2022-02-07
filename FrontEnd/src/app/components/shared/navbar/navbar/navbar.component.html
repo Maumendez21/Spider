@@ -1,0 +1,45 @@
+<nav *ngIf="show" id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <button type="button" id="bars" (click)="toggleMenu()" class="btn btn-info btn-sidebar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+     <!-- <img *ngIf="logo == '0'" class="img-fluid logo-navbar ml-3" src="assets/images/logospider.png" /> -->
+   <!-- <img *ngIf="logo == '1'" class="img-fluid logo-navbar ml-3" src="assets/images/logokernel.png" />
+    <img *ngIf="logo == '2'" class="img-fluid logo-navbar ml-3" src="assets/images/sadm.png" />
+    <img *ngIf="logo == '3'" class="img-fluid logo-navbar ml-3" src="assets/images/movilidadNL.png" /> -->
+<img [src]="logoD" id="logotipo" class="img-fluid logo-navbar ml-3" (error)="errorHandler($event)">
+
+
+    <!-- <img *ngIf="!logoD" src="https://spiderfleetapi.azurewebsites.net/templates/logo/72.png" class="img-fluid logo-navbar ml-3"> -->
+
+    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-align-justify"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="nav navbar-nav ml-auto">
+
+            <li class="nav-item mt-2">
+                <h6 class="name-profile nav-link">{{fecha}}</h6>
+
+            </li>
+
+            <li class="nav-item mt-2 mr-2">
+                <a class="nav-link notification" [routerLink]="['/notifications']" role="button" aria-haspopup="true" aria-expanded="false">
+                    <i  class="fas fa-bell"></i>
+                    <span *ngIf="notifications !== '0'" class="badge">{{ notifications }}</span>
+                </a>
+            </li>
+            <li id="profile" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="name-profile">{{ name }}</span>
+                    <img src="assets/images/profile.png" class="img-fluid profile-img" alt="Profile">
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" (click)="signOut()">{{"SALIR" | translate}}</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

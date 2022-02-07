@@ -1,0 +1,33 @@
+<div class="modal fade" id="modalUpdateResponsable" tabindex="-1" aria-labelledby="modalUpdateResponsableLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"ACTUALIZAR_RESPONSABLE" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputNameUpdate">{{"NOMBRE" | translate}}</label>
+                    <input type="text" class="form-control" id="inputNameUpdate" [(ngModel)]="nameUpdate">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmailUpdate">{{"CORREO" | translate}}</label>
+                    <input type="email" class="form-control" id="inputEmailUpdate" [(ngModel)]="emailUpdate">
+                </div>
+                <div class="form-group">
+                    <label for="inputAreaUpdate">{{"AREA" | translate}}</label>
+                    <input type="text" class="form-control" id="inputAreaUpdate" [(ngModel)]="areaUpdate">
+                </div>
+                <div class="form-group">
+                    <label for="inputPhoneUpdate">{{"TELEFONO" | translate}}</label>
+                    <input type="tel" class="form-control" id="inputPhoneUpdate" [(ngModel)]="phoneUpdate">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" data-dismiss="modal" (click)="updateResponsable()">{{"ACTUALIZAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

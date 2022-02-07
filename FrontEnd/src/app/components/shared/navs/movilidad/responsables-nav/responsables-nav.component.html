@@ -1,0 +1,58 @@
+<app-movilidad></app-movilidad>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <app-filtrado-fechas [section]="'1'" (data)="get($event)"></app-filtrado-fechas>
+
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <!-- [hidden]="!btnPDFEXCEL" -->
+          <div [hidden]="!responsables" class="text-right">
+
+            <a   class="btn btn-success mb-2" [href]="generarReporte()" >Excel</a>
+          </div>
+          <table class="table table-striped" >
+            <thead>
+              <tr >
+                <th>Responsable</th>
+                <th>Notas</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Viajes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let responsable of responsables; let i = index;">
+                <td>{{responsable.Name}}</td>
+                <td>{{responsable.Notes}}</td>
+                <td>{{responsable.Start}}</td>
+                <td>{{responsable.End}}</td>
+                <td>
+                  <div class="btn-group ">
+                    <button type="button" class="btn btn-secondary btn-sm"> {{responsable.ListItineraries | countArray }}</button>
+                    <button type="button" class="btn btn-secondary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item"
+                        *ngFor="let viaje of responsable.ListItineraries; let i = index;"
+                        [routerLink]="[showDetailTravel(viaje.Device, viaje.StartDate, viaje.EndDate)]"
+                        target="_blank">
+                        <i class="fas fa-route"></i>
+                        {{viaje.TravelDate}} {{viaje.EndHour}}
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div id="permission-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Asignar Permisos</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <div class="form-check" *ngFor="let item of permisos">
+                        <input 
+                            type="checkbox" 
+                            (change)="generarArreglo(item.Id, item.estatus)" [value]="item.Id" [(ngModel)]="item.estatus" [hidden]="item.Id === 'CON' || item.Id === 'ADM'"
+                            class="form-check-input" 
+                            id="customCheck1">
+                        <label class="form-check-label" for="customCheck1">{{item.Descripcion}}</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary"  (click)="asignarPermisos()" data-bs-dismiss="modal" >Guardar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

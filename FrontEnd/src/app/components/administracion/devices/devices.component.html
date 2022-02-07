@@ -1,0 +1,181 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4 text-right">
+            <button type="button" class="btn btn-orange btn-sm" data-toggle="modal" data-target="#agregarModal">
+                <i class="fas fa-plus"></i> {{"AGREGAR" | translate}}
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <app-administracion-menu-lg></app-administracion-menu-lg>
+        </div>
+        <div class="col-md-9 mt-3 mb-4">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>{{"DISPOSITIVO" | translate}}</th>
+                        <th>{{"COMPAÑIA" | translate}}</th>
+                        <th class="text-right">{{"ASIGNACION" | translate}}</th>
+                        <th class="text-right">{{"ACTUALIZAR" | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of devices; let id = index">
+                        <td>{{item.device}}</td>
+                        <td>{{item.company}}</td>
+                        <td class="text-right">
+                            <button class="btn btn-orange btn-sm" (click)="callModalAsignar(item.device, item.name, item.hierarchy, id)" data-toggle="modal" data-target="#modalAsignarSubempresa">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                        <td class="text-right">
+                            <button class="btn btn-orange btn-sm" (click)="callModalUpdate(item.device, id)" data-toggle="modal" data-target="#actualizarModal">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <app-jw-pagination-custom [items]="devices" (changePage)="onChangePage($event)"></app-jw-pagination-custom> -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAsignarSubempresa" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarModalLabel">{{"ASIGNAR_SUBEMPRESAS" | translate}}</h5>
+                <button type="button" id="closeModalNew" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>{{"ID_DISPOSITIVO" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="device" readonly>
+                </div>
+                <div class="form-group">
+                    <label>{{"NOMBRE" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="name">
+                </div>
+                <div class="form-group">
+                    <label>{{"SUBEMPRESA" | translate}}</label>
+                    <select class="form-control" [(ngModel)]="subempresa">
+                        <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" (click)="asignarSubempresa()" data-dismiss="modal">{{"ASIGNAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarModalLabel">{{"AGREGAR_DISPOSITIVO" | translate}}</h5>
+                <button type="button" id="closeModalNew" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{"ID_DISPOSITIVO" | translate}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="idDevice">
+                        </div>
+                        <div class="form-group">
+                            <label>{{"LABEL" | translate}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="label">
+                        </div>
+                        <div class="form-group">
+                            <label>{{"SIM" | translate}}</label>
+                            <ng-select [(ngModel)]="sim">
+                              <ng-option *ngFor="let sim of sims" [value]="sim.IdSim">{{sim.Sim}}</ng-option>
+                           </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{"TIPO" | translate}}</label>
+                            <select class="form-control" [(ngModel)]="type">
+                                <option *ngFor="let typeDevice of typeDevices" [value]="typeDevice.idTypeDevice">{{ typeDevice.Name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>{{"COMPAÑIA" | translate}}</label>
+                            <select class="form-control" [(ngModel)]="company">
+                                <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" [(ngModel)]="motor">
+                            <label class="form-check-label">{{"MOTOR" | translate}}</label>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input" [(ngModel)]="panico">
+                            <label class="form-check-label">{{"PANICO" | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" (click)="registrarDispositivo()">{{"REGISTRAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="actualizarModal" tabindex="-1" aria-labelledby="actualizarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="actualizarModalLabel">{{"ACTUALIZAR_DISPOSITIVO" | translate}}</h5>
+                <button type="button" id="closeModalUpdate" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>{{"ID_DISPOSITIVO" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="updateIdDevice">
+                </div>
+                <div class="form-group">
+                    <label>{{"LABEL" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="updateLabel">
+                </div>
+                <div class="form-group">
+                    <label>{{"TIPO" | translate}}</label>
+                    <select class="form-control" [(ngModel)]="updateType">
+                        <option *ngFor="let typeDevice of typeDevices" [value]="typeDevice.idTypeDevice">{{ typeDevice.Name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>{{"COMPAÑIA" | translate}}</label>
+                    <select class="form-control" [(ngModel)]="updateCompany">
+                        <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                    </select>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="updateMotor">
+                    <label class="form-check-label">{{"MOTOR" | translate}}</label>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" [(ngModel)]="updatePanico">
+                    <label class="form-check-label">{{"PANICO" | translate}}</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" (click)="actualizarDispositivo()">{{"ACTUALIZAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<!-- <div class="content-login">
+  <div class="login-container">
+      <div class="login-info-container">
+        <h1 class="titlee">Iniciar Sesión</h1>
+
+        <p>or</p>
+        <form class="inputs-container">
+            <input class="input" type="text" placeholder="Username">
+            <input class="input" type="text" placeholder="Password">
+            <p>Olvidaste tu contraseña? <span class="span">Recuperala</span></p>
+            <button class="btn btn-primary">Entrar</button>
+            <p>Don't have an account? <span class="span">Sign Up</span></p>
+        </form>
+      </div>
+    <img class="image-container" src="../../../assets/utils/img/logoLogin.png" alt="">
+  </div>
+
+</div> -->
+
+<div class="content__login">
+	<img class="wave" src="../../../assets/utils/img/wave.png">
+	<div class="containeer">
+		<div class="img">
+			<img src="../../../assets/utils/img/logoLogin.png">
+		</div>
+    
+		<div class="login-content">
+      
+			<form (ngSubmit)="onSubmit()" [class]="(error) ? 'needs-validation was-validated' : '' " novalidate >
+				<h2 class="title mb-3">Bienvenido</h2>
+        <div *ngIf="errorLogin.show" class="alert alert-danger mb-2" role="alert">
+          {{ errorLogin.text }}
+        </div>
+
+        <div class="form-floating mb-2">
+          <input name="user" [(ngModel)]="loginModel.user" type="text" class="form-control" id="floatingInput" placeholder="s" required />
+          <div class="invalid-feedback">
+            Usuario necesario
+         </div> 
+          <label for="floatingInput">Usuario</label>
+       </div>
+        <div class="form-floating ">
+          <input  name="password" [(ngModel)]="loginModel.password" type="password" class="form-control" id="floatingInput" placeholder="s" required />
+          <div class="invalid-feedback">
+            Contraseña necesaria
+         </div> 
+          <label for="floatingInput">Contraseña</label>
+       </div>
+
+
+        <!-- <h5 class="mt-4">Usuario</h5>
+           		<div class="input-div one">
+                 <div class="i">
+           		   </div>
+           		   <div class="div">
+           		   		<input name="user" [(ngModel)]="loginModel.user" type="text" class="input">
+           		   </div>
+           		</div> -->
+          <!-- <h5>Contraseña</h5>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   </div>
+           		   <div class="div">
+           		    	<input name="password" [(ngModel)]="loginModel.password" type="password" class="input">
+            	   </div>
+            	</div> -->
+            	<a [routerLink]="'/recovery-password'" class="mb-2">Olvidaste tu contraseña?</a>
+              <button type="submit" class="btn btn-primary" [disabled]="btnLoading.loading" [innerHtml]="btnLoading.text"></button>
+              
+            </form>
+
+        </div>
+    </div>
+    <!-- <script type="text/javascript" src="js/main.js"></script> -->
+</div>

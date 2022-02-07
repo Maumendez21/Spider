@@ -1,0 +1,43 @@
+<app-loading [hidden]="!cargando"></app-loading>
+
+<div class="" [hidden]="cargando">
+  <div  class="row">
+    <div class="col-md-6">
+      <app-card
+        [color]="'primary'"
+        [icon]="'mdi mdi-car'"
+        [info]="unidades"
+        [footer]="'Unidades Activas'"
+      ></app-card>
+    </div>
+    <div class="col-md-6">
+      <app-card
+      class="cursor"
+      (click)="notify()"
+      [color]="'success'"
+      [icon]="'mdi mdi-bell'"
+      [info]="notifications"
+      [footer]="'Notificaciones'"
+      ></app-card>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Vehiculos Activos</h4>
+
+      <app-vehiculos-actives [data]="data" ></app-vehiculos-actives>
+      <!-- ng g c Pages/analitics/shared/vehiculosActives --skip-tests -->
+    </div>
+  </div>
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <h4>Notificaciones</h4>
+      <app-notifications-shared
+        [notifications]="notificationes"
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+      ></app-notifications-shared>
+    </div>
+  </div> -->
+</div>
+

@@ -1,0 +1,112 @@
+
+
+<div class="row">
+
+    <div class="col-lg-4">
+        <div class="card text-white bg-info overflow-hidden">
+            <div class="card-body">
+                <div class="toll-free-box text-center">
+                    <h4> <i class="mdi mdi-account"></i>* Da click en un grupo o subgrupo para añadir o actualizar</h4>
+                </div>
+            </div> <!-- end card-body-->
+        </div>
+    </div>
+</div>
+
+<button id="optionsChildModal" type="button" style="display: none;" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#groups-one">Multiple Modal</button>
+
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card border-info border">
+            <div class="card-body">
+                <tree-root [nodes]="nodes" [options]="options"></tree-root>
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div>
+</div>
+
+
+
+
+
+<div id="groups-one" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-oneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="multiple-oneModalLabel">Opciones</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row justify-content-center">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary w-100" data-bs-target="#multiple-two" data-bs-toggle="modal" data-bs-dismiss="modal">Nuevo Grupo</button>
+                        
+                    </div>
+                </div>
+
+                <div class="row justify-content-cente mt-2">
+                    <div class="col-md-12">
+
+                        <button type="button" class="btn btn-primary w-100" data-bs-target="#multiple-three" data-bs-toggle="modal" data-bs-dismiss="modal">Actualizar Grupo</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<!-- Modal -->
+<div id="multiple-two" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-twoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="multiple-twoModalLabel">Nuevo Subgrupo en {{title}}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="form-floating mb-3">
+                    <input  [(ngModel)]="newSubempresa"  class="form-control" id="floatingInput" placeholder="Nombre" />
+                    <label for="floatingInput">Nombre del subgrupo</label>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info" (click)="addChild()" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div id="multiple-three" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-threeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="multiple-threeModalLabel">Actualizar Grupo {{title}} </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-3">
+                    <input  [(ngModel)]="updateSubempresa"  class="form-control" id="floatingInput" placeholder="Nombre" />
+                    <label for="floatingInput">Nombre del subgrupo</label>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info"  (click)="updateChild()" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

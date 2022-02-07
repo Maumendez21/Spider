@@ -1,0 +1,21 @@
+<ul class="list-group mt-4">
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('ADM700')" [routerLink]="['/administration/users']" routerLinkActive="active">
+        {{"USUARIOS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('ADM701')" [routerLink]="['/administration/devices']" routerLinkActive="active">
+        {{"DISPOSITIVOS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('ADM702')" [routerLink]="['/administration/cargamasiva']" routerLinkActive="active">
+        {{"CARGA_MASIVA" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('ADM703')" [routerLink]="['/administration/empresas']" routerLinkActive="active">
+        {{"EMPRESAS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('ADM703')" [routerLink]="['/administration/alarmas']" routerLinkActive="active">
+        {{"ALARMAS" | translate}}
+    </a>
+    <a class="list-group-item list-group-item-action" *ngIf="permisos.includes('ADM703')" [routerLink]="['/administration/rutasAdmin']" routerLinkActive="active">
+        {{"RUTAS" | translate}}
+    </a>
+
+</ul>

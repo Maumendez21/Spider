@@ -1,0 +1,36 @@
+agm-map {
+    height: calc(100vh - 80px);
+    width: 100%;
+    position: relative;
+}
+
+.colors{
+  background-image: url(//maps.gstatic.com/tactile/layers/traffic-legend-20150511.png);
+
+}
+
+.trafic{
+  position: absolute;
+  margin: 10px;
+  z-index: 99;
+  bottom: 0;
+  /* left: 40%; */
+  padding: 8px;
+  border-radius: .3rem;
+  max-height: 200px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 30%);
+  color: #212121;
+
+}
+
+.spanG{
+  /* border-right: 1px solid black; */
+  margin-right: 10px;
+}
+
+.spanChild{
+  margin-right: 10px;
+  margin-left: 10px;
+  font-style: italic;
+}

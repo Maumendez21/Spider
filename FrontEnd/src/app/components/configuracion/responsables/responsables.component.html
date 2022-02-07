@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-right mt-4">
+                <button type="button" class="btn btn-orange btn-sm" data-toggle="modal" data-target="#modalCreateResponsable">
+                    <i class="fas fa-plus"></i> {{"AGREGAR" | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mb-4">
+          <input type="text"
+          [(ngModel)]="searchValue"
+                 class="form-control mt-3 mb-3"
+                 placeholder="Buscar por nombre o por correo electrónico"
+                 (keyup)="getListResponsables(searchValue)">
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>{{"NOMBRE" | translate}}</th>
+                        <th>{{"CORREO" | translate}}</th>
+                        <th>{{"AREA" | translate}}</th>
+                        <th>{{"TELEFONO" | translate}}</th>
+                        <th>{{"EDITAR"   | translate}}</th>
+                        <th>{{"ELIMINAR"   | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pageOfItems">
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.area }}</td>
+                        <td>{{ item.phone }}</td>
+                        <td>
+                            <button class="btn btn-orange btn-sm" (click)="getResponsable(item.id)" data-toggle="modal" data-target="#modalUpdateResponsable">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger btn-sm" (click)="deleteResponsible(item.id, item.name)">
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-jw-pagination-custom [items]="responsables" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+        </div>
+    </div>
+</div>
+
+<app-create-responsable-modal [reloadTable]="getListResponsables"></app-create-responsable-modal>
+<app-update-responsable-modal [reloadTable]="getListResponsables" [idSend]="id"></app-update-responsable-modal>

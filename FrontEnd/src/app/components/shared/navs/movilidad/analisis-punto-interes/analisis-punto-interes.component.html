@@ -1,0 +1,75 @@
+<app-movilidad></app-movilidad>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+
+      <app-filtrado-fechas [section]="'4'" (data)="getPuntos($event)" ></app-filtrado-fechas>
+
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <div [hidden]="!puntos.ListAnalysis" class="text-right">
+
+            <a class="btn btn-success mb-2" [href]="generarReporte()" >Excel</a>
+          </div>
+          <table class="table table-striped" >
+            <thead>
+              <tr>
+                <th>{{"VEHICULO" | translate}}</th>
+                <th>{{"FECHA" | translate}}</th>
+                <th>{{"TIEMPO_PERMANENCIA" | translate}}</th>
+                <th>{{"VER" | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let punto of puntos.ListAnalysis" >
+                <td>{{punto.VehicleName}}</td>
+                <td>{{punto.Date}}</td>
+                <td>{{punto.Time}}</td>
+                <td>
+                  <!-- (click)="showMap(alarma.Latitude, alarma.Longitude, alarma.Alarm)" -->
+                  <button data-dismiss="modal"
+                          class="btn btn-orange btn-sm"
+                          (click)="showMap(punto.Latitude, punto.Longitude)"
+                          data-toggle="modal"
+                          data-target="#mapModal" >
+                    <i class="fas fa-eye"></i>
+                 </button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalL abel">{{nombre}} </h5>
+              <button (click)="cleanMap()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <agm-map
+                  [latitude]="center.lat"
+                  [longitude]="center.lng"
+                  (mapReady)="onMapReady($event)"
+                  >
+                  <!-- [fitBounds]="fitBounds" -->
+                  <agm-marker
+                      [latitude]="latitud"
+                      [longitude]="longitud"
+                      [iconUrl]="{ url: './assets/images/coche_rojo.png', scaledSize: { width: 26, height: 38, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}"
+                   >
+                    </agm-marker>
+
+              </agm-map>
+          </div>
+      </div>
+  </div>
+</div>

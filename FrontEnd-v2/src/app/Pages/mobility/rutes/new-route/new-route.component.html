@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-floating mb-3">
+            <input [(ngModel)]="nameRoute" class="form-control" id="floatingInput" placeholder="Nombre" />
+            <label for="floatingInput">Nombre de la Ruta</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea [(ngModel)]="descriptionRoute" class="form-control" placeholder="Descripción" id="floatingTextarea" style="height: 100px;"></textarea>
+            <label for="floatingTextarea">Descripción</label>
+        </div>
+
+       <div class="d-flex">
+            <button style="margin-right: 7px;" (click)="registrarRuta()" class="btn btn-success">Registrar</button>
+            <button class="btn btn-info" [routerLink]="['/mobility/rutes']" >Volver</button>
+       </div>
+
+        <table [hidden]="true" id="basic-datatable" class="table dt-responsive nowrap w-100">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Destino</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                    <th>Notas</th>
+                </tr>
+            </thead>
+        
+        
+            <tbody>
+                <tr *ngFor="let route of routes; let i = index">
+                    <td>
+                        {{ i+1 }}
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [placeholder]="'Nombre de ubicación'" [(ngModel)]="route.Name">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [placeholder]="'Latitud'" [value]="route.Latitude" readonly>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" [placeholder]="'Longitud'" [value]="route.Longitude" readonly>
+                    </td>
+                    <td>
+                        <textarea class="form-control" [placeholder]="'Notas'" rows="1" [(ngModel)]="route.Notes">{{ route.notes }}</textarea>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarRuta(i)">
+                            <i class=" dripicons-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+
+
+
+    </div>
+    <div class="col-md-6">
+        <agm-map
+            [latitude]="center.lat"
+            [longitude]="center.lng"
+            (mapReady)="onMapReady($event)">
+        </agm-map>
+    </div>
+</div>

@@ -1,0 +1,175 @@
+<!-- <img class="logo__img" src="../../../assets/utils/img/spiderLogo.png" > -->
+<!-- <img class="icon__img" src="../../../assets/utils/img/spiderIcon.png" > -->
+<div class="navl" id="navbar">
+  <nav class="nav__container">
+    <div>
+      
+      <a  class="nav__link nav__logo">
+        
+        <img  id="logotipo" class="logo__img mb-4" [src]="'https://spiderfleetapi.azurewebsites.net/templates2/iconSpider.png'"  (error)="errorHandler($event)" >
+        
+      </a>
+
+      <div class="nav__list">
+        <div class="nav__items">
+
+          <a  *ngIf="permisos.includes('MAP100')" [routerLink]="'/home'"  routerLinkActive="active" class="nav__link">
+            <img class="menu__img" src="../../../assets/utils/img/Mapa.png" >
+            <span class="nav__name">Mapa</span>
+          </a>
+
+          
+    
+            <div  *ngIf="permisos.includes('ANA200')" class="nav__dropdown">
+              <a style="pointer-events: none;" [routerLink]="'/analitics'" routerLinkActive="active" class="nav__link">
+                  <img class="menu__img" src="../../../assets/utils/img/Analíticas.png" >
+                  <span class="nav__name">Analiticas</span>
+                  <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+              </a>
+  
+              <div class="nav__dropdown-collapse">
+                <div class="nav__dropdown-content">
+                  <a [routerLink]="'/analitics/day-activity'" routerLinkActive="active" class="nav__dropdown-item">Actividad del día</a>
+                  <a [routerLink]="'/analitics/perfomance'" routerLinkActive="active" class="nav__dropdown-item">Rendimiento</a>
+                  <a [routerLink]="'/analitics/heath-map'" routerLinkActive="active"  class="nav__dropdown-item">Mapa de Calor</a>
+                  <a [routerLink]="'/analitics/notifications'" routerLinkActive="active"  class="nav__dropdown-item">Notificaciones</a>
+                </div>
+              </div>
+            </div>
+  
+            <!-- <a *ngIf="permisos.includes('ENT300')" href="#" class="nav__link">
+              <img class="menu__img" src="../../../assets/utils/img/Entregas.png" >
+              <span class="nav__name">Entregas</span>
+            </a> -->
+            <a  *ngIf="permisos.includes('CON606')" [routerLink]="'/configuration/schedule'"  routerLinkActive="active" class="nav__link">
+              <img class="menu__img" src="../../../assets/utils/img/Agenda.png" >
+              <span class="nav__name">Agenda</span>
+            </a>
+  
+            <div *ngIf="permisos.includes('GMON400')" class="nav__dropdown">
+              <a [routerLink]="'/geofences'" style="pointer-events: none;" routerLinkActive="active" class="nav__link">
+                <img class="menu__img" src="../../../assets/utils/img/Geocercas.png" >
+                  <span class="nav__name">Geocercas</span>
+                  <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                </a>
+  
+                <div class="nav__dropdown-collapse">
+                  <div class="nav__dropdown-content">
+                    <a *ngIf="permisos.includes('CON605')" [routerLink]="'/geofences/list'" routerLinkActive="active" class="nav__dropdown-item">Geocercas</a>
+                    <a *ngIf="permisos.includes('GMON400')" [routerLink]="'/geofences/monitoring'" routerLinkActive="active" class="nav__dropdown-item">Monitoreo</a>
+                    <a [routerLink]="'/geofences/history'" routerLinkActive="active" class="nav__dropdown-item">Histórico</a>
+                  </div>
+                </div>
+            </div>
+  
+            <div *ngIf="permisos.includes('CON613')" class="nav__dropdown">
+              <a [routerLink]="'/maitanance'" style="pointer-events: none;" routerLinkActive="active" class="nav__link">
+                <img class="menu__img" src="../../../assets/utils/img/Mantenimiento.png" >
+                  <span class="nav__name">Mantenimiento </span>
+                  <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                </a>
+  
+                <div class="nav__dropdown-collapse">
+                  <div class="nav__dropdown-content">
+                    <a [routerLink]="'/maitanance/inspection'"  routerLinkActive="active" class="nav__dropdown-item">Inspecciones <strong>[Beta]</strong></a>
+                  </div>
+                </div>
+            </div>
+  
+  
+            <div *ngIf="permisos.includes('MOV')" class="nav__dropdown">
+              <a [routerLink]="'/mobility'" style="pointer-events: none;" routerLinkActive="active" class="nav__link">
+                <img class="menu__img" src="../../../assets/utils/img/Movilidad.png" >
+                  <span class="nav__name">Movilidad</span>
+                  <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                </a>
+  
+                <div class="nav__dropdown-collapse">
+                  <div class="nav__dropdown-content">
+                    <a *ngIf="permisos.includes('CON609')" [routerLink]="'/mobility/rutes'"  routerLinkActive="active" class="nav__dropdown-item">Rutas</a>
+                    <a  *ngIf="permisos.includes('CON611')" [routerLink]="'/mobility/points-interest'"  routerLinkActive="active" class="nav__dropdown-item">Puntos de Interés</a>
+                    <a  *ngIf="permisos.includes('MOV350')" [routerLink]="'/mobility/itineraries-responsable'"  routerLinkActive="active" class="nav__dropdown-item">Itinerarios Responsables</a>
+                    <a  *ngIf="permisos.includes('MOV350')" [routerLink]="'/mobility/schedule'"  routerLinkActive="active" class="nav__dropdown-item">Agenda</a>
+                  </div>
+                </div>
+            </div>
+  
+            <a *ngIf="permisos.includes('REP500')" (click)="click()" class="nav__link cursor">
+              <img class="menu__img" src="../../../assets/utils/img/Reportes.png" >
+              <span class="nav__name">Reportes</span>
+            </a>
+  
+            <app-modal-report *ngIf="permisos.includes('REP500')"></app-modal-report>
+  
+            <div *ngIf="permisos.includes('CON')" class="nav__dropdown">
+              <a [routerLink]="'/configuration'" style="pointer-events: none;" routerLinkActive="active" class="nav__link">
+                <img class="menu__img" src="../../../assets/utils/img/Configuracion.png" >
+                  <span class="nav__name">Configuración</span>
+                  <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                </a>
+  
+                <div class="nav__dropdown-collapse">
+                  <div class="nav__dropdown-content">
+                    <a *ngIf="permisos.includes('CON600')" [routerLink]="'/configuration/groups'"  routerLinkActive="active" class="nav__dropdown-item">Grupos</a>
+                    <!-- <a *ngIf="permisos.includes('CON606')" [routerLink]="'/configuration/schedule'"  routerLinkActive="active" class="nav__dropdown-item">Agenda</a> -->
+                    <a *ngIf="permisos.includes('CON601')" [routerLink]="'/configuration/devices'"  routerLinkActive="active" class="nav__dropdown-item">Dispositivos</a>
+                    <a *ngIf="permisos.includes('CON602')" [routerLink]="'/configuration/responsables'"  routerLinkActive="active" class="nav__dropdown-item">Responsables</a>
+                    <a *ngIf="permisos.includes('CON603')" [routerLink]="'/configuration/users'"  routerLinkActive="active" class="nav__dropdown-item">Usuarios</a>
+                    <a *ngIf="permisos.includes('CON604')" [routerLink]="'/configuration/infoVehicles'"  routerLinkActive="active" class="nav__dropdown-item">Información Vehiculo</a>
+                    <a *ngIf="permisos.includes('CON604')" [routerLink]="'/configuration/infoDevices'" routerLinkActive="active" class="nav__dropdown-item">Información Dispositivo</a>
+                    <a *ngIf="permisos.includes('CON607')" [routerLink]="'/configuration/parameters'" routerLinkActive="active" class="nav__dropdown-item">Parametros generales</a>
+                    <a *ngIf="permisos.includes('CON612')" [routerLink]="'/configuration/engine-stop'" routerLinkActive="active" class="nav__dropdown-item">Paro de motor</a>
+                  </div>
+                </div>
+            </div>
+  
+            <div *ngIf="permisos.includes('ADM')" class="nav__dropdown">
+              <a [routerLink]="'/administration'" style="pointer-events: none;" routerLinkActive="active" class="nav__link">
+                <img class="menu__img" src="../../../assets/utils/img/Administracion.png" >
+                  <span class="nav__name">Administración</span>
+                  <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                </a>
+  
+                <div class="nav__dropdown-collapse">
+                  <div class="nav__dropdown-content">
+                  <a *ngIf="permisos.includes('ADM700')" [routerLink]="'/administration/users'" routerLinkActive="active" class="nav__dropdown-item">Usuarios</a>
+                  <a *ngIf="permisos.includes('ADM701')" [routerLink]="'/administration/devices'" routerLinkActive="active" class="nav__dropdown-item">Dispositivos</a>
+                  <a *ngIf="permisos.includes('ADM702')" [routerLink]="'/administration/bulk-load'" routerLinkActive="active" class="nav__dropdown-item">Carga Masiva</a>
+                  <a *ngIf="permisos.includes('ADM703')" [routerLink]="'/administration/business'" routerLinkActive="active" class="nav__dropdown-item">Empresas</a>
+                  <a *ngIf="permisos.includes('ADM702')" [routerLink]="'/administration/alarms'" routerLinkActive="active" class="nav__dropdown-item">Alarmas</a>
+                  <a *ngIf="permisos.includes('ADM702')" [routerLink]="'/administration/routes'" routerLinkActive="active" class="nav__dropdown-item">Rutas</a>
+                  </div>
+                </div>
+            </div>
+
+    
+          
+
+        </div>
+      </div>
+    </div>
+
+    
+  </nav>
+</div>
+
+<!-- <a href="#" (click)="signOut()" class="nav__link nav__logout">
+      <i class='bx bx-log-out nav__icon' ></i>
+      <span class="nav__name">Salir</span>
+    </a> -->
+
+<!-- [routerLink]="'/'"
+[routerLink]="'/dashboard'"
+[routerLink]="'/dashboard/inputs'"
+[routerLink]="'/dashboard/map'"
+[routerLink]="'/administration'"
+[routerLink]="'/administration/usuarios'"
+[routerLink]="'/administration/negocios'"
+[routerLink]="'/login'" -->
+
+<!-- routerLinkActive="active"
+routerLinkActive="active"
+routerLinkActive="active"
+routerLinkActive="active"
+routerLinkActive="active"
+routerLinkActive="active" -->

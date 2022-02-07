@@ -1,0 +1,20 @@
+<app-filters-form [section]="'3'" (data)="rutas = $event"></app-filters-form>
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Distancia</th>
+            <th>Diferencia</th>
+            <th>Fecha</th>
+            <th>Viajes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ruta of rutas">
+            <td>{{ruta.Distance}}</td>
+            <td>{{ruta.Seconds}}</td>
+            <td>{{ruta.Date}}</td>
+            <td>{{ruta.Travel}}</td>
+
+        </tr>
+    </tbody>
+</table>

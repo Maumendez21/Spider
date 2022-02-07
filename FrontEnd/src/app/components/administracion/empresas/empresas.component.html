@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-administracion-menu-lg></app-administracion-menu-lg>
+        </div>
+        <div class="col-md-9">
+           <div class="table-responsive">
+               <table class="table table-striped mt-4">
+                   <thead>
+                       <tr>
+                           <th>{{"EMPRESA" | translate }}</th>
+                           <th>{{"HABILITADO" | translate}}</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                       <tr *ngFor="let empresa of pageOfItems">
+                           <td>{{empresa.Name}}</td>
+                           <td class="">
+                            
+                            <ui-switch [disabled]="habilitado" (change)="cambiar(empresa.Node, empresa.Status)" [(ngModel)]="empresa.Status" (value)="empresa.Node" color="#ff6e40"></ui-switch>
+                            </td>
+                       </tr>
+                   </tbody>
+               </table>
+               <app-jw-pagination-custom [items]="empresas" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+           </div>
+        </div>
+    </div>
+</div>

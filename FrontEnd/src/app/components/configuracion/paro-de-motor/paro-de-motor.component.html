@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+          <app-configuration-menu-lg></app-configuration-menu-lg>
+      </div>
+      <div class="col-md-9 mt-3">
+        <div class="row">
+          <div class="col-md-12">
+            <label for="">Buscar por nombre</label>
+            <input (keyup)="buscarName()" class="form-control mb-2" [(ngModel)]="name"  type="text">
+          </div>
+        </div>
+
+        <table class="table table-striped" >
+          <thead>
+            <tr>
+              <th>{{"NOMBRE" | translate}}</th>
+              <th>{{"ESTATUS" | translate}}</th>
+              <th>{{"PARO"|translate}}</th>
+              <th>{{"ACTIVAR" | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let device of devices" >
+              <td>
+                {{device.Name}}
+              </td>
+              <td>
+                <span *ngIf="device.Status == 1" class="badge bg-secondary">En solicitud de paro</span>
+                <span *ngIf="device.Status == 0" class="badge bg-success">Motor activo</span>
+                <span *ngIf="device.Status == 2" class="badge bg-danger">Paro</span>
+                <span *ngIf="device.Status == 3" class="badge bg-secondary">En solicitud de activación</span>
+              </td>
+              <td>
+                <button class="btn btn-orange btn-sm " [disabled]="deshabilitadoParo(device.Status)" (click)="paroMotor(device.Device, device.Status, 0)">
+                  <i class="fas fa-power-off"></i>
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-success btn-sm " [disabled]="deshabilitado(device.Status)" (click)="paroMotor(device.Device, device.Status, 1)">
+                  <i class="fas fa-power-off"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+        <nav aria-label="Page navigation example">
+          <ul *ngFor="let page of options" class="pagination">
+            <li class="page-item " [ngClass]="{'active': pageActual === page}"><a  class="page-link" (click)="changePage(page)" >{{page}}</a></li>
+          </ul>
+        </nav>
+
+      </div>
+  </div>
+</div>

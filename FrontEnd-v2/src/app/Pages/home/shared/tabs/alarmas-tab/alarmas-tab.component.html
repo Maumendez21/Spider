@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-12">
+
+
+
+    <table class="table table-striped">
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Ver</th>
+      </tr>
+      <tr  *ngFor="let alarma of alarmas; let i = index;" >
+        <td>{{alarma.Alarm}}</td>
+        <td>{{alarma.Date | date: 'EEEE, d MMMM y H:mm'}}</td>
+        <!-- <td>
+          <button data-dismiss="modal" class="btn btn-primary btn-sm boton" data-toggle="modal" data-target="#mapModal" (click)="showMap(alarma.Latitude, alarma.Longitude, alarma.Alarm)">
+            <i class="mdi mdi-eye-outline"></i>
+         </button>
+        </td> -->
+        <!-- <button type="button" class="btn btn-primary" data-bs-target="#multiple-two" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button> -->
+
+        <td class="table-action">
+          <a
+            type="button"
+            data-bs-target="#multiple-two" data-bs-toggle="modal"
+
+
+            (click)="showMap(alarma.Latitude, alarma.Longitude, alarma.Alarm)"
+            class="action-icon cursor">
+            <i class="mdi mdi-eye-outline"></i>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="multiple-two" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-twoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4 class="modal-title" id="multiple-twoModalLabel">Alarma {{nombre}}</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+          </div>
+          <div class="modal-body">
+            <agm-map
+            [latitude]="latitud"
+            [longitude]="longitud"
+            [zoom]="zoom"
+            [fitBounds]="fitBounds"
+            (mapReady)="onMapReady($event)">
+            <agm-marker
+                [latitude]="latitud"
+                [longitude]="longitud"
+                [agmFitBounds]="agmFitBounds"
+                [iconUrl]="{ url: './assets/images/map/coche_rojo.png', scaledSize: { width: 26, height: 38, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}">
+            </agm-marker>
+
+        </agm-map>>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

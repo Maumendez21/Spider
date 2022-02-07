@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-floating mb-3">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Inicio" [(ngModel)]="fechaInicio"/>
+      <label for="floatingInput">Fecha Inicio</label>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <div class="form-floating mb-3">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Fin" [(ngModel)]="fechaFin"/>
+      <label for="floatingInput">Fecha Fin</label>
+    </div>
+  </div>
+  <!-- <div class="col-md-3">
+    <div class="form-floating">
+      <select [(ngModel)]="subempresa" (change)="getDevices()" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+        <option value="">Grupo</option>
+        <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+      </select>
+      <label for="floatingSelect">Seleccionar Grupo</label>
+    </div>
+  </div> -->
+  <div class="col-md-3">
+    <div class="form-floating">
+      <select [(ngModel)]="vehiculo"  class="form-select" id="floatingSelect" aria-label="Floating label select example">
+        <option value="">Dispositivo</option>
+        <option *ngFor="let spider of spiderMarkers | filterAnalitic: subempresa" [value]="spider.dispositivo">
+          {{ spider.nombre }}
+        </option>
+      </select>
+      <label for="floatingSelect">Seleccionar Dispositivo</label>
+    </div>
+  </div>
+</div>
+
+<button *ngIf="!loading" style="margin-right: 7px;" class="btn btn-info"  (click)="searchHeatMap()" [disabled]="loading">
+  <span  >Buscar</span>
+</button>
+
+<button *ngIf="loading" style="margin-right: 7px;" class="btn btn-info" type="button" disabled>
+  <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+  Cargando...
+</button>
+
+<div class="row mt-3">
+  <div class="col-md-12">
+      <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom" [fitBounds]="fitBounds" (mapReady)="onMapReady($event)">
+
+          <agm-marker *ngFor="let coord of coordsRaw" [agmFitBounds]="agmFitBounds" [visible]="isMarkerVisible" [latitude]="coord.Latitude" [longitude]="coord.Longitude">
+          </agm-marker>
+
+      </agm-map>
+  </div>
+</div>
+
+

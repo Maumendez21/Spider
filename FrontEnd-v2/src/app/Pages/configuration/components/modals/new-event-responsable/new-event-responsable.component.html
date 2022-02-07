@@ -1,0 +1,87 @@
+<!-- Modal -->
+<div id="eventRes-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-twoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="multiple-twoModalLabel">Nuevo Evento Responsable</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-floating mb-2">
+                            <select id="responsable" class="form-select" [(ngModel)]="responsable">
+                                <option value="">Seleccionar Responsable</option>
+                                <option *ngFor="let responsable of responsables" [value]="responsable.Id">{{ responsable.Name }}</option>
+                            </select>
+                            <label for="responsable">Responsable </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-floating mb-2">
+                            <select id="grupo" class="form-select" [(ngModel)]="grupo">
+                                <option value="">Seleccionar grupo</option>
+                                <option *ngFor="let grupo of grupos" [value]="grupo.Hierarchy">{{ grupo.Management }}</option>
+                            </select>
+                            <label for="grupo">Grupo</label>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <select id="dispositivo" class="form-select" [(ngModel)]="dispositivo">
+                                <option value="">Seleccionar Dispositivo</option>
+                                <option *ngFor="let dispositivo of dispositivos | filterAnalitic: grupo" [value]="dispositivo.Device">{{ (dispositivo.Name) ? dispositivo.Name : dispositivo.IdDevice }}</option>
+                            </select>
+                            <label for="dispositivo">Dispositivo</label>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-floating mb-2">
+                            <input type="datetime-local" id="fecha_inicio" class="form-control" [(ngModel)]="fecha_inicio">
+                            <label for="fecha_inicio">Inicio</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input type="datetime-local" id="fecha_fin" class="form-control" [(ngModel)]="fecha_fin">
+                            <label for="fecha_fin">Fin</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <textarea id="notas" class="form-control" [(ngModel)]="notas"></textarea>
+                            <label for="notas">Notas</label>
+                        </div>  
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <select id="repeticion" class="form-select" [(ngModel)]="repeticion">
+                                <option value="Unica">No se repite</option>
+                                <option value="Semanal">Cada semana</option>
+                            </select>
+                            <label for="repeticion">Repetición</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-info" (click)="agregarEvento()" data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

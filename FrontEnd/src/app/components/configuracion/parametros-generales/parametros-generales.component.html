@@ -1,0 +1,33 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mb-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">{{"VALOR" | translate}}</th>
+                        <th scope="col">{{"DESCRIPCION" | translate}}</th>
+                        <th>{{"EDITAR"   | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let parametro of parametros">
+                        <td>{{parametro.Value}}</td>
+                        <td>{{parametro.Description}}</td>
+                        <td>
+                            <button class="btn btn-orange btn-sm" data-toggle="modal" (click)="getId(parametro.Id, parametro.Value, parametro.Description)" data-target="#modalActualizarParametro">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- <app-jw-pagination-custom [items]="vehiculoInfo" (changePage)="onChangePage($event)"></app-jw-pagination-custom> -->
+        </div>
+    </div>
+</div>
+<app-parametros-generales-modal [idSend]="id" [valor]="valor" [desc]="desc" [reloadTable]="getParametrosList"></app-parametros-generales-modal>

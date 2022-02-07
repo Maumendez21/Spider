@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-3">
+      <app-configuration-menu-lg></app-configuration-menu-lg>
+    </div>
+    <div class="col-md-9 mb-4">
+      <input [(ngModel)]="searchDevice" type="text" class="form-control mt-3 mb-3" placeholder="Buscar por dispositivo" (keyup)="getDispositivos(searchDevice)">
+      <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" class="w200">{{"NOMBRE" | translate}}</th>
+                <th scope="col">{{"TIPO" | translate}}</th>
+                <th scope="col">{{"TIEMPO" | translate}}</th>
+                <th scope="col">{{"MODELO" | translate}}</th>
+                <th scope="col">{{"RENDIMIENTO" | translate}}</th>
+                <th>{{"EDITAR"   | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let device of pageOfItems">
+                <td>{{device.Name | notext}}</td>
+                <td>{{device.DescriptionType | notext}}</td>
+                <td>{{device.DescriptionSamplingTime | notext }}</td>
+                <td>{{device.Model | notext }}</td>
+                <td>{{device.Performance | notext }}</td>
+                <td>
+
+                    <button (click)="getIdDevice(device.Device)"  class="btn btn-orange btn-sm"  data-toggle="modal" data-target="#modalUpdateDeviceInfo">
+                        <i class="fas fa-pen"></i>
+                    </button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <app-jw-pagination-custom [items]="devices" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+    </div>
+  </div>
+</div>
+<app-update-device-info  [idSend]="id" [reloadTable]="getDispositivos" ></app-update-device-info>

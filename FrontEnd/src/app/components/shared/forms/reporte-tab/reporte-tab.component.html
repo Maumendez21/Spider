@@ -1,0 +1,41 @@
+<div class="row mt-2">
+  <div class="col-md-6">
+      <div class="form-group">
+          <label for="fechaInicioInput">{{"INICIO" | translate}}</label>
+          <input type="date" name="fechaInicio" class="form-control" id="fechaInicioInput" [(ngModel)]="fechaInicio">
+      </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-group">
+          <label for="horaInicioInput">{{"HORA" | translate}}</label>
+          <input type="time" class="form-control" id="horaInicioInput" [(ngModel)]="horaInicio">
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+      <div class="form-group">
+          <label for="fechaFinalInput">{{"FINAL" | translate}}</label>
+          <input type="date" class="form-control" id="fechaFinalInput" name="fechaFin" [(ngModel)]="fechaFin">
+      </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-group">
+          <label for="horaFinalInput">{{"HORA" | translate}}</label>
+          <input type="time" class="form-control" id="horaFinalInput" [(ngModel)]="horaFin">
+      </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+      <div class="form-group">
+          <label for="itinerarios">{{"ITINERARIOS" | translate}}</label>
+          <select class="form-control" id="itinerarios" [(ngModel)]="itinerarios">
+              <option value="1">{{"ITINERARIOS" | translate}}</option>
+              <option value="2">{{"DETALLE_ITINERARIOS" | translate}}</option>
+          </select>
+      </div>
+  </div>
+</div>
+
+<a class="btn btn-orange text-white" [href]="generarReporte()" target="_self" download="document.pdf" >{{"GENERAR_REPORTE" | translate}}</a>

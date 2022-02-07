@@ -1,0 +1,54 @@
+
+
+<button  data-bs-toggle="modal" (click)="getUsuario(0)" data-bs-target="#users-modal" class="btn btn-primary mb-2" >Nuevo Usuario</button>
+<div class="form-floating mb-3">
+    <input 
+        [(ngModel)]="searchValue"  
+        (keyup)="getListUsuarios(searchValue)" 
+        class="form-control" 
+        id="floatingInput" 
+        placeholder="nombre" 
+    />
+    <label for="floatingInput">Buscar por nombre</label>
+</div>
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Correo</th>
+            <th>Grupo</th>
+            <th>Teléfono</th>
+            <th>Rol</th>
+            <th>Editar</th>
+            <th [hidden]="rol !== 'Administrador'">Permisos</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let item of pageOfItems">
+            <td>{{ item.id | notext }}</td>
+            <td>{{ item.email | notext }}</td>
+            <td>{{ item.group | notext }}</td>
+            <td>{{ item.phone | notext }}</td>
+            <td>{{ item.role | notext }}</td>
+            <td>
+                <button  class="btn btn-info btn-sm " (click)="getUsuario(item.id)" data-bs-toggle="modal" data-bs-target="#users-modal">
+                    <i class="dripicons-pencil"></i>
+                </button>
+            </td>
+            <td>
+                <button (click)="getNombre(item.id)" data-bs-toggle="modal" data-bs-target="#permission-modal" class="btn btn-danger btn-sm">
+                    <i class="mdi mdi-eye"></i>
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<app-jw-pagination-custom [items]="usuarios" (changePage)="onChangePage($event)" ></app-jw-pagination-custom>
+
+
+<app-action-users [reloadTable]="getListUsuarios" [idSend]="id" ></app-action-users>
+<app-permissions-users [reloadTable]="getListUsuarios" [user]="user"  ></app-permissions-users>
+

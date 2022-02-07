@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center" style="height: 100vh;">
+        <div class="col-md-3 align-self-center">
+            
+            <div class="card">
+                <div class="card-body">
+                    <!-- <img class="img-fluid mt-3 mb-3" src="assets/images/logospider.png" /> -->
+                    <div class="card-body">
+                        <form (ngSubmit)="onSubmit()" [class]="(error) ? 'needs-validation was-validated' : '' " novalidate>
+                            <h2 class="mb-3"> {{"OLVIDASTE_TU_CONTRASEÑA" | translate}}</h2>
+                            <div class="form-group">
+                                <label for="inputEmail" class="fa5">{{"EMAIL" | translate}}</label>
+                                <input type="email" [(ngModel)]="email" name="email" class="form-control" id="inputEmail" autofocus required>
+                                <div class="invalid-feedback">
+                                    {{"CORREO_NECESARIO" | translate}}
+                                </div> 
+                            </div>
+                            <div class="row justify-content-end">
+
+                                <button type="submit" [disabled]="btnEnviar.loading" [innerHTML]="btnEnviar.text" class="btn btn-orange fa5"></button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

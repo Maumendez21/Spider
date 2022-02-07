@@ -1,0 +1,65 @@
+
+
+<button id="clear" (click)="clearAll()" style="display: none;">Clear</button>
+
+<app-clean-filters></app-clean-filters>
+
+  
+  <button *ngIf="!tipe" class="btn btn-success btnTravels btn-sm end-bar-toggle">
+      <i class="dripicons-chevron-left"></i>
+  </button>
+  
+  
+  <app-info-mdevice-modal
+    [setDevice]="setDevice"
+    [infoDevice2]="infoDevice2"
+    [infoDevice]="infoDevice"
+    [tipo]="tipo"
+    [paroMotor]="paroMotor"
+    [logotipo]="rutaLogo"
+    [device]="device"
+    [alarmas]="alarmas"
+    [getEstatusName]="getEstatusName"
+    [getTipoDispositivo]="getTipoVehiculo"
+  ></app-info-mdevice-modal>
+  
+  <agm-map
+    [styles]="style"
+    [mapTypeId]="mapId"
+    (mapReady)="onMapReady($event)">
+  ></agm-map>
+  
+  <div class="trafic">
+    <span class="spanG" >Tráfico en vivo</span>
+    <span class="spanG">
+      <span class="spanChild" >Rápido</span>
+      <img src="https://maps.gstatic.com/tactile/layers/traffic-legend-20150511.png">
+      <span class="spanChild">Lento</span>
+    </span>
+    <span class="spanG">
+      <!-- (change)="satelit($event)" [(ngModel)]="statustrafficLayer" -->
+      <ui-switch size="small" color="#ff6e40"(change)="satelit($event)" ></ui-switch>
+    </span>
+  </div>
+
+  
+
+
+
+<!-- <ng-container *ngIf="!checkIdu()">
+  
+
+<div class="container-fluid mt-5" style="margin-top: 10rem!important;">
+  <div class="row justify-content-center">
+      <div class="col-lg-4">
+          <div class="text-center">
+              <h1 class="text-error mt-3">Acceso bloqueado</h1>
+              <h4 class="text-uppercase text-danger mt-3">Regulariza tus pagos.</h4>
+  
+          </div> 
+      </div> 
+  </div>
+
+</div>
+</ng-container> -->
+

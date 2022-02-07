@@ -1,0 +1,22 @@
+<app-filters-form [section]="'6'" (data)="getDatos($event)" ></app-filters-form>
+<div class="row mt-2">
+  <div class="col-md-12">
+    <agm-map
+    [latitude]="center.lat"
+    [longitude]="center.lng"
+    [styles]="style"
+    (mapReady)="onMapReady($event)">
+  <agm-marker
+      *ngFor="let coord of devices"
+      [latitude]="coord.Latitude"
+      [longitude]="coord.Longitude"
+      [iconUrl]="{ url: icons[2].icon, scaledSize: { width: 30, height: 30, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}">
+      <agm-info-window>
+        <p> <strong>Nombre:</strong> {{coord.NameVehicle}}</p>
+        <p> <strong>Fecha:</strong> {{coord.Date}}</p>
+        <p> <strong>Tiempo:</strong> {{coord.TimeOut}} hrs </p>
+      </agm-info-window>
+    </agm-marker>
+</agm-map>
+  </div>
+</div>

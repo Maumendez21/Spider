@@ -1,0 +1,116 @@
+<app-analitica></app-analitica>
+<div class="container-fluid">
+    <div class="row mt-3">
+
+        <div class="col-md-3">
+          <p>Fecha Inicio</p>
+          <input type="date" placeholder="Inicio"  class="form-control" [(ngModel)]="fechaInicio">
+        </div>
+        <div class="col-md-3">
+          <p>Fecha Fin</p>
+          <input type="date" placeholder="Fin"  class="form-control"  [(ngModel)]="fechaFin" >
+
+        </div>
+        <div class="col-md-3">
+          <p>Seleccionar Grupo</p>
+            <select class="form-control" [(ngModel)]="subempresa" (change)="getDevices()" [disabled]="enableGrupo">
+                <option value="">{{"BUSCAR_GRUPO" | translate}}</option>
+                <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+          <p>Seleccionar dispositivo</p>
+            <select class="form-control" [(ngModel)]="vehiculo" >
+                <option value="">{{"BUSCAR_VEHICULO" | translate}}</option>
+                <option *ngFor="let spider of spiderMarkers | filterVehiculosAnalitica: subempresa" [value]="spider.dispositivo">
+                    {{ spider.nombre }}
+                </option>
+            </select>
+        </div>
+      </div>
+      <div class="row mb-2 mt-3">
+        <div class="col-md-4">
+            <button class="btn btn-orange w-100"  (click)="getAnaliticas()" [disabled]="enableLoading">
+                <span *ngIf="!enableLoading" >{{"BUSCAR" | translate}}</span>
+                <span *ngIf="enableLoading" >{{"CARGANDO" | translate}}</span>
+            </button>
+          </div>
+          <div class="col-md-">
+            <a [hidden]="!btnPDFEXCEL" class="btn btn-success" [href]="generarReporte()">Excel</a>
+          </div>
+      </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <app-card-total [titulo]="'HORAS_ACTIVIDAD' | translate" [total]="totalHoras" [classCard]="'cardHoras'"></app-card-total>
+        </div>
+        <div class="col-md-3">
+            <app-card-total [titulo]="'KM_RECORRIDO' | translate" [total]="totalKm" [classCard]="'cardKm'"></app-card-total>
+        </div>
+        <div class="col-md-3">
+            <app-card-total [titulo]="'CONSUMO_COMBUSTIBLE' | translate" [total]="totalLitros" [classCard]="'cardLitros'"></app-card-total>
+        </div>
+        <div class="col-md-3">
+            <app-card-total [titulo]="'RENDIMIENTO' | translate" [total]="totalRendimiento" [classCard]="'cardRendimiento'"></app-card-total>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <app-graph-barras-analitica [data]="graficaHorasData" [options]="barChartOptionsHoras" [labels]="graficaHorasLabel" [colors]="colorGraficaHoras"></app-graph-barras-analitica>
+        </div>
+        <div class="col-md-6">
+            <app-graph-barras-analitica [data]="graficaKmData" [options]="barChartOptionsKm" [labels]="graficaKmLabel" [colors]="colorGraficaKm"></app-graph-barras-analitica>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <app-graph-barras-analitica [data]="graficaLitrosData" [options]="barChartOptionsLitros" [labels]="graficaLitrosLabel" [colors]="colorGraficaLitros"></app-graph-barras-analitica>
+        </div>
+        <div class="col-md-6">
+            <app-graph-barras-analitica [data]="graficaRendimientoData" [options]="barChartOptionsRendimiento" [labels]="graficaRendimientoLabel" [colors]="colorGraficaRendimiento"></app-graph-barras-analitica>
+        </div>
+    </div>
+    <h1 class="mt-5">{{"RANKING_RENDIMIENTO" | translate}}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="bg-success text-center font-weight-normal trtables" colspan="2">{{"TOP_BAJO_CONSUMO" | translate}}</th>
+
+                    </tr>
+                    <tr>
+                        <th class="text-left font-weight-normal trSecundary">{{"UNIDAD" | translate}}</th>
+                        <th class="text-center font-weight-normal trSecundary">{{"CONSUMO" | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rankBest of rankingsBest">
+                        <td>{{rankBest.Name}}</td>
+                        <td class="text-center">{{rankBest.Consume}} <span>Km/Lt</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="bg-danger text-center font-weight-normal trtables" style="background-color: #C20100;" colspan="2">{{"TOP_ALTO_CONSUMO" | translate}}</th>
+                    </tr>
+                    <tr>
+                        <th class="text-left font-weight-normal trSecundary">{{"UNIDAD" | translate}}</th>
+                        <th class="text-center font-weight-normal trSecundary">{{"CONSUMO" | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rankLow of rankingsLow">
+                        <td>{{rankLow.Name}}</td>
+                        <td class="text-center">{{rankLow.Consume}} <span>Km/Lt</span></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="modal fade" id="modalCreateUsuario" tabindex="-1" aria-labelledby="modalCreateUsuarioLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"NUEVO_USUARIO" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputName">{{"NOMBRE" | translate}}</label>
+                            <input type="text" class="form-control" id="inputName" [(ngModel)]="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputLastname">{{"APELLIDO" | translate}}</label>
+                            <input type="text" class="form-control" id="inputLastname" [(ngModel)]="lastname">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEmail">{{"CORREO" | translate}}</label>
+                            <input type="email" class="form-control" id="inputEmail" [(ngModel)]="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputUsername">{{"USERNAME" | translate}}</label>
+                            <input type="text" class="form-control" id="inputUsername" [(ngModel)]="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">{{"PASSWORD" | translate}}</label>
+                            <input type="password" class="form-control" id="inputPassword" [(ngModel)]="password">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputPhone">{{"TELEFONO" | translate}}</label>
+                            <input type="tel" class="form-control" id="inputPhone" [(ngModel)]="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGrupo">{{"GRUPO" | translate}}</label>
+                            <select id="inputGrupo" class="form-control" [(ngModel)]="group">
+                                <option *ngFor="let item of gruposList" [value]="item.Hierarchy">{{ item.Name }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputRol">{{"ROL" | translate}}</label>
+                            <select id="inputRol" class="form-control" [(ngModel)]="rol">
+                                <option *ngFor="let item of rolesList" [value]="item.IdRole">{{ item.Description }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputEstatus">{{"ESTATUS" | translate}}</label>
+                            <select id="inputEstatus" class="form-control" [(ngModel)]="estatus">
+                                <option *ngFor="let item of estatusList" [value]="item.IdStatus">{{ item.Description }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" data-dismiss="modal" (click)="createUsuario()">{{"REGISTRAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

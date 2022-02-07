@@ -1,0 +1,139 @@
+<nav  *ngIf="show" id="sidebar">
+    <ul style="margin-bottom: 0px!important;" class="list-unstyled components">
+        <li>
+            <a *ngIf="permisos.includes('MAP100')" [routerLink]="['/mapa']" routerLinkActive="active">
+                <i class="fas fa-globe-americas icon-sidebar"></i>
+                <span id="textSidebarOne" class="sidebarText">{{"MAPA" | translate}}</span>
+            </a>
+
+            
+
+                <a *ngIf="permisos.includes('ANA200')" [routerLink]="['/analitica/activityDay']" routerLinkActive="active">
+                    <i class="fas fa-chart-line icon-sidebar"></i>
+                    <span id="textSidebarTwo" class="sidebarText">{{"ANALITICAS" | translate}}</span>
+                </a>
+                <a *ngIf="permisos.includes('ENT300')" href="#">
+                    <i class="fas fa-box-open icon-sidebar"></i>
+                    <span id="textSidebarThree" class="sidebarText">{{"ENTREGAS" | translate}}</span>
+                </a>
+                <a *ngIf="permisos.includes('GMON400')" [routerLink]="['/geocercas/monitoreo']" routerLinkActive="active">
+                    <i class="fas fa-vector-square icon-sidebar"></i>
+                    <span id="textSidebarFour" class="sidebarText">{{"GEOCERCAS" | translate}}</span>
+                </a>
+                <a *ngIf="permisos.includes('MOV')" [routerLink]="['/movilidad/puntos-interes']" routerLinkActive="active">
+                  <i class="fas fa-truck-moving icon-sidebar"></i>
+                    <span id="textSidebarFive" class="sidebarText">{{"MOVILIDAD" | translate}} </span>
+                </a>
+                <a *ngIf="permisos.includes('CON613')" [routerLink]="['/mantenimiento/inspecciones']" routerLinkActive="active">
+                  <i class="fas fa-cogs icon-sidebar"></i>
+    
+                    <span id="textSidebarSix" class="sidebarText">{{"MANTENIMIENTO" | translate}} <strong>{{ "BETA" | translate }}</strong> </span>
+                </a>
+                <a *ngIf="permisos.includes('REP500')" href="#" data-toggle="modal" data-target="#reporteModal" (click)="initReportes()">
+                    <i class="far fa-file-alt icon-sidebar"></i>
+                    <span id="textSidebarSeven" class="sidebarText">{{"REPORTES" | translate}}</span>
+                </a>
+                <a *ngIf="permisos.includes('CON')" [routerLink]="['configuration/grupos']" routerLinkActive="active">
+                    <i class="fas fa-cog icon-sidebar"></i>
+                    <span id="textSidebarEight" class="sidebarText">{{"CONFIGURACION" | translate}}</span>
+                </a>
+                <a *ngIf="permisos.includes('ADM')" [routerLink]="['administration/users']" routerLinkActive="active">
+                    <i class="fas fa-user-lock icon-sidebar"></i>
+                    <span id="textSidebarNine" class="sidebarText">{{"ADMINISTRACION" | translate}}</span>
+                </a>
+         
+            
+        </li>
+        <!-- <li class="signOut">
+            <a href="#" (click)="signOut()">
+                <i class="fas fa-sign-out-alt"></i>
+                <span id="textSidebarThen" class="sidebarText">{{"SALIR" | translate}}</span>
+            </a>
+        </li> -->
+    </ul>
+
+    <!-- <div class="help-box  text-center">
+        <img src="../../../../../assets/images/help-icon.svg" height="90" alt="Helper Icon Image">
+        <h5 class="mt-3">Estamos mejorando para ti</h5>
+        <p class="mb-3">Descubre nuestra nueva imagen</p>
+        <a href="https://spiderv3.azurewebsites.net" class="btn btn-outline-info  btn-sm">Probar</a>
+    </div> -->
+
+</nav>
+
+<div class="modal fade" id="reporteModal" tabindex="-1" aria-labelledby="reporteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reporteModalLabel">{{"REPORTES" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="selectUnidad">{{"GRUPO" | translate}}</label>
+                            <select class="form-control" id="selectGrupo" [(ngModel)]="grupo" (change)="updateSubempresa()">
+                                <option value="">{{"SELECCIONAR" | translate}}</option>
+                                <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectUnidad">{{'UNIDAD' | translate}}</label>
+                            <select class="form-control" id="selectUnidad" [(ngModel)]="unidad">
+                            <option value="">{{"SELECCIONAR" | translate}}</option>
+                            <option *ngFor="let item of devices | filterVehiculosAnalitica:grupo" [value]="item.Device">{{ item.Name }}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fechaInicioInput">{{"INICIO" | translate}}</label>
+                            <input type="date" name="fechaInicio" class="form-control" id="fechaInicioInput" [(ngModel)]="fechaInicio">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="horaInicioInput">{{"HORA" | translate}}</label>
+                            <input type="time" class="form-control" id="horaInicioInput" [(ngModel)]="horaInicio">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fechaFinalInput">{{"FINAL" | translate}}</label>
+                            <input type="date" class="form-control" id="fechaFinalInput" name="fechaFin" [(ngModel)]="fechaFin">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="horaFinalInput">{{"HORA" | translate}}</label>
+                            <input type="time" class="form-control" id="horaFinalInput" [(ngModel)]="horaFin">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="itinerarios">{{"ITINERARIOS" | translate}}</label>
+                            <select class="form-control" id="itinerarios" [(ngModel)]="itinerarios">
+                                <option value="1">{{"ITINERARIOS" | translate}}</option>
+                                <option value="2">{{"DETALLE_ITINERARIOS" | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"CERRAR" | translate}}</button>
+                <a *ngIf="grupo != ''" class="btn btn-orange text-white" [href]="generarReporte()" target="_self" download="document.pdf" >{{"GENERAR_REPORTE" | translate}}</a>
+                <button *ngIf="grupo == ''" class="btn btn-orange" disabled>{{"GENERAR_REPORTE" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

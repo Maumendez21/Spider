@@ -1,0 +1,63 @@
+
+<app-loading [hidden]="!loading"></app-loading>
+
+<div [hidden]="loading">
+  <div class="d-flex">
+    <button style="margin-right: 7px;" class="btn btn-primary " [routerLink]="'/geofences/new'">Crear Geocerca</button>
+      <button [routerLink]="'/geofences/new-asignation'" class="  btn btn-info">Nueva Asignación</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dispositivos</th>
+                <th style="width: 100px;">Actualizar</th>
+                <th style="width: 100px;">Desvincular</th>
+                <th style="width: 100px;">Eliminar</th>
+            </tr>
+        </thead>
+  
+  
+        <tbody>
+            <tr *ngFor="let geocerca of pageOfItems; let i = index;">
+                <td>{{geocerca.Name}}</td>
+                <td >
+                  <button
+                    type="button"
+                    class="btn btn-light dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                  </button>
+                  <div class="dropdown-menu">
+                    <a
+                      *ngFor="let devices of geocerca.ListDevice"
+                      class="cursor dropdown-item"
+                    > {{devices.Name}}</a>
+                    <a *ngIf="geocerca.ListDevice === null"  class="cursor dropdown-item">Esta geocerca no tiene vehículos</a>
+                </div>
+                </td>
+                <td>
+                  <button (click)="actualizarGeocerca(geocerca.Id)" class="btn btn-success btn-sm">
+                    <i class="dripicons-pencil"></i>
+                  </button>
+                </td>
+                <td>
+                  <button (click)="desvincularGeocerca(geocerca['ListDevice'], geocerca.Name)" class="btn btn-info btn-sm">
+                  <i class=" dripicons-scale"></i>
+                  </button>
+                </td>
+                <td>
+                  <button  (click)="eliminarGeocerca(geocerca.Id)" class="btn btn-danger btn-sm">
+                    <i class=" dripicons-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <app-jw-pagination-custom [items]="geocercas" (changePage)="onChangePage($event)" ></app-jw-pagination-custom>
+  
+    </div>
+  </div>
+</div>

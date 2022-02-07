@@ -1,0 +1,99 @@
+<app-analitica></app-analitica>
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div class="row">
+
+        <div class="col-md-3">
+          <p>Fecha Inicio</p>
+          <input type="date" placeholder="Inicio"  class="form-control" [(ngModel)]="fechaInicio">
+        </div>
+        <div class="col-md-3">
+          <p>Fecha Fin</p>
+          <input type="date" placeholder="Fin"  class="form-control"  [(ngModel)]="fechaFin" >
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-4">
+      <button class="btn btn-orange mt-4 w-100"  (click)="filtrar()"> Buscar</button>
+    </div>
+  </div>
+  <app-loading  *ngIf="cargando" ></app-loading>
+  <div *ngIf="!cargando" class="row animated fadeIn fast">
+    <div class="col-md-12 mt-5">
+
+      <div *ngIf="notifications.length > 0" class="text-right">
+
+        <a class="btn btn-success mb-2" [href]="generarReporte()" >Excel</a>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>{{"FECHA"       | translate}}</th>
+                <th>{{"DISPOSITIVO" | translate}}</th>
+                <th>{{"NOMBRE"      | translate}}</th>
+                <th>{{"ALARMA"      | translate}}</th>
+                <th>{{"DESCRIPCION" | translate}}</th>
+                <th>{{"ACCIONES"    | translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of pageOfItems; let i = index;" [ngClass]="{'table-success': item.View != 0, 'table-danger': item.View == 0 }" >
+                <td>{{ item.DateGenerated | date: 'EEEE, d MMMM y H:mm' }}</td>
+                <td>{{ item.Device }}</td>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.Alarm }}</td>
+                <td>{{ item.Description }}</td>
+                <td class="text-center">
+                    <button class="btn btn-orange" data-toggle="modal" data-target="#mapModal" (click)="showMap(item.Id, item.Latitud, item.Longitude, i)">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+      <app-jw-pagination-custom [items]="notifications" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalL abel">{{"ALARMA" | translate}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <agm-map
+                  [latitude]="latitud"
+                  [longitude]="longitud"
+                  [zoom]="zoom"
+                  [fitBounds]="fitBounds"
+                  (mapReady)="onMapReady($event)">
+
+                  <agm-marker
+                      [latitude]="latitud"
+                      [longitude]="longitud"
+                      [agmFitBounds]="agmFitBounds"
+                      [iconUrl]="{ url: './assets/images/coche_rojo.png', scaledSize: { width: 26, height: 38, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}">
+                  </agm-marker>
+
+              </agm-map>
+          </div>
+      </div>
+  </div>
+</div>
+

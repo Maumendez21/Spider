@@ -1,0 +1,41 @@
+<div   class="row">
+  <div class="col-md-12">
+    <div *ngIf="lastTravels.length == 0" class="alert alert-danger" role="alert">
+      Este vehiculo no tiene <strong>Viajes</strong>
+    </div>
+    <div (click)="showTravel(item.Device, item.StartDate, item.EndDate, i)" *ngFor="let item of lastTravels; let i = index;"  class="card border-secondary border cursor">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.TravelDate }}  {{ item.EndHour }}</h5>
+        <p class="card-text">
+        </p>
+        <div class="row">
+          <div class="col-md-7">
+            <p>Distancia</p>
+          </div>
+          <div class="col-md-5">
+            <p>{{ item.ODO }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+            <p>Tiempo</p>
+          </div>
+          <div class="col-md-5">
+            <p>{{ item.Time }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-7">
+            <p>Combustible</p>
+          </div>
+          <div class="col-md-5">
+            <p>{{ item.Fuel }}</p>
+          </div>
+        </div>
+        <!-- <a href="javascript: void(0);" class="btn btn-info btn-sm"  style="margin-right: 7px;" (click)="showTravel(item.Device, item.StartDate, item.EndDate, i)">Ver viaje</a> -->
+        <a  class="btn btn-secondary btn-sm"  [routerLink]="[showDetailTravel(item.Device, item.StartDate, item.EndDate, i)]" target="_blank">Ver detalle</a>
+      </div> <!-- end card-body-->
+    </div> <!-- end card-->
+  </div>
+</div>

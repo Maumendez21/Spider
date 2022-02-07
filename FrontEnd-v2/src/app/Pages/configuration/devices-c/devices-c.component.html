@@ -1,0 +1,73 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Dispositivo</th>
+            <th>Compañia</th>
+            <th>Responsabale</th>
+            <th>Asignación</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let item of devices; let id = index">
+            <td>{{ item.name | notext }}</td>
+            <td>{{ item.device | notext }}</td>
+            <td>{{ item.company | notext }}</td>
+            <td>{{ item.responsable | notext }}</td>
+            <td>
+                <button 
+                    data-bs-toggle="modal" 
+                    (click)="callModalAssignment(item.device, item.name, item.hierarchy, item.idResponsable,item.responsable, id)"
+                    data-bs-target="#asgnation-modal" 
+                    class="btn btn-info btn-sm">
+                    <i class="mdi mdi-pencil"></i>
+                </button>
+            </td>
+            
+        </tr>
+        
+    </tbody>
+</table>
+
+
+<div id="asgnation-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">Asignar Subempresa</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-2">
+                    <input [(ngModel)]="device" class="form-control" id="floatingInput" readonly/>
+                    <label for="floatingInput">Id</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input [(ngModel)]="name" class="form-control" id="floatingInput"/>
+                    <label for="floatingInput">Nombre</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <select  [(ngModel)]="subempresa" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Name }}</option>
+                    </select>
+                    <label for="floatingSelect">Subempresa</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <select [(ngModel)]="responsable" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <option *ngFor="let responsable of responsables" [value]="responsable.Id">{{ responsable.Name }}</option>
+                    </select>
+                    <label for="floatingSelect">Responsable</label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" (click)="asignarSubempresa()" class="btn btn-primary">Asignar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

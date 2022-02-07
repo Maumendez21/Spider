@@ -1,0 +1,65 @@
+<app-filters-form [section]="'4'" (data)="getPuntos($event)" ></app-filters-form>
+
+<div [hidden]="!puntos.ListAnalysis" class="text-right">
+
+    <a class="btn btn-success mt-2 btn-sm" [href]="generarReporte()" >Excel</a>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+            <thead>
+                <tr>
+                    <th>Vehiculo</th>
+                    <th>Fecha</th>
+                    <th>Tiempo de Permanencia</th>
+                    <th>Ver</th>
+                </tr>
+            </thead>
+        
+        
+            <tbody>
+                <tr *ngFor="let punto of puntos.ListAnalysis">
+                    <td>{{punto.VehicleName}}</td>
+                    <td>{{punto.Date}}</td>
+                    <td>{{punto.Time}}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" (click)="showMap(punto.Latitude, punto.Longitude)" data-bs-toggle="modal" data-bs-target="#point-modal">
+                            <i class="mdi mdi-eye"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="point-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">{{nombre}}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <agm-map
+                  [latitude]="center.lat"
+                  [longitude]="center.lng"
+                  (mapReady)="onMapReady($event)"
+                  >
+                  <!-- [fitBounds]="fitBounds" -->
+                  <agm-marker
+                      [latitude]="latitud"
+                      [longitude]="longitud"
+                      [iconUrl]="{ url: './assets/images/map/coche_rojo.png', scaledSize: { width: 26, height: 38, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}"
+                   >
+                    </agm-marker>
+
+              </agm-map>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

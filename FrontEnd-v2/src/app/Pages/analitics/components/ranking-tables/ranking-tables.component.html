@@ -1,0 +1,44 @@
+<h5>Ranking de rendimiento</h5>
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+              <th class="bg-success text-center font-weight-normal trtables" style="color: white;" colspan="2">Top bajo consumo</th>
+
+          </tr>
+          <tr>
+              <th class="text-left font-weight-normal trSecundary">Unidad</th>
+              <th class="text-center font-weight-normal trSecundary">Consumo</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let rankBest of rankingsBest">
+              <td>{{rankBest.Name}}</td>
+              <td class="text-center">{{rankBest.Consume}} <span>Km/Lt</span></td>
+          </tr>
+      </tbody>
+  </table>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <thead>
+          <tr>
+              <th class="bg-danger text-center font-weight-normal trtables" style="color: white;" colspan="2">Top alto consumo</th>
+          </tr>
+          <tr>
+              <th class="text-left font-weight-normal trSecundary">Unidad</th>
+              <th class="text-center font-weight-normal trSecundary">Consumo</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let rankLow of rankingsLow">
+              <td>{{rankLow.Name}}</td>
+              <td class="text-center">{{rankLow.Consume}} <span>Km/Lt</span></td>
+          </tr>
+
+      </tbody>
+  </table>
+  </div>
+</div>

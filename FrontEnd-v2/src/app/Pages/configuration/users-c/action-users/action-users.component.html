@@ -1,0 +1,70 @@
+<div id="users-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">{{title}} Usario</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="name" class="form-control" id="floatingInput" placeholder="name" />
+                            <label for="floatingInput">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="lastname" placeholder="apellido" class="form-control" id="floatingInput" />
+                            <label for="floatingInput">Apellido</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="email" [(ngModel)]="email" placeholder="email" class="form-control" id="floatingInput" />
+                            <label for="floatingInput">Email</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="username" placeholder="username" class="form-control" id="floatingInput" />
+                            <label for="floatingInput">Username</label>
+                        </div>
+                        <div *ngIf="idSend === 0" class="form-floating mb-2">
+                            <input type="password" [(ngModel)]="password" placeholder="contraseña" class="form-control" id="floatingInput" />
+                            <label for="floatingInput">Password</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="phone" placeholder="teléfono" class="form-control" id="floatingInput" />
+                            <label for="floatingInput">Teléfono</label>
+                        </div>
+
+                        <div class="form-floating  mb-2">
+                            <select [(ngModel)]="group" class="form-select" id="floatingSelect" aria-label="Grupo">
+                                <option *ngFor="let item of gruposList" [value]="item.Hierarchy">{{ item.Name }}</option>
+                            </select>
+                            <label for="floatingSelect">Grupo</label>
+                        </div>
+                        <div class="form-floating  mb-2">
+                            <select [(ngModel)]="rol" class="form-select" id="floatingSelect" aria-label="rol">
+                                <option *ngFor="let item of rolesList" [value]="item.IdRole">{{ item.Description }}</option>
+                            </select>
+                            <label for="floatingSelect">Rol</label>
+                        </div>
+                        <div class="form-floating  mb-2">
+                            <select [(ngModel)]="estatus" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                <option *ngFor="let item of estatusList" [value]="item.IdStatus">{{ item.Description }}</option>
+                            </select>
+                            <label for="floatingSelect">Estatus</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="actualizarUsuario()">{{title}}</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

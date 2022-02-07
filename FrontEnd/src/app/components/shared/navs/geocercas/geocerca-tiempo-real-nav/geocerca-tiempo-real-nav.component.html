@@ -1,0 +1,147 @@
+<app-geocercas-monitoreo></app-geocercas-monitoreo>
+<div class="container-fluid">
+  <div class="row mt-5 mb-3">
+      <div class="col-md-5">
+          <select id="geocercas" class="form-control" [(ngModel)]="geofence">
+              <option value="">{{'SELECTGEOCERCA' | translate}}</option>
+              <option *ngFor="let item of geofences; let i = index" [value]="i">{{ item.Name }}</option>
+          </select>
+      </div>
+      <div class="col-md-3">
+          <button class="btn btn-orange" (click)="prepareDrawGeofence()">{{'MOSTRAR' | translate}}</button>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <agm-map
+              [latitude]="center.lat"
+              [longitude]="center.lng"
+              [fitBounds]="fitBounds"
+              [styles]="style"
+              (mapReady)="onMapReady($event)">
+
+              <agm-marker
+                  *ngFor="let coord of devices"
+                  (markerClick)="openWindow(coord.Device, coord.StatusEvent)"
+                  [agmFitBounds]="agmFitBounds"
+                  [latitude]="coord.Latitude"
+                  [longitude]="coord.Longitude"
+                  [label]="coord.Name"
+                  [iconUrl]="{ url: icons[coord.StatusEvent].icon, scaledSize: { width: 23, height: 35, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}">
+              </agm-marker>
+
+          </agm-map>
+      </div>
+  </div>
+</div>
+
+<button id="btnModalInfoDevice" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInfoDevice" style="display: none;">
+  Launch demo modal
+</button>
+
+<div class="modal fade" id="modalInfoDevice" tabindex="-1" aria-labelledby="modalInfoDeviceLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title text-center" id="modalInfoDeviceLabel">{{ infoDevice.VehicleName | notext }}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="container">
+
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">{{"ACTIVIDAD_HOY" | translate}}</a>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                          <a class="nav-link" id="detalle-tab" data-toggle="tab" href="#detalle" role="tab" aria-controls="detalle" aria-selected="true">{{"DETALLE" | translate}}</a>
+                      </li>
+
+                  </ul>
+
+
+                  <div class="tab-content" id="myTabContent">
+
+
+                      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                          <div class="row m-3">
+                              <div class="col-md-6 text-center">
+                                  <h5>{{"DATOS_CHOFER" | translate}}</h5>
+                                  <p>{{ infoDevice.DriverData | notext }}</p>
+                              </div>
+                              <div class="col-md-6 text-center">
+                                  <h5>{{"ESTATUS" | translate}}</h5>
+                                  <h2 class="toolBtn{{ infoDevice.estatus }}">
+                                      <i class="fas fa-car"></i>
+                                  </h2>
+                                  <p>{{ getEstatusName(infoDevice.estatus) }}</p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6 text-center mt-3">
+                                  <h5>{{"DISTANCIA_RECORRIDA" | translate}}</h5>
+                                  <p>{{ infoDevice.ODO | notext }}</p>
+                                  <h5>{{"TIEMPO_ACTIVIDAD" | translate}}</h5>
+                                  <p>{{ infoDevice.Time | notext }}</p>
+                              </div>
+                              <div class="col-md-6 text-center mt-3">
+                                  <h5>{{"COMBUSTIBLE_CONSUMIDO" | translate}}</h5>
+                                  <p>{{ infoDevice.Fuel | notext }}</p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="tab-pane fade show" id="detalle" role="tabpanel" aria-labelledby="detalle-tab">
+                          <div class="row mt-3">
+                              <div class="col-md-6 text-center">
+                                  <h5>{{"MARCA" | translate}}</h5>
+                                  <p>{{ infoDevice.Marca | notext }}</p>
+                              </div>
+                              <div class="col-md-6 text-center">
+                                  <h5>{{"MODELO" | translate}}</h5>
+
+                                  <p>{{ infoDevice.Modelo | notext }}</p>
+
+                              </div>
+                          </div>
+                          <div class="row">
+
+                              <div class="col-12 text-center">
+                                  <h5>{{"VERSION" | translate}}</h5>
+
+
+
+                                  <p>{{infoDevice.Version | notext}}</p>
+
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-md-6 text-center mt-3">
+                                  <h5>{{"TIPO_VEHICULO" | translate}}</h5>
+                                  <p>{{infoDevice.TipoVehiculo | notext }}</p>
+
+                                  <h5>{{"VIN" | translate}}</h5>
+                                  <p>{{infoDevice.VIN | notext }}</p>
+                              </div>
+                              <div class="col-md-6 text-center mt-3">
+
+                                  <h5>{{"PLACAS" | translate}}</h5>
+
+                                  <p>{{infoDevice.Placas | notext }}</p>
+
+                                  <h5>{{"POLIZA" | translate}}</h5>
+                                  <p>{{infoDevice.Poliza | notext }}</p>
+                              </div>
+
+                          </div>
+                      </div>
+
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

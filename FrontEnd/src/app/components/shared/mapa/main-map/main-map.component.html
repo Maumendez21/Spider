@@ -1,0 +1,44 @@
+<button id="clear" (click)="clearAll()" style="display: none;">Clear</button>
+
+
+<!-- <button (click)="satelit()">traffic</button>  *ngIf="!SateliteBtn"-->
+<div class="trafic">
+  <span class="spanG" >Tráfico en vivo</span>
+  <span class="spanG">
+    <span class="spanChild" >Rápido</span>
+    <img src="https://maps.gstatic.com/tactile/layers/traffic-legend-20150511.png">
+    <span class="spanChild">Lento</span>
+  </span>
+  <span class="spanG">
+    <!-- (change)="satelit($event)" [(ngModel)]="statustrafficLayer" -->
+    <ui-switch size="small" color="#ff6e40"(change)="satelit($event)" ></ui-switch>
+
+
+  </span>
+</div>
+
+
+<!-- <button (click)="satelit1()">traffic</button> -->
+<agm-map
+    [styles]="style"
+    [mapTypeId]="mapId"
+
+    (mapReady)="onMapReady($event)">
+</agm-map>
+
+<app-modal-info-device
+    [infoDevice]="infoDevice"
+    [infoDevice2]="infoDevice2"
+    [tipo]="tipo"
+    [setDevice]="setDevice"
+    [paroMotor]="paroMotor"
+    [logotipo]="rutaLogo"
+    [device]="device"
+    [alarmas]="alarmas"
+    [getEstatusName]="getEstatusName"
+    [getTipoDispositivo]="getTipoVehiculo"></app-modal-info-device>
+
+<app-modal-filtro-fechas
+    [prepareDates]="prepareDates"></app-modal-filtro-fechas>
+
+<app-filter-estatus-main-map></app-filter-estatus-main-map>

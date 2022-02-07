@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <app-administracion-menu-lg></app-administracion-menu-lg>
+    </div>
+    <div class="col-md-9">
+      <app-filtrado-fechas [section]="'2'" (data)="alarmas = $event"></app-filtrado-fechas>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <table class="table table-striped" >
+            <thead>
+              <tr>
+                <th>Alarma</th>
+                <th>Descripción</th>
+                <th>Repeticiones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let alarma of alarmas" >
+                <td>{{alarma.TypeAlarm}}</td>
+                <td>{{alarma.Description}}</td>
+                <td>{{alarma.Repet}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

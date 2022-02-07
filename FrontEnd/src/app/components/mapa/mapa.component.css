@@ -1,0 +1,80 @@
+#map {
+    height: calc(100vh - 80px);
+    width: 100%;
+    position: relative;
+}
+
+agm-map {
+    height: calc(100vh - 80px);
+    width: 100%;
+    position: relative;
+}
+
+.map-container {
+    position: relative;
+}
+
+.toolbox-content {
+    position: absolute;
+    top: 100px;
+    right: 30px;
+    z-index: 99;
+    height: calc(20vh);
+    width: 40px;
+}
+
+.toolbox-button {
+    margin-top: 20px;
+    width: 40px;
+    background-color: #EDEDED;
+    color: #555555;
+
+    border:1px solid #555555 !important;
+}
+
+.toolBtn {
+    background-color: #EDEDED !important;
+    color: #555555;
+
+    border:1px solid #555555 !important;
+}
+
+.toolBtn1 {
+    background-color: #4caf50 !important;
+    color: white;
+}
+
+.toolBtn2 {
+    background-color: #9e9e9e !important;
+    color: white;
+}
+
+.toolBtn3 {
+    background-color: #ffeb3b !important;
+    color: white;
+}
+
+.toolBtn4 {
+    background-color: #ff9800 !important;
+    color: white;
+}
+
+.toolBtn5 {
+    background-color: #2196f3 !important;
+    color: white;
+}
+
+.geocercas-dialog {
+    width: 60rem;
+}
+
+.btnActive{
+  outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(255 110 64 / 65%)!important;
+
+}
+
+.btn.focus, .btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(105 105 105 / 45%);
+}

@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-administracion-menu-lg></app-administracion-menu-lg>
+        </div>
+        <div  iv class="col-md-9 mt-4 mb-4">
+          <div class="table-responsive">
+
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Compañia</th>
+                  <th>Cargar Archivo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let companie of pageOfItems">
+                  <td>{{companie.Name}}</td>
+                  <td>
+                    <div class="form-group">
+                      <label for="">{{"SELECCIONAR_ARCHIVO" | translate}}</label>
+                      <input type="file" (change)="changeDocument($event)" class="form-control-file" />
+                  </div>
+                  <div class="form-group">
+                      <button class="btn btn-orange form-control" (click)="uploadFile(companie.Hierarchy)">{{"CARGAR" | translate}}</button>
+                  </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <app-jw-pagination-custom [items]="companies" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+
+
+
+
+
+
+            <!-- <div class="form-group">
+                <label>{{"COMPAÑIA" | translate}}</label>
+                <select class="form-control" [(ngModel)]="compania">
+                    <option value="0">{{"SELECCIONAR_COMPAÑIA" | translate}}</option>
+                    <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                </select>
+            </div> -->
+
+        </div>
+    </div>
+</div>

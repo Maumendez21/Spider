@@ -1,0 +1,9 @@
+.boton{
+  padding: .28rem .8rem!important;
+  background-color: #727cf5!important;
+}
+agm-map {
+  height: 50vh;
+  width: 100%;
+  position: relative;
+}

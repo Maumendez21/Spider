@@ -1,0 +1,60 @@
+<nav id="sidebarBottom" [class]="(show) ? 'active' : 'false'" *ngIf="show">
+
+    <div class="container-button mb-2">
+        <button class="btn toolBtn  toolbox-button btn-sm ml-3" data-toggle="modal" data-target="#exampleModal">
+            <i class="fas fa-calendar-alt"></i>
+        </button>
+        <button class="btn toolBtn  toolbox-button btn-sm ml-3" (click)="hideBottomBar()">
+            <i class="fas fa-times"></i>
+        </button>
+
+    </div>
+
+    <div class="container-fluid card-container container-bar">
+        <div class="row flex-nowrap mt-3 mb-3">
+            <div *ngIf="lastTravels.length == 0" class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card" class="custom-gray">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h4 class="card-title">{{"NO_VIAJES" | translate}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-3" *ngFor="let item of lastTravels; let i = index;">
+                <div class="card card-trip" (click)="showTravel(item.Device, item.StartDate, item.EndDate, i)">
+                    <div class="card-header">
+                        <div class="text-center mb-1">
+                            <p>{{ item.TravelDate }}  {{ item.EndHour }}</p>
+                            <a class="detalle" [routerLink]="[showDetailTravel(item.Device, item.StartDate, item.EndDate, i)]" target="_blank" >Ver detalle</a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="section-bottom">
+                            <div class="row mt-2">
+                                <div class="col-md-4 text-center">
+                                    <p><img src="../../../../assets/images/DISTANCIA.png" ></p>
+                                    <p>{{"DISTANCIA" | translate}}</p>
+                                    <p>{{ item.ODO }}</p>
+                                  </div>
+                                  <div class="col-md-4 text-center">
+                                    <p><img src="../../../../assets/images/TIEMPO.png" ></p>
+                                    <p>{{"TIEMPO" | translate}}</p>
+                                    <p>{{ item.Time }}</p>
+                                  </div>
+                                  <div class="col-md-4 text-center">
+                                    <p><img src="../../../../assets/images/GAS.png" ></p>
+                                    <p>{{"COMBUSTIBLE" | translate}}</p>
+                                    <p>{{ item.Fuel }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</nav>

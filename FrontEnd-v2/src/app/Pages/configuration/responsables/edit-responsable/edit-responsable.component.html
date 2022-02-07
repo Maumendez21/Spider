@@ -1,0 +1,34 @@
+<div id="editR-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">{{title}} Responsable</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-floating mb-2">
+                    <input [(ngModel)]="nameUpdate" class="form-control" id="floatingInput" />
+                    <label for="floatingInput">Nombre</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="email" [(ngModel)]="emailUpdate" class="form-control" id="floatingInput" />
+                    <label for="floatingInput">Correo</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input  [(ngModel)]="areaUpdate" class="form-control" id="floatingInput" />
+                    <label for="floatingInput">Area</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="tel" [(ngModel)]="phoneUpdate" class="form-control" id="floatingInput" />
+                    <label for="floatingInput">Teléfono</label>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateResponsable()">{{title}}</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

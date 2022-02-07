@@ -1,0 +1,21 @@
+<div class="form-floating mb-3">
+    <input (keyup)="getListCompaniasPrincipales()" class="form-control" id="floatingInput" placeholder="nombre" />
+    <label for="floatingInput">Buscar por nombre</label>
+</div>
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Empresa</th>
+            <th>Habilitado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of pageOfItems">
+            <td>{{ item.name | notext }}</td>
+            <td>
+                <ui-switch [disabled]="habilitado" (change)="cambiar(item.id, item.status)" [(ngModel)]="item.status" (value)="item.id"></ui-switch>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-jw-pagination-custom [items]="companias" (changePage)="onChangePage($event)"></app-jw-pagination-custom>

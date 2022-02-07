@@ -1,0 +1,63 @@
+
+<div class="d-felx">
+    <button [routerLink]="'/mobility/point-interest/new'" style="margin-right: 7px; "class="btn btn-info">Agregar</button>
+    <button  [routerLink]="['/mobility/point-vinculation']" style="margin-right: 7px; "class="btn btn-info">Nueva Asignación</button>
+    <button *ngIf="permisos.includes('MOV351')" [routerLink]="'/mobility/points-interest/consult'" style="margin-right: 7px; "class="btn btn-info">Consultar Puntos de Interés</button>
+    <button data-bs-toggle="modal" data-bs-target="#XMLSX-modal" class="btn btn-success">Importar XSLX</button>
+
+</div>
+
+<app-loading [hidden]="!loading" ></app-loading>
+
+<table [hidden]="loading" id="basic-datatable" class=" mt-2 table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Vehículos</th>
+            <th>Modificar</th>
+            <th>Desvincular</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let item of pageOfItems; let i = index;">
+            <td>{{item.Name}}</td>
+            <td>
+                <button
+                    type="button"
+                    class="btn btn-light dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    
+                </button>
+                <div class="dropdown-menu">
+                    <a
+                      *ngFor="let devices of item.ListDevice"
+                      class="cursor dropdown-item"
+                    > {{devices.Name}}</a>
+                    <a *ngIf="item.ListDevice === null"  class="cursor dropdown-item">Este punto de interés no tiene vehículos</a>
+                </div>
+            </td>
+            <td>
+                <button [routerLink]="['/mobility/point-interest', item.Id ]"class="btn btn-success btn-sm">
+                    <i class="dripicons-pencil"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-info btn-sm" (click)="desvincularRuta(item.ListDevice, item.Name)">
+                    <i class="dripicons-scale"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="eliminarPuntoInteres(item.Id, i)">
+                    <i class=" dripicons-trash"></i>
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<app-jw-pagination-custom [items]="puntos" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+<app-modal-import-point (refresh)="refresh($event)"></app-modal-import-point>

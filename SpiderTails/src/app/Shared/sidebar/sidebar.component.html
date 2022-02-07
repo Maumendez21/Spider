@@ -1,0 +1,30 @@
+<div class="navl" id="navbar">
+    <nav class="nav__container">
+      <div>
+        
+        <a  class="nav__link nav__logo">
+          
+          <img  id="logotipo" class="logo__img mb-4" [src]="'https://spiderfleetapi.azurewebsites.net/templates2/iconSpider.png'"  (error)="errorHandler($event)" >
+          
+        </a>
+  
+        <div class="nav__list">
+          <div class="nav__items">
+  
+            <a  *ngIf="permisos.includes('MAP100')" [routerLink]="'/home'"  routerLinkActive="active" class="nav__link">
+              <img class="menu__img" src="../../../assets/utils/img/Mapa.png" >
+              <span class="nav__name">Mapa</span>
+            </a>
+            <a  *ngIf="permisos.includes('MAP100')" [routerLink]="'/tails'"  routerLinkActive="active" class="nav__link">
+              <img class="menu__img" src="../../../assets/utils/img/Configuracion.png" >
+              <span class="nav__name">Llantas</span>
+            </a>
+  
+          
+          </div>
+        </div>
+      </div>
+  
+      
+    </nav>
+  </div>

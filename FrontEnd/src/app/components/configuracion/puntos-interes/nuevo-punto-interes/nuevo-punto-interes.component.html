@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>{{ 'NUEVO_PUNTO_INTERES' | translate }}</h1>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a class="btn btn-outline-dark" [routerLink]="[ '/configuration/puntos-interes' ]">{{ 'CANCELAR' | translate }}</a>
+                    <button class="btn btn-orange ml-2" (click)="registrarRuta()">{{ 'REGISTRAR' | translate }}</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputRuta">{{ 'NOMBRE_PUNTO_INTERES' | translate }}</label>
+                <input type="text" class="form-control" id="inputRuta" [placeholder]="'NOMBRE_PUNTO_INTERES' | translate" [(ngModel)]="name">
+            </div>
+            <div class="form-group">
+                <label for="descripcionRuta">{{ 'DESCRIPCION_PUNTO_INTERES' | translate }}</label>
+                <textarea class="form-control" id="descripcionRuta" rows="4" [placeholder]="'DESCRIPCION_PUNTO_INTERES' | translate" [(ngModel)]="description"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4 mb-4">
+            <agm-map
+                [latitude]="center.lat"
+                [longitude]="center.lng"
+                (mapReady)="onMapReady($event)">
+            </agm-map>
+        </div>
+    </div>
+</div>

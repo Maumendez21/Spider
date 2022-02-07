@@ -1,0 +1,33 @@
+<div class="modal fade" id="modalCreateResponsable" tabindex="-1" aria-labelledby="modalCreateResponsableLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"NUEVO_RESPONSABLE" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="inputName">{{"NOMBRE" | translate}}</label>
+                    <input type="text" class="form-control" id="inputName" [(ngModel)]="name">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">{{"CORREO" | translate}}</label>
+                    <input type="email" class="form-control" id="inputEmail" [(ngModel)]="email">
+                </div>
+                <div class="form-group">
+                    <label for="inputArea">{{"AREA" | translate}}</label>
+                    <input type="text" class="form-control" id="inputArea" [(ngModel)]="area">
+                </div>
+                <div class="form-group">
+                    <label for="inputPhone">{{"TELEFONO" | translate}}</label>
+                    <input type="tel" class="form-control" id="inputPhone" [(ngModel)]="phone">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" data-dismiss="modal" (click)="createResponsable()">{{"REGISTRAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

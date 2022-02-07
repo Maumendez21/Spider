@@ -1,0 +1,30 @@
+#wrapper {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+#content {
+    width: 100%;
+    min-height: calc(100vh - 90px);
+    transition: all 0.3s;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+#content.active {
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}

@@ -1,0 +1,49 @@
+<app-analitica></app-analitica>
+<div class="container-fluid">
+    <div class="row mt-3">
+      <div class="col-md-3">
+        <p>Fecha Inicio</p>
+        <input type="date" placeholder="Inicio"  class="form-control" [(ngModel)]="fechaInicio">
+      </div>
+      <div class="col-md-3">
+        <p>Fecha Fin</p>
+        <input type="date" placeholder="Fin"  class="form-control"  [(ngModel)]="fechaFin" >
+
+      </div>
+        <div class="col-md-3">
+          <p>Seleccionar Grupo</p>
+            <select class="form-control" [(ngModel)]="subempresa">
+                <option value="">{{"BUSCAR_GRUPO" | translate}}</option>
+                <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+          <p>Seleccionar Vehiculo</p>
+            <select class="form-control" [(ngModel)]="vehiculo">
+                <option value="">{{"BUSCAR_VEHICULO" | translate}}</option>
+                <option *ngFor="let spider of spiderMarkers | filterVehiculosAnalitica: subempresa" [value]="spider.dispositivo">
+                    {{ spider.nombre }}
+                </option>
+            </select>
+        </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-2 mt-3">
+        <button class="btn btn-orange w-100" (click)="searchHeatMap()" [disabled]="loading">
+            <span *ngIf="!loading" >{{"BUSCAR" | translate}}</span>
+            <span *ngIf="loading" >{{"CARGANDO" | translate}}</span>
+        </button>
+    </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom" [fitBounds]="fitBounds" (mapReady)="onMapReady($event)">
+
+                <agm-marker *ngFor="let coord of coordsRaw" [agmFitBounds]="agmFitBounds" [visible]="isMarkerVisible" [latitude]="coord.Latitude" [longitude]="coord.Longitude">
+                </agm-marker>
+
+            </agm-map>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<button  data-bs-toggle="modal" (click)="getResponsable(0)" data-bs-target="#editR-modal" class="btn btn-primary mb-2" >Nuevo responsable</button>
+
+<div class="form-floating mb-3">
+    <input [(ngModel)]="searchValue"  (keyup)="getListResponsables(searchValue)" class="form-control" id="floatingInput" placeholder="nombre" />
+    <label for="floatingInput">Buscar por nombre o por correo electrónico</label>
+</div>
+
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Area</th>
+            <th>Teléfono</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let item of pageOfItems">
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.area }}</td>
+            <td>{{ item.phone }}</td>
+            <td>
+                <button  class="btn btn-info btn-sm " (click)="getResponsable(item.id)" data-bs-toggle="modal" data-bs-target="#editR-modal">
+                    <i class="dripicons-pencil"></i>
+                </button>
+            </td>
+            <td>
+                <button (click)="deleteResponsible(item.id, item.name)"  class="btn btn-danger btn-sm">
+                    <i class=" dripicons-trash"></i>
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<app-jw-pagination-custom [items]="responsables" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+
+<!-- <app-new-responsable></app-new-responsable> -->
+<app-edit-responsable [reloadTable]="getListResponsables" [idSend]="id"></app-edit-responsable>

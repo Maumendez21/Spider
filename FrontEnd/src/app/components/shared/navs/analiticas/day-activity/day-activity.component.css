@@ -1,0 +1,11 @@
+
+agm-map {
+  height: 50vh;
+  width: 100%;
+  position: relative;
+}
+
+.bg-select{
+  background-color: white;
+  z-index: 999999;
+}

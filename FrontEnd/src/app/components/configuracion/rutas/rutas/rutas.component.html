@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-right mt-4">
+                <button type="button" class="btn btn-orange btn-sm mr-2" [routerLink]="[ '/configuration/nueva-ruta']">
+                    <i class="fas fa-plus"></i> {{"AGREGAR" | translate}}
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalImportRuta" >
+                  {{"IMPORTAR_KML" | translate}}
+               </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mt-4 mb-4">
+            <table class="table">
+                <tr>
+                    <th>{{ 'RUTA' | translate }}</th>
+                    <th>{{ 'DESCRIPCION' | translate }}</th>
+                    <th>{{ 'VER' | translate }}</th>
+                    <!-- <th></th> -->
+                </tr>
+                <tr *ngFor="let ruta of rutas; let i = index;">
+                    <td>{{ ruta.Name }}</td>
+                    <td>{{ ruta.Description }}</td>
+                    <td>
+                        <a class="btn btn-orange btn-sm" [routerLink]="[ '/configuration/actualizar-ruta', ruta.Id ]">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                    </td>
+                    <!-- <td>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarRuta(ruta.Id, i)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td> -->
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-kml-rutas (refresh)="refresh($event)" ></app-kml-rutas>

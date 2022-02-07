@@ -1,0 +1,37 @@
+<app-geocercas-monitoreo></app-geocercas-monitoreo>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 mb-3">
+      <app-filtrado-fechas [section]="'6'" (data)="getDatos($event)"></app-filtrado-fechas>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 mb-5">
+      <agm-map
+        [latitude]="center.lat"
+        [longitude]="center.lng"
+        [fitBounds]="fitBounds"
+        [styles]="style"
+        (mapReady)="onMapReady($event)">
+
+        <!-- (markerClick)="openWindow(coord.Device, coord.StatusEvent)" -->
+      <agm-marker
+          *ngFor="let coord of devices"
+          [agmFitBounds]="agmFitBounds"
+          [latitude]="coord.Latitude"
+          [longitude]="coord.Longitude"
+          [iconUrl]="{ url: icons[2].icon, scaledSize: { width: 23, height: 35, anchor: {x:0, y:25} }, labelOrigin:{x:15,y:-8}}">
+
+          <agm-info-window>
+            <p> <strong>{{ "NOMBRE" | translate }}: </strong> {{coord.NameVehicle}}</p>
+            <p> <strong>{{ "FECHA" | translate }}: </strong> {{coord.Date}}</p>
+            <p> <strong>{{ "TIEMPO" | translate }}: </strong> {{coord.TimeOut}} hrs </p>
+          </agm-info-window>
+
+
+        </agm-marker>
+
+  </agm-map>
+    </div>
+  </div>
+</div>

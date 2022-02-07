@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-md-8" style="display: flex;">
+            <div *ngIf="loading" style="width: 4%;">
+                <i  class="fas fa-spinner fa-spin"></i>
+            </div>        
+                <h3>{{"SEMANA" | translate}} {{week}}</h3>    
+        </div>
+       
+        <div class="col-md-4">
+            <h3> {{dia}} {{date}} {{mes}} {{anio}}</h3>
+        </div>
+    </div>
+
+    <div class="row m-4 container-fluid">
+
+        <div class="col-md-4">
+            <app-card-dashboard [titulo]="'UNIDADES_ACTIVAS' | translate" [info]="unidadesActivos" [class]="'cardUnidades'" [icono]="'fas fa-car'"></app-card-dashboard>
+        </div>
+        <div class="col-md-4">
+            <app-card-dashboard [titulo]="'HORAS_ACTIVIDAD' | translate" [info]="totalTiempo" [class]="'cardHoras'" [icono]="'far fa-clock'"></app-card-dashboard>
+        </div>
+        <div class="col-md-4">
+            <app-card-dashboard [titulo]="'KM_RECORRIDO' | translate" [info]="totalDistacia" [class]="'cardKm'" [icono]="'fas fa-road'"></app-card-dashboard>
+        </div>
+
+
+    </div>
+    <div class="row m-3 mt-5">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-12">
+                    <h5>{{"PORCENTAJE_FLOTILLA" | translate}}</h5>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <app-graph-line-dashboard [data]="graficaActividadData" [labels]="graficaActividadLabel" ></app-graph-line-dashboard>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" style="background-color: none;">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>{{"CONSUMO_COMBUSTIBLE" | translate}}</h5>
+                </div>
+                <div *ngIf="loadingCombus" class="col-1">
+                    <i  class="fas fa-spinner fa-spin"></i>
+                </div>
+                
+                <div class="col-md-3">
+                    <select class="form-control" [(ngModel)]="subempresa" (change)="getGraphCombustible()" [disabled]="enableGrupo">
+                        <option value="">{{"TODOS" | translate}}</option>
+                        <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <select class="form-control" [(ngModel)]="vehiculo" (change)="getGraphCombustible()" [disabled]="enableDispositivo">
+                        <option value="">{{"VEHICULO" | translate}}</option>
+                        <option *ngFor="let spider of devices | filterVehiculosAnalitica: subempresa" [value]="spider.dispositivo">{{ spider.nombre }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <app-graph-barras-dashboard [data]="graficaCombustibleData" [labels]="graficaCombustibleLabel" ></app-graph-barras-dashboard>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

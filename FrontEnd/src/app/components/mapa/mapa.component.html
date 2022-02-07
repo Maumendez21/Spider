@@ -1,0 +1,41 @@
+
+
+    <div class="map-container">
+    
+        <div class="toolbox-content">
+            <button
+                type="button"
+                class="btn toolbox-button toolBtn{{ estatus }}"
+                [class.btnActive]="class"
+                data-toggle="tooltip"
+                data-placement="left"
+                data-toggle="modal"
+                data-target="#filtroEstatusModal">
+                <i class="fas fa-filter"></i>
+            </button>
+            <button
+                type="button"
+                class="btn toolbox-button "
+                data-toggle="tooltip"
+                data-placement="left"
+                title="Filtros"
+                (click)="sidebarRight()">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+            <button
+                type="button"
+                class="btn toolbox-button"
+                data-toggle="tooltip"
+                data-placement="left"
+                title="Limpiar filtros"
+                (click)="limpiarFiltros()">
+                <i class="fas fa-eraser"></i>
+            </button>
+        </div>
+    
+        <app-main-map></app-main-map>
+    
+    </div>
+
+
+

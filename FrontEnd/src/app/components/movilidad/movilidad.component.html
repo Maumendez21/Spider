@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+
+    <div class="col-12">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" *ngIf="permisos.includes('MOV351')" role="presentation">
+          <a class="nav-link"  id="puntosInteres-tab" [routerLink]="['/movilidad/puntos-interes']" routerLinkActive="active">
+            {{"PUNTOS_INTERES" | translate}}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permisos.includes('MOV350')" role="presentation">
+          <a class="nav-link" id="responsables-tab" [routerLink]="['/movilidad/responsables']" routerLinkActive="active">
+            {{"RESPONSABLES_ITINERARIOS" | translate}}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permisos.includes('MOV350')" role="presentation">
+          <a class="nav-link" id="agenda-tab" [routerLink]="['/movilidad/agenda']" routerLinkActive="active">
+            {{"AGENDA" | translate}}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permisos.includes('MOV350') && !production" role="presentation">
+          <a class="nav-link" id="agenda-tab" [routerLink]="['/movilidad/analisis']" routerLinkActive="active">
+            {{"ANALISIS_RUTAS" | translate}}  <strong>{{ "BETA" | translate }}</strong>
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="permisos.includes('MOV350') && !production" role="presentation">
+          <a class="nav-link" id="agenda-tab" [routerLink]="['/movilidad/rutas-programadas']" routerLinkActive="active">
+            {{"RUTAS_PROGRAMADAS" | translate}}  <strong>{{ "BETA" | translate }}</strong>
+          </a>
+        </li>
+
+
+      </ul>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-floating">
+            <select [(ngModel)]="selectGeocerca" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                <option value="">Geocerca</option>
+                <option  *ngFor="let item of geocercas; let i = index;" [value]="item.Id">{{ item.Name }}</option>
+            </select>
+            <label for="floatingSelect">Selecciona una geocerca</label>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+
+        <angular2-multiselect style="display: block!important;" [data]="dropdownList" [(ngModel)]="selectedItems" 
+            [settings]="dropdownSettings" 
+            (onSelect)="onItemSelect($event)" 
+            (onDeSelect)="OnItemDeSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+            (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+    </div>
+</div>
+
+<div class="d-flex mt-2">
+
+    <button class="btn btn-success " style="margin-right: 7px;" (click)="crearAsignacion()" >Asignar</button>
+    <button class="btn btn-info"  [routerLink]="['/geofences/list']"  >Volver</button>
+</div>
+
+
+
+
+

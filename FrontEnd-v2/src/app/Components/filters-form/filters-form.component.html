@@ -1,0 +1,89 @@
+
+
+<div *ngIf="section == '4'" class="row">
+  <div class="col-md-3">
+    <div class="form-floating">
+      <select
+        [(ngModel)]="puntoInteres"
+        class="form-select"
+        id="floatingSelect"
+        aria-label="Floating label select example"
+      >
+        <option value="">Punto de Interés</option>
+        <option *ngFor="let punto of puntosInteres" [value]="punto.MongoId">{{ punto.Description }}</option>
+      </select>
+      <label for="floatingSelect">Seleccionar Punto de Interés</label>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div  *ngIf="section === '6'"  class="col-md-3">
+
+    <div class="form-floating">
+      <select
+        (change)="getDevicesGeo(geofence)"
+        [(ngModel)]="geofence"
+        class="form-select"
+        id="floatingSelect"
+        aria-label="Floating label select example"
+      >
+        <option value="">Geocerca</option>
+        <option *ngFor="let item of geofences; let i = index" [value]="i">{{ item.Name }}</option>
+      </select>
+      <label for="floatingSelect">Seleccionar Geocerca</label>
+    </div>
+
+  </div>
+  <div *ngIf="section != '5' && section != '6'" class="col-md-3">
+
+    <div class="form-floating">
+      <select
+        [(ngModel)]="compani"
+        (change)="getDevices(compani)"
+        class="form-select" id="floatingSelect"
+        aria-label="Floating label select example"
+      >
+        <option value="">Grupo</option>
+        <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+      </select>
+      <label for="floatingSelect">Seleccionar Grupo</label>
+    </div>
+
+  </div>
+  <div  *ngIf="section != '5'" class="col-md-3">
+
+    <div class="form-floating">
+      <select
+        [(ngModel)]="vehiculo"
+        class="form-select"
+        id="floatingSelect"
+        aria-label="Floating label select example"
+      >
+        <option value="">Vehiculo</option>
+        <option *ngFor="let spider of spiderMarkers" [value]="spider.Device">
+          {{ spider.Name }}
+        </option>
+      </select>
+      <label for="floatingSelect">Seleccionar Vehiculo</label>
+    </div>
+
+
+
+  </div>
+  <div class="col-md-3">
+
+    <div class="form-floating">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Inicio" [(ngModel)]="fechaInicio"/>
+      <label for="floatingInput">Fecha Inicio</label>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <div class="form-floating">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Fin" [(ngModel)]="fechaFin"/>
+      <label for="floatingInput">Fecha Fin</label>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-info mt-2" (click)="filtrar()">Buscar</button>

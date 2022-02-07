@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+      <div class="col-12">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="general-tab" data-toggle="tab" [routerLink]="['/geocercas/monitoreo']" routerLinkActive="active">
+
+                      {{"MONITOREO_GEOCERCA" | translate}}
+                  </a>
+              </li>
+              <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="analitica-tab" data-toggle="tab" [routerLink]="['/geocercas/historico']" routerLinkActive="active">
+                      {{"HISTORICO_GEOCERCA" | translate}}
+                  </a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</div>

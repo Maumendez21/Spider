@@ -1,0 +1,40 @@
+<div class="row mt-3">
+  <div class="col-md-6 text-center">
+      <h5>Marca</h5>
+      <p>{{ infoDevice.Marca | notext }}</p>
+  </div>
+  <div class="col-md-6 text-center">
+      <!-- <h5>{{"MODELO" | translate}}</h5> -->
+      <h5>Modelo</h5>
+
+      <p>{{ infoDevice.Modelo | notext }}</p>
+
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-12 text-center">
+      <h5>Versión</h5>
+      <p>{{infoDevice.Version | notext}}</p>
+
+  </div>
+</div>
+<div class="row">
+<div class="col-md-6 text-center mt-3">
+    <h5>Tipo de Vehiculo</h5>
+    <p>{{infoDevice.TipoVehiculo | notext }}</p>
+
+    <h5>VIN</h5>
+    <p>{{infoDevice.VIN | notext }}</p>
+</div>
+<div class="col-md-6 text-center mt-3">
+
+    <h5>Placas</h5>
+
+    <p>{{infoDevice.Placas | notext }}</p>
+
+    <h5>Poliza</h5>
+    <p>{{infoDevice.Poliza | notext }}</p>
+</div>
+
+</div>

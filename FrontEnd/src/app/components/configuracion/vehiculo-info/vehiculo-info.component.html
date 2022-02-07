@@ -1,0 +1,38 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mb-4">
+          <input type="text" class="form-control mt-3 mb-3" placeholder="Buscar por nombre" [(ngModel)]="searchValue" (keyup)="getVehiculoInfo(searchValue)">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">{{"NOMBRE" | translate}}</th>
+                        <th scope="col">{{"PLACAS" | translate}}</th>
+                        <th scope="col">{{"VIN"    | translate}}</th>
+                        <th scope="col">{{"POLIZA" | translate}}</th>
+                        <th>{{"EDITAR"   | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pageOfItems ">
+                        <td>{{item.name   | notext}}</td>
+                        <td>{{item.placas | notext}}</td>
+                        <td>{{item.VIN    | notext}}</td>
+                        <td>{{item.poliza | notext}}</td>
+                        <td>
+                            <button class="btn btn-orange btn-sm" (click)="getIdDevice(item.Device)" data-toggle="modal" data-target="#modalUpdateVehiculoInfo">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <app-jw-pagination-custom [items]="vehiculoInfo" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+        </div>
+    </div>
+</div>
+<app-update-vehiculo-info [reloadTable]="getVehiculoInfo" [idSend]="id"></app-update-vehiculo-info>

@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-4">
+    <label for="example-palaceholder" class="form-label">Buscar por vehiculo</label>
+    <input (keyup)="buscarDevice()" [(ngModel)]="deviceSearch" type="text" id="example-palaceholder" class="form-control" placeholder="Vehiculo">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table id="basic-datatable" class="table dt-responsive nowrap w-100">
+      <thead>
+          <tr>
+            <th>Vehiculo</th>
+            <th>Viajes</th>
+          </tr>
+      </thead>
+
+      <!-- [routerLink]="[showDetailTravel(viaje.Device, viaje.StartDate, viaje.EndDate)]" -->
+      <tbody>
+          <tr *ngFor="let device of pageOfItems; let i = index;">
+            <td>{{device.VehicleName}}</td>
+            <td>
+              <button type="button"
+                      class="btn btn-light dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"> {{device.ListItineraries.length}} </button>
+              <div class="dropdown-menu">
+                  <a
+                    *ngFor="let viaje of device.ListItineraries; let i = index;"
+                    (click)="showDetailTravel(viaje.Device, viaje.StartDate, viaje.EndDate)"
+                    class="cursor dropdown-item"
+                    target="_blank"
+                  > {{viaje.TravelDate}} {{viaje.EndHour}}</a>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+  </table>
+  <app-jw-pagination-custom [items]="data" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+  </div>
+</div>
+
+
+
+
+

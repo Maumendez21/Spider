@@ -1,0 +1,110 @@
+<div class="row">
+
+  <div class="col-md-3">
+    <div class="form-floating mb-3">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Inicio" [(ngModel)]="fechaInicio"/>
+      <label for="floatingInput">Fecha Inicio</label>
+    </div>
+
+  </div>
+  <div class="col-md-3">
+    <div class="form-floating mb-3">
+      <input type="date" class="form-control" id="floatingInput" placeholder="Fin" [(ngModel)]="fechaFin"/>
+      <label for="floatingInput">Fecha Fin</label>
+    </div>
+  </div>
+  <div class="col-md-3">
+
+    <div class="form-floating">
+      <select [(ngModel)]="subempresa" (change)="getDevices()" [disabled]="enableGrupo" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+        <option value="">Grupo</option>
+        <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+      </select>
+      <label for="floatingSelect">Seleccionar Grupo</label>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="form-floating">
+      <select [(ngModel)]="vehiculo" [disabled]="enableGrupo" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+        <option value="">Dispositivo</option>
+        <option *ngFor="let spider of spiderMarkers | filterAnalitic: subempresa"[value]="spider.dispositivo">
+          {{ spider.nombre }}
+        </option>
+      </select>
+      <label for="floatingSelect">Seleccionar Dispositivo</label>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex">
+  <button *ngIf="!enableLoading" style="margin-right: 7px;" class="btn btn-info"  (click)="getAnaliticas()" [disabled]="enableLoading">
+    <span  >Buscar</span>
+  </button>
+
+  <button *ngIf="enableLoading" style="margin-right: 7px;" class="btn btn-info" type="button" disabled>
+    <span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+    Cargando...
+  </button>
+
+    <a [hidden]="!btnPDFEXCEL" class="btn btn-success" [href]="generarReporte()">Excel</a>
+</div>
+
+
+<div class="row mt-3">
+  <div class="col-md-3">
+    <app-card [color]="'primary'" [footer]="'Horas de actividad'" [info]="totalHoras" ></app-card>
+  </div>
+  <div class="col-md-3">
+    <app-card [color]="'info'" [footer]="'KM Recorridos'" [info]="totalKm" ></app-card>
+  </div>
+  <div class="col-md-3">
+    <app-card [color]="'danger'" [footer]="'Consumo de combustible'" [info]="totalLitros" ></app-card>
+  </div>
+  <div class="col-md-3">
+    <app-card [color]="'success'" [footer]="'Rendimiento'" [info]="totalRendimiento" ></app-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <app-graph-rendimiento
+      [data]="graficaHorasData"
+      [options]="barChartOptionsHoras"
+      [labels]="graficaHorasLabel"
+      [colors]="colorGraficaHoras"></app-graph-rendimiento>
+  </div>
+  <div class="col-md-6">
+    <app-graph-rendimiento
+      [data]="graficaKmData"
+      [options]="barChartOptionsKm"
+      [labels]="graficaKmLabel"
+      [colors]="colorGraficaKm"></app-graph-rendimiento>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <app-graph-rendimiento
+      [data]="graficaLitrosData"
+      [options]="barChartOptionsLitros"
+      [labels]="graficaLitrosLabel"
+      [colors]="colorGraficaLitros"></app-graph-rendimiento>
+  </div>
+  <div class="col-md-6">
+    <app-graph-rendimiento
+      [data]="graficaRendimientoData"
+      [options]="barChartOptionsRendimiento"
+      [labels]="graficaRendimientoLabel"
+      [colors]="colorGraficaRendimiento"></app-graph-rendimiento>
+  </div>
+</div>
+
+<app-ranking-tables
+  [rankingsBest]="rankingsBest"
+  [rankingsLow]="rankingsLow"
+></app-ranking-tables>
+
+
+
+
+
+
+<!-- | filterVehiculosAnalitica: subempresa -->

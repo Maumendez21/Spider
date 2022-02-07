@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-right mt-4">
+                <button type="button" class="btn btn-orange btn-sm" data-toggle="modal" data-target="#modalCreateUsuario">
+                    <i class="fas fa-plus"></i> {{"AGREGAR" | translate}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mb-4">
+          <input type="text"
+                autocomplete="off"
+               [(ngModel)]="searchValue"
+                 class="form-control mt-3 mb-3"
+                 placeholder="Buscar por nombre"
+                 (keyup)="getListUsuarios(searchValue)">
+            <table class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>{{"USUARIO" | translate}}</th>
+                        <th>{{"CORREO" | translate}}</th>
+                        <th>{{"GRUPO" | translate}}</th>
+                        <th>{{"TELEFONO" | translate}}</th>
+                        <th>{{"ROL" | translate}}</th>
+                        <th>{{"EDITAR"   | translate}}</th>
+                        <th [hidden]="rol !== 'Administrador'" >{{"PERMISOS" | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pageOfItems">
+                        <td>{{ item.id | notext }}</td>
+                        <td>{{ item.email | notext }}</td>
+                        <td>{{ item.group | notext }}</td>
+                        <td>{{ item.phone | notext }}</td>
+                        <td>{{ item.role | notext }}</td>
+                        <td >
+                            <button class="btn btn-orange btn-sm" (click)="getUsuario(item.id)" data-toggle="modal" data-target="#modalUpdateUsuario">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                        </td>
+                        <td [hidden]="rol !== 'Administrador'">
+                            <button class="btn btn-orange btn-sm" (click)="getNombre(item.id)" data-toggle="modal" data-target="#modalAsignarPermisos">
+                                <i class="fas fa-eye-slash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-jw-pagination-custom [items]="usuarios" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+        </div>
+    </div>
+</div>
+
+<app-create-usuario-modal [reloadTable]="getListUsuarios"></app-create-usuario-modal>
+<app-update-usuario-modal [reloadTable]="getListUsuarios" [idSend]="id"></app-update-usuario-modal>
+<app-asignar-permisos [reloadTable]="getListUsuarios" [user]="user"  ></app-asignar-permisos>

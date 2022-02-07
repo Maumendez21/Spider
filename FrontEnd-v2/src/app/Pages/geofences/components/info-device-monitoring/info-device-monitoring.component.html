@@ -1,0 +1,113 @@
+<!-- Top modal -->
+<button  id="btnInfoMonitoring" type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#top-modal" style="display: none;" >Top Modal</button>
+<div id="top-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">{{ infoDevice.VehicleName | notext }}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+
+              <ul class="nav nav-tabs nav-justified nav-bordered mb-3">
+                <li class="nav-item">
+                    <a href="#home-b2" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+                        <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                        <span class="d-none d-md-block">Actividad Hoy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#profile-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link ">
+                        <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                        <span class="d-none d-md-block">Detalle</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane show active" id="home-b2">
+
+
+                  <div class="row m-3">
+                    <div class="col-md-6 text-center">
+                        <h5>{{"DATOS_CHOFER"}}</h5>
+                        <p>{{ infoDevice.DriverData | notext }}</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h5>{{"ESTATUS"}}</h5>
+                        <h2 class="toolBtn{{ infoDevice.estatus }}">
+                            <i class="fas fa-car"></i>
+                        </h2>
+                        <p>{{ getEstatusName(infoDevice.estatus) }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center mt-3">
+                        <h5>{{"DISTANCIA_RECORRIDA"}}</h5>
+                        <p>{{ infoDevice.ODO | notext }}</p>
+                        <h5>{{"TIEMPO_ACTIVIDAD"}}</h5>
+                        <p>{{ infoDevice.Time | notext }}</p>
+                    </div>
+                    <div class="col-md-6 text-center mt-3">
+                        <h5>{{"COMBUSTIBLE_CONSUMIDO"}}</h5>
+                        <p>{{ infoDevice.Fuel | notext }}</p>
+                    </div>
+                </div>
+
+
+                </div>
+                <div class="tab-pane " id="profile-b2">
+
+                  <div class="row mt-3">
+                    <div class="col-md-6 text-center">
+                        <h5>{{"MARCA"}}</h5>
+                        <p>{{ infoDevice.Marca | notext }}</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h5>{{"MODELO"}}</h5>
+
+                        <p>{{ infoDevice.Modelo | notext }}</p>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-12 text-center">
+                        <h5>{{"VERSION"}}</h5>
+
+
+
+                        <p>{{infoDevice.Version | notext}}</p>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-center mt-3">
+                        <h5>{{"TIPO_VEHICULO"}}</h5>
+                        <p>{{infoDevice.TipoVehiculo | notext }}</p>
+
+                        <h5>{{"VIN"}}</h5>
+                        <p>{{infoDevice.VIN | notext }}</p>
+                    </div>
+                    <div class="col-md-6 text-center mt-3">
+
+                        <h5>{{"PLACAS"}}</h5>
+
+                        <p>{{infoDevice.Placas | notext }}</p>
+
+                        <h5>{{"POLIZA"}}</h5>
+                        <p>{{infoDevice.Poliza | notext }}</p>
+                    </div>
+
+                </div>
+
+
+                </div>
+            </div>
+
+
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

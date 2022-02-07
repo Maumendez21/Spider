@@ -1,0 +1,22 @@
+<button type="button" id="clickOptionsModal" class="btn btn-primary" data-toggle="modal" data-target="#optionsModal" style="visibility: hidden;">Opciones</button>
+<button type="button" id="clickNuevoEventoModal" class="btn btn-primary" data-toggle="modal" data-target="#nuevoEventoModal" style="visibility: hidden;">Nuevo Evento</button>
+<button type="button" id="clickActualizarEventoModal" class="btn btn-primary" data-toggle="modal" data-target="#actualizarEventoModal" style="visibility: hidden;">Nuevo Evento</button>
+<button type="button" id="clickNuevoEventoRutaModal" class="btn btn-primary" data-toggle="modal" data-target="#nuevoEventoRutaModal" style="visibility: hidden;">Nuevo Evento</button>
+<button type="button" id="clickActualizarEventoRutaModal" class="btn btn-primary" data-toggle="modal" data-target="#actualizarEventoRutaModal" style="visibility: hidden;">Nuevo Evento</button>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mt-4 mb-4">
+            <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+        </div>
+    </div>
+</div>
+
+<app-opciones-agenda-modal></app-opciones-agenda-modal>
+<app-nuevo-evento [fechaAgenda]="fechaAgenda" [agendaReload]="getRangeDates"></app-nuevo-evento>
+<app-actualizar-evento [evento]="eventUpdate" [agendaReload]="getRangeDates"></app-actualizar-evento>
+<app-nuevo-evento-ruta-agenda-modal [fechaAgenda]="fechaAgenda" [agendaReload]="getRangeDates"></app-nuevo-evento-ruta-agenda-modal>
+<app-actualizar-evento-ruta-agenda-modal [evento]="eventUpdate" [agendaReload]="getRangeDates"></app-actualizar-evento-ruta-agenda-modal>

@@ -1,0 +1,38 @@
+<div id="asignacion-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="topModalLabel">{{ title }}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="idSend" class="form-control" id="device" placeholder="Dispositivo" readonly/>
+                            <label for="floatingInput">Dispositivo</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input [(ngModel)]="name" placeholder="Nombre" class="form-control" id="floatingInput" />
+                            <label for="floatingInput">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <label for="floatingInput">SubEmpresa</label>
+                            <select class="form-control" [(ngModel)]="subempresa">
+                                <option *ngFor="let companie of companies" [value]="companie.Hierarchy">{{ companie.Name }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close" type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="actualizarDevice()">{{title}}</button> -->
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

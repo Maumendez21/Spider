@@ -1,0 +1,42 @@
+<div class="row mt-2">
+  <div class="col-md-6">
+      <div class="form-floating">
+          <input type="date" name="fechaInicio" class="form-control" id="fechaInicioInput" [(ngModel)]="fechaInicio">
+          <label for="fechaInicioInput">Fecha Inicio</label>
+      </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-floating">
+          <input type="time" class="form-control" id="horaInicioInput" [(ngModel)]="horaInicio">
+          <label for="horaInicioInput">Hora</label>
+      </div>
+  </div>
+</div>
+<div class="row mt-1">
+  <div class="col-md-6">
+      <div class="form-floating">
+          <input type="date" class="form-control" id="fechaFinalInput" name="fechaFin" [(ngModel)]="fechaFin">
+          <label for="fechaFinalInput">Fecha Fin</label>
+      </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-floating">
+          <input type="time" class="form-control" id="horaFinalInput" [(ngModel)]="horaFin">
+          <label for="horaFinalInput">Hora</label>
+      </div>
+  </div>
+</div>
+<div class="row mt-1">
+  <div class="col-md-12">
+      <div class="form-floating">
+          
+          <select class="form-select" id="itinerarios" [(ngModel)]="itinerarios">
+              <option value="1">Itinerarios</option>
+              <option value="2">Detalle Itinerarios</option>
+          </select>
+          <label for="itinerarios">Itinerarios</label>
+      </div>
+  </div>
+</div>
+
+<a class="btn btn-primary text-white mt-2" [href]="generarReporte()" target="_self" download="document.pdf" >Generar Reporte</a>

@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@circlon/angular-tree-component/css/angular-tree-component.css';
+
+.cursor{
+  cursor:pointer;
+}
+
+.fc-event-time, .fc-event-title {
+  color: black;
+}
+
+
+.tagToBody{
+  display: block!important;
+  z-index: 50!important;
+}

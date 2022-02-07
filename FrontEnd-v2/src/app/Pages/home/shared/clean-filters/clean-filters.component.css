@@ -1,0 +1,7 @@
+.cleanMap{
+  position: absolute;
+  z-index: 99;
+  right: 0;
+  bottom: 200px;
+  margin-right: 10px;
+}

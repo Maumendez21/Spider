@@ -1,0 +1,42 @@
+<div class="row">
+
+  <div class="col-md-12">
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Estatus</th>
+          <th>Paro</th>
+          <th>Activar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{paroMotor.Name}}
+          </td>
+          <td>
+            <span *ngIf="paroMotor.Status == 1" class="badge bg-secondary">En solicitud de paro</span>
+            <span *ngIf="paroMotor.Status == 0" class="badge bg-success">Motor activo</span>
+            <span *ngIf="paroMotor.Status == 2" class="badge bg-danger">Paro</span>
+            <span *ngIf="paroMotor.Status == 3" class="badge bg-secondary">En solicitud de activación</span>
+          </td>
+          <td>
+
+            <button class="btn btn-danger btn-sm " [disabled]="deshabilitadoParo(paroMotor.Status)" (click)="paroMotorFUN(paroMotor.Device, paroMotor.Status, 0)" >
+              <i class="mdi mdi-stop-circle-outline"></i>
+            </button>
+          </td>
+          <td>
+            <!--  -->
+            <!-- -->
+            <button class="btn btn-success btn-sm " [disabled]="deshabilitado(paroMotor.Status)" (click)="paroMotorFUN(paroMotor.Device, paroMotor.Status, 1)"  >
+              <i class="mdi mdi-stop-circle-outline"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

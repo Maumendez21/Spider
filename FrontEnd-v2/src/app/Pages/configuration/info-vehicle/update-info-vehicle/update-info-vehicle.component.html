@@ -1,0 +1,79 @@
+<div id="multiple-one" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-oneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="multiple-oneModalLabel">Actualizar información</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <input placeholder="ss" type="text" class="form-control" [(ngModel)]="device" readonly>
+                            <label>Id</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input placeholder="ss" type="text" class="form-control" id="inputName" [(ngModel)]="name">
+                            <label for="inputName">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input placeholder="ss" type="text" class="form-control" id="inputPlacas" [(ngModel)]="placas">
+                            <label for="inputPlacas">Placas</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input placeholder="ss" type="text" class="form-control" id="inputVIN" [(ngModel)]="VIN">
+                            <label for="inputVIN">VIN</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input placeholder="ss" type="text" class="form-control" id="inputPoliza" [(ngModel)]="poliza">
+                            <label for="inputPoliza">Poliza</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-2">
+                            <select id="inputMarca" class="form-select" [(ngModel)]="marca">
+                                <option value="0" >Marca</option>
+                                <option *ngFor="let item of markList" [value]="item.IdMark">{{ item.Description }}</option>
+                            </select>
+                            <label for="inputMarca">Seleccionar marca</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select id="inputModelo" class="form-select" [(ngModel)]="modelo">
+                                <option value="0" >Modelo</option>
+                                <option *ngFor="let item of modelList" [value]="item.IdModel">{{ item.Description }}</option>
+                            </select>
+                            <label for="inputModelo">Seleccciona el modelo</label>
+                        </div>
+                        <div class="form-floating ">
+                            <select id="inputVersion" class="form-select" [(ngModel)]="version">
+                                <option value="0" >Version</option>
+                                <option *ngFor="let item of versionList" [value]="item.IdVersion">{{ item.Description }}</option>
+                            </select>
+                            <label for="inputVersion">Selecciona la versión</label>
+                            <a  style="font-size: 10px; cursor: pointer;" class="mb-2"  data-bs-target="#multiple-two" data-bs-toggle="modal" data-bs-dismiss="modal">Si no esta la versión deseada agregala aquí</a>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select id="inputTipo" class="form-select" [(ngModel)]="tipo">
+                                
+                                <option *ngFor="let item of tipoList" [value]="item.IdTypeVehicle">{{ item.Description }}</option>
+                            </select>
+                            <label for="inputTipo">Tipo de vehiculo</label>
+                        </div>
+                    </div>
+                </div>
+                
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" (click)="actualizarInfoVehiculo()">Actualizar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<app-add-version></app-add-version>

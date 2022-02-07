@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mt-4 mb-4">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-striped mt-4">
+                <thead>
+                    <tr>
+                        <th>{{"NOMBRE" | translate}}</th>
+                        <th>{{"DISPOSITIVO" | translate}}</th>
+                        <th>{{"COMPAÑIA" | translate}}</th>
+                        <th>{{"RESPONSABLE" | translate}}</th>
+                        <th class="text-right">Asignación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of devices; let id = index">
+                        <td>{{ item.name | notext }}</td>
+                        <td>{{ item.device | notext }}</td>
+                        <td>{{ item.company | notext }}</td>
+                        <td>{{ item.responsable | notext }}</td>
+                        <td class="text-right">
+                            <button class="btn btn-orange btn-sm" (click)="callModalAssignment(item.device, item.name, item.hierarchy, item.idResponsable,item.responsable, id)" data-toggle="modal" data-target="#modalAsignarSubempresa">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- <app-jw-pagination-custom [items]="devices" (changePage)="onChangePage($event)"></app-jw-pagination-custom> -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalAsignarSubempresa" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="agregarModalLabel">{{"ASIGNAR_SUBEMPRESA" | translate}}</h5>
+                <button type="button" id="closeModalNew" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>{{"ID_DISPOSITIVO" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="device" readonly>
+                </div>
+                <div class="form-group">
+                    <label>{{"NOMBRE" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="name">
+                </div>
+                <div class="form-group">
+                    <label>{{"SUBEMPRESA" | translate}}</label>
+                    <select class="form-control" [(ngModel)]="subempresa">
+                        <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>{{"RESPONSABLE" | translate}}</label>
+                    <select class="form-control" [(ngModel)]="responsable">
+                        <option *ngFor="let responsable of responsables" [value]="responsable.Id">{{ responsable.Name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-orange" (click)="asignarSubempresa()" data-dismiss="modal">{{"ASIGNAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,175 @@
+<button [routerLink]="'/maitanance/inspection'" class="btn btn-info">Volver</button>
+
+<div class="row mt-2">
+    <div class="col-md-3">
+        <div class="form-floating">
+            <input type="text" disabled class="form-control" [(ngModel)]="fechaInicio">
+            <label for="">Fecha</label>
+
+        </div>
+    </div>
+
+    <div class="col-md-3">
+      
+
+        <div class="form-floating">
+            <select class="form-select" [(ngModel)]="mechanic" >
+            <option value="">Selecciona un mecánico</option>
+            <option *ngFor="let value of mechanics" [value]="value.IdMechanics">
+                {{ value.FullName }}
+            </option>
+            </select>
+            <label>Mecánico *</label>
+
+        </div>
+    </div>
+
+    <div class="col-md-3">   
+        <div class="form-floating">
+            <select class="form-select" [(ngModel)]="tipeInspect" >
+                <option value=0 selected>Selecciona el tipo</option>
+                <option value=1>Programada</option>
+                <option value=2>Extraodinaria</option>
+            </select>
+            <label>Tipo de Inspección*</label>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-floating">
+            <input type="text" disabled class="form-control" [(ngModel)]="vehiculo">
+            <label for="">Vehiculo</label>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-4">
+      <div class="form-floating">
+        <input type="text"  [(ngModel)]="kilometraje"  class="form-control" >
+        <label for="">Kilometraje *</label>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-floating">
+        <input type="text" disabled [(ngModel)]="responsable"  class="form-control">
+        <label for="">Responsable</label>
+      </div>
+    </div>
+</div>
+
+<!-- Tabla para realizar la inspección -->
+
+
+
+<div class="card mt-3">
+    <div class="card-body">
+
+    
+        
+
+        <table *ngFor="let plantilla of plantilla; let iP = index " class="table table-sm table-bordered">
+        <thead>
+            <tr>
+            <th colspan="1"  scope="col"></th>
+            <th colspan="2"  scope="col">Existe</th>
+            <th colspan="3"   scope="col">Estado</th>
+            <th colspan="1"  scope="col"></th>
+            </tr>
+
+            <tr>
+            <th rowspan="3" scope="col" class="w250">Template</th>
+            <th  rowspan="3" class="w20">Si</th>
+            <th  rowspan="3" class="w20">No</th>
+            <th  rowspan="3" class="w20">Bueno</th>
+            <th  rowspan="3" class="w20">Regular</th>
+            <th  rowspan="3" class="w20">Malo</th>
+            <th rowspan="3" scope="col">Observaciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr><th>{{plantilla.header}}</th></tr>
+
+            <tr *ngFor="let template of plantilla.listinspectionresults; let iT = index">
+
+
+            <td>{{template.objeto}}</td>
+            <td>
+                <div class="form-check">
+                <input
+                    (change)="generateData(template.idtemplate, 'yes', $event.isTrusted, iP, iT )"
+                    ng-checked = "check($event.isTrusted)"
+                    class="form-check-input"
+                    type="radio"
+                    name="existeChecksGroup{{template.idtemplate}}"
+                    id="existeCheck{{template.idtemplate}}"
+                    [checked]="template.yes"
+                    [value]="template.yes" >
+                </div>
+            </td>
+
+            <td>
+                <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="existeChecksGroup{{template.idtemplate}}"
+                    (change)="generateData(template.idtemplate,'no', $event.isTrusted, iP, iT  )"
+                    id="existeCheck{{template.idtemplate}}"
+                    [value]=" template.no"
+                    [checked]=" template.no"
+                    >
+                </div>
+            </td>
+            <td>
+                <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="estacoCheckGroup{{template.idtemplate}}"
+                    id="estadoCheck{{template.idtemplate}}"
+                    [value]="template.Good"
+                    [checked]="template.Good"
+                    (change)="generateData(template.idtemplate,'Good', $event.isTrusted,  iP, iT  )">
+                </div>
+            </td>
+            <td>
+                <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="estacoCheckGroup{{template.idtemplate}}"
+                    id="estadoCheck{{template.idtemplate}}"
+                    [value]="template.Regular"
+                    [checked]="template.Regular"
+                    (change)="generateData(template.idtemplate,'Regular',$event.isTrusted, iP, iT  )">
+                </div>
+            </td>
+            <td>
+                <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="estacoCheckGroup{{template.idtemplate}}"
+                    id="estadoCheck{{template.idtemplate}}"
+                    [value]=" template.Bad"
+                    [checked]=" template.Bad"
+                    (change)="generateData(template.idtemplate,'Bad',$event.isTrusted, iP, iT  )">
+                </div>
+            </td>
+            <td>
+                <input type="text" (keyup)="notes(iP, iT, template.Notes)"  class="form-control" [(ngModel)]="template.Notes" >
+            </td>
+            </tr>
+        </tbody>
+        </table>
+
+        <button (click)="inspect()" class="btn btn-primary btn-sm">Actualizar inspección</button>
+        
+            
+    </div>
+</div>
+

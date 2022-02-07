@@ -1,0 +1,54 @@
+<div class="row mt-4" *ngIf="section == '4'">
+
+  <div class="col-md-3" >
+    <p>Punto de Interés</p>
+    <select class="form-control" [(ngModel)]="puntoInteres" >
+      <option value="">{{"BUSCAR_PUNTO" | translate}}</option>
+      <option *ngFor="let punto of puntosInteres" [value]="punto.MongoId">{{ punto.Description }}</option>
+    </select>
+  </div>
+</div>
+
+<div class="row mt-2">
+  <div *ngIf="section === '6'" class="col-md-3" >
+    <p>Geocerca</p>
+
+    <select id="geocercas" class="form-control" (change)="getDevicesGeo(geofence)"  [(ngModel)]="geofence">
+      <option value="">{{'SELECTGEOCERCA' | translate}}</option>
+      <option *ngFor="let item of geofences; let i = index" [value]="i">{{ item.Name }}</option>
+   </select>
+  </div>
+
+  <div *ngIf="section != '5' && section != '6'" class="col-md-3" >
+    <p>Grupo</p>
+    <select class="form-control" [(ngModel)]="compani" (change)="getDevices(compani)">
+      <option value="">{{"BUSCAR_GRUPO" | translate}}</option>
+      <option *ngFor="let subempresa of subempresas" [value]="subempresa.Hierarchy">{{ subempresa.Management }}</option>
+    </select>
+  </div>
+  <div *ngIf="section != '5'" class="col-md-3" >
+    <p>Vehiculo</p>
+    <select class="form-control"    [(ngModel)]="vehiculo" >
+      <option value="">{{"BUSCAR_VEHICULO" | translate}}</option>
+      <option *ngFor="let spider of spiderMarkers" [value]="spider.Device">
+        {{ spider.Name }}
+      </option>
+    </select>
+  </div>
+
+
+  <div class="col-md-3">
+    <p>Fecha Inicio</p>
+    <input type="date" placeholder="Inicio"  class="form-control" [(ngModel)]="fechaInicio">
+  </div>
+  <div class="col-md-3">
+    <p>Fecha Fin</p>
+    <input type="date" placeholder="Fin"  class="form-control"  [(ngModel)]="fechaFin" >
+
+  </div>
+</div>
+<div class="row">
+  <div class="col md-12">
+    <button class="btn btn-orange mt-3"  (click)="filtrar()"> Buscar</button>
+  </div>
+</div>

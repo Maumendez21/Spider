@@ -1,0 +1,34 @@
+<div class="form-floating mb-3">
+    <input [(ngModel)]="searchValue" (keyup)="getVehiculoInfo(searchValue)" class="form-control" id="floatingInput" placeholder="nombre" />
+    <label for="floatingInput">Buscar por nombre</label>
+</div>
+
+<table id="basic-datatable" class="table dt-responsive nowrap w-100">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Placas</th>
+            <th>VIN</th>
+            <th>Poliza</th>
+            <th>Editar</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let item of pageOfItems " >
+            <td>{{item.name   | notext}}</td>
+            <td>{{item.placas | notext}}</td>
+            <td>{{item.VIN    | notext}}</td>
+            <td>{{item.poliza | notext}}</td>
+            <td>
+                <button (click)="getIdDevice(item.Device)" class="btn btn-info btn-sm " data-bs-toggle="modal" data-bs-target="#multiple-one">
+                    <i class="dripicons-pencil"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-jw-pagination-custom [items]="vehiculoInfo" (changePage)="onChangePage($event)"></app-jw-pagination-custom>
+
+<app-update-info-vehicle [reloadTable]="getVehiculoInfo" [idSend]="id"></app-update-info-vehicle>

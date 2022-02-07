@@ -1,0 +1,113 @@
+<!-- <button id="btnModalInfoDevice" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInfoDevice" style="display: none;">
+  Launch demo modal
+</button> -->
+
+<button 
+    id="btnModalInfoDevice" 
+    type="button" 
+    class="btn btn-secondary" 
+    data-bs-toggle="modal" data-bs-target="#infoDeviceModal"
+    style="display: none;">Center modal
+</button>
+
+<div id="infoDeviceModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="multiple-oneModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="multiple-oneModalLabel">{{ infoDevice.VehicleName | notext }}</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs nav-justified nav-bordered mb-3">
+                    <li class="nav-item">
+                        <a href="#actividad-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link active">
+                            <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Detalle</span>
+                        </a>
+                    </li>
+                    <!-- <li *ngIf="this.infoDevice.TypeDevice === 1 || this.infoDevice.TypeDevice === 2 || this.infoDevice.TypeDevice === 3" class="nav-item" class="nav-item">
+                        <a href="#detalle-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link ">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Detalle</span>
+                        </a>
+                    </li> -->
+                    <li *ngIf="this.infoDevice.TypeDevice === 7 || this.infoDevice.TypeDevice === 5 || this.infoDevice.TypeDevice === 6 || this.infoDevice.TypeDevice === 4" class="nav-item">
+                        <a href="#detalle2-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                            <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Detalle</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#alarmas-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Alertas de Unidad</span>
+                        </a>
+                    </li>
+                    <li *ngIf="viewParodeMotor()" class="nav-item">
+                        <a href="#paro-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Paro de Motor</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#reporte-b2" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+                            <i class="mdi mdi-settings-outline d-md-none d-block"></i>
+                            <span class="d-none d-md-block">Reporte</span>
+                        </a>
+                    </li>
+                </ul>
+
+                
+                <div class="tab-content">
+                    <div class="tab-pane show active" id="actividad-b2">
+                        <app-actividat-hoy-tab
+                          [infoDevice]="infoDevice"
+                          [getEstatusName]="getEstatusName"
+                          [logotipo]="logotipo"
+                          [tipo]="tipo"
+                          [getTipoDispositivo]="getTipoDispositivo"
+                          ></app-actividat-hoy-tab>
+                    </div>
+                    <div class="tab-pane" id="detalle-b2">
+                        <!-- <app-detalle-tab [infoDevice]="infoDevice" ></app-detalle-tab>> -->
+                    </div>
+                    <div class="tab-pane " id="detalle2-b2">
+                        <app-detalle2-tab [infoDevice2]="infoDevice2" ></app-detalle2-tab>
+                    </div>
+                    <div class="tab-pane" id="alarmas-b2">
+                        <app-alarmas-tab [alarmas]="alarmas" ></app-alarmas-tab>
+                    </div>
+                    <div class="tab-pane" id="paro-b2">
+                        <app-paro-motor-tab [paroMotor]="paroMotor" ></app-paro-motor-tab>
+                    </div>
+                    <div class="tab-pane" id="reporte-b2">
+                        <app-reporte-tab [device]="device" [empresa]="infoDevice.Hierarchy" ></app-reporte-tab>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-primary" data-bs-target="#multiple-KM" data-bs-toggle="modal" data-bs-dismiss="modal">Next</button> -->       
+                <button type="button" class="btn btn-info end-bar-toggle" data-bs-dismiss="modal" (click)="setDevice(device, infoDevice.estatus)">
+                    <i class="fas fa-route"></i>
+                    Viajes
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<app-graph-km-recorridos
+    [data]="graficaKmData"
+    [labels]="graficaKmLabel"
+></app-graph-km-recorridos>
+
+<app-graph-time-activity
+[data]="graficaTimeData"
+[labels]="graficaTimeLabel"
+></app-graph-time-activity>
+
+<app-graph-fuel-consume
+[data]="graficaFuelData"
+[labels]="graficaFuelLabel"
+></app-graph-fuel-consume>

@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <app-configuration-menu-lg></app-configuration-menu-lg>
+        </div>
+        <div class="col-md-9 mt-4 mb-4">
+            <button id="optionsChildModal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#optionsModal" style="display: none;">
+                Launch demo modal
+            </button>
+            <p>{{"SUBGRUPOS" | translate}}</p>
+            <tree-root [nodes]="nodes" [options]="options"></tree-root>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="optionsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"OPCIONES" | translate}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <button class="btn btn-orange w-100" data-toggle="modal" data-target="#addChildModal" data-dismiss="modal">
+                            {{"NUEVO_GRUPO" | translate}}
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-2 mb-2">
+                    <div class="col-md-8">
+                        <button class="btn btn-orange w-100" data-toggle="modal" data-target="#updateChildModal" data-dismiss="modal">
+                            {{"ACUTALIZAR_GRUPO" | translate}}
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addChildModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"AGREGAR_SUBGRUPO" | translate}}{{ title }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>{{"NOMBRE_GRUPO" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="newSubempresa">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"CERRAR" | translate}}</button>
+                <button type="button" class="btn btn-orange" data-dismiss="modal" (click)="addChild()">{{"AGREGAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="updateChildModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{"ACTUALIZAR_SUBGRUPO" | translate}}{{ title }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>{{"NOMBRE_GRUPO" | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="updateSubempresa">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{"CERRAR" | translate}}</button>
+                <button type="button" class="btn btn-orange" data-dismiss="modal" (click)="updateChild()">{{"ACTUALIZAR" | translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+

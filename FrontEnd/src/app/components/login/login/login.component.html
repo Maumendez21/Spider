@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center" style="height: 100vh;">
+        <div class="col-md-3 align-self-center">
+            <div *ngIf="errorLogin.show" class="alert alert-danger" role="alert">
+                {{ errorLogin.text }}
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <!-- <img class="img-fluid mt-3 mb-3" src="assets/images/logospider.png" /> -->
+                    <div class="card-body">
+                        <form (ngSubmit)="onSubmit()" [class]="(error) ? 'needs-validation was-validated' : '' " novalidate>
+                            <div class="form-group">
+                                <h2 class="mb-3"> {{"INGRESAR" | translate}}</h2>
+                                <label for="inputUser" class="fa5">{{"USUARIO" | translate}}</label>
+                                <input type="text" [(ngModel)]="loginModel.user" name="user" class="form-control" id="inputUser" autofocus required>
+                                <div class="invalid-feedback">
+                                    {{"USUARIO_NECESARIO" | translate}}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="fa5">Contraseña</label>
+                                <input type="password" [(ngModel)]="loginModel.password" name="password" class="form-control" id="inputPassword" required>
+                                <div class="invalid-feedback">
+                                    {{"CONTRASEÑA_NECESARIA" | translate}}
+                                </div>
+                                <a [routerLink]="['/recovery']">{{"OLVIDASTE_TU_CONTRASEÑA" | translate}}</a>
+                            </div>
+                            <div class="row justify-content-end">
+                                <button type="submit" class="btn btn-orange fa5" [disabled]="btnLoading.loading" [innerHtml]="btnLoading.text"></button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
